@@ -1409,8 +1409,8 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Predictive uplift estimator</span>
-      <h2>What does a 6% lift mean for your pool?</h2>
-      <p>Live market data (BTC price via CoinGecko · network hashrate via blockchain.info). Adjust your inputs — the math is transparent and runs entirely in your browser.</p>
+      <h2>What does a <span id="r-headline-uplift">1.5%</span> lift mean for your pool?</h2>
+      <p>Live market data (BTC price via CoinGecko · network hashrate via blockchain.info). Adjust your inputs — the math is transparent and runs entirely in your browser. Conservative pitches assume 0.5–1.5% uplift; aggressive scenarios go up to 3% or more during volatile fee markets.</p>
     </div>
 
     <div class="roi-card" data-testid="roi-calculator">
@@ -1427,8 +1427,8 @@
 
         <label for="r-uplift">Predictive uplift</label>
         <div class="slider-row">
-          <input type="range" id="r-uplift" min="0" max="15" value="6" step="0.5" data-testid="roi-uplift"/>
-          <span class="slider-value" id="r-uplift-val">6.0%</span>
+          <input type="range" id="r-uplift" min="0" max="15" value="1.5" step="0.5" data-testid="roi-uplift"/>
+          <span class="slider-value" id="r-uplift-val">1.5%</span>
         </div>
 
         <label for="r-poolfee">Pool fee</label>
@@ -1920,6 +1920,8 @@
     const deltaFiat = deltaBTC * price;
 
     $('r-uplift-val').textContent = `${(uplift*100).toFixed(1)}%`;
+    const hl = document.getElementById('r-headline-uplift');
+    if (hl) hl.textContent = `${(uplift*100).toFixed(1)}%`;
     $('r-poolfee-val').textContent = `${(poolFee*100).toFixed(1)}%`;
     $('r-blocks').textContent = blocksPerMonth.toFixed(3);
     $('r-share').textContent = `${(share*100).toFixed(4)}%`;
