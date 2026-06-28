@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PreBlock — Predictive Mining for Bitcoin Pools</title>
+    <meta name="description" content="PreBlock predicts the next three Bitcoin block templates with 87–100% hit-rate. Built for OCEAN-pool operators running DATUM. One machine. No GPU farm." />
+    <meta name="keywords" content="Bitcoin, Mining, Predictive, Mempool, DATUM, OCEAN, Pool, Block Template, Predictive Mining, Sphere Node" />
+    <meta name="author" content="Stoffel999" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="PreBlock — Predictive Mining for Bitcoin Pools" />
+    <meta property="og:description" content="87–100% hit-rate over the last 24h. Predicting the next 3 block templates with sub-50ms tip switching, DATUM-native." />
+    <meta property="og:url" content="https://preblock.io" />
+    <meta property="og:site_name" content="PreBlock" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PreBlock — Predictive Mining" />
+    <meta name="twitter:description" content="Predict the next 3 Bitcoin block templates. DATUM-ready. One machine. No GPU farm." />
+
+    <!-- Favicon (inline SVG, Bitcoin-orange P) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0c'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%23F7931A'%3EP%3C/text%3E%3C/svg%3E" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <style>
+      /* ─── Design Tokens ─────────────────────────────────────────────── */
+      :root {
+        --bg:           #0a0a0c;
+        --bg-elevated:  #111114;
+        --surface:      #1a1a1f;
+        --surface-2:    #22222a;
+        --border:       rgba(255, 255, 255, 0.08);
+        --border-2:     rgba(255, 255, 255, 0.14);
+        --text:         #f5f5f7;
+        --text-muted:   #a0a0a8;
+        --text-dim:     #6b6b75;
+        --accent:       #F7931A;
+        --accent-soft:  rgba(247, 147, 26, 0.12);
+        --accent-glow:  rgba(247, 147, 26, 0.35);
+        --success:      #2ecc71;
+        --danger:       #e74c3c;
+        --max-w:        1240px;
+      }
+
+      /* ─── Reset & Base ─────────────────────────────────────────────── */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 400;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      /* Background texture (grain + radial accent) */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          radial-gradient(ellipse 60% 50% at 50% -10%, rgba(247, 147, 26, 0.12), transparent 60%),
+          radial-gradient(ellipse 40% 30% at 100% 20%, rgba(247, 147, 26, 0.06), transparent 70%);
+        z-index: -2;
+      }
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+        opacity: 0.025;
+        z-index: -1;
+        mix-blend-mode: overlay;
+      }
+
+      ::selection { background: var(--accent); color: var(--bg); }
+
+      h1, h2, h3, h4 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--text);
+      }
+      .mono { font-family: 'JetBrains Mono', monospace; }
+
+      /* ─── Layout ─────────────────────────────────────────────── */
+      .container {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+      @media (max-width: 720px) {
+        .container { padding: 0 20px; }
+      }
+
+      section { padding: 120px 0; position: relative; }
+      @media (max-width: 720px) { section { padding: 80px 0; } }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--accent);
+        padding: 6px 12px;
+        background: var(--accent-soft);
+        border: 1px solid rgba(247, 147, 26, 0.25);
+        border-radius: 100px;
+        margin-bottom: 24px;
+      }
+      .eyebrow::before {
+        content: '';
+        width: 6px; height: 6px;
+        background: var(--accent);
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--accent-glow);
+      }
+
+      /* ─── Header ─────────────────────────────────────────────── */
+      header.site-header {
+        position: sticky; top: 0; z-index: 100;
+        background: rgba(10, 10, 12, 0.72);
+        backdrop-filter: blur(24px) saturate(140%);
+        -webkit-backdrop-filter: blur(24px) saturate(140%);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 0;
+      }
+      header.site-header .container {
+        display: flex; align-items: center; justify-content: space-between;
+      }
+      .brand {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        text-decoration: none;
+        display: inline-flex; align-items: center; gap: 10px;
+      }
+      .brand-mark {
+        width: 28px; height: 28px;
+        border-radius: 7px;
+        background: linear-gradient(135deg, var(--accent), #c5740d);
+        display: inline-flex; align-items: center; justify-content: center;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 700; color: var(--bg); font-size: 16px;
+      }
+      nav.primary-nav { display: flex; gap: 32px; align-items: center; }
+      nav.primary-nav a {
+        color: var(--text-muted); text-decoration: none; font-size: 14px;
+        font-weight: 500; transition: color 0.2s;
+      }
+      nav.primary-nav a:hover { color: var(--text); }
+      @media (max-width: 880px) {
+        nav.primary-nav a:not(.btn) { display: none; }
+      }
+
+      /* ─── Buttons ─────────────────────────────────────────────── */
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 12px 22px;
+        border-radius: 100px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 14px; font-weight: 500;
+        text-decoration: none; cursor: pointer;
+        transition: all 0.2s ease;
+        border: 1px solid transparent;
+        white-space: nowrap;
+      }
+      .btn-primary {
+        background: var(--accent); color: var(--bg);
+      }
+      .btn-primary:hover {
+        background: #ffb04a;
+        box-shadow: 0 0 24px var(--accent-glow);
+        transform: translateY(-1px);
+      }
+      .btn-ghost {
+        background: transparent; color: var(--text);
+        border-color: var(--border-2);
+      }
+      .btn-ghost:hover { background: var(--surface); border-color: var(--accent); }
+      .btn-lg { padding: 16px 32px; font-size: 15px; }
+      .btn .lucide { width: 16px; height: 16px; }
+
+      /* ─── Hero ─────────────────────────────────────────────── */
+      .hero {
+        padding-top: 120px; padding-bottom: 80px;
+        position: relative;
+      }
+      .hero .hero-grid {
+        display: grid; gap: 56px;
+        grid-template-columns: 1.2fr 1fr;
+        align-items: center;
+      }
+      @media (max-width: 900px) {
+        .hero .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      }
+      .hero h1 {
+        font-size: clamp(40px, 6vw, 72px);
+        margin-bottom: 24px;
+      }
+      .hero h1 .accent-text {
+        background: linear-gradient(120deg, var(--accent), #ffd089);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero p.lead {
+        font-size: clamp(16px, 1.4vw, 19px);
+        color: var(--text-muted);
+        max-width: 540px;
+        margin-bottom: 36px;
+      }
+      .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
+      .hero-tags {
+        display: flex; gap: 12px; flex-wrap: wrap;
+      }
+      .hero-tag {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px; color: var(--text-dim);
+        padding: 6px 12px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+      }
+
+      /* Hero stat card */
+      .stat-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 32px;
+        position: relative;
+        overflow: hidden;
+      }
+      .stat-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 80% 50% at 50% 0%, var(--accent-soft), transparent 60%);
+        pointer-events: none;
+      }
+      .stat-card > * { position: relative; }
+      .stat-card .stat-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--text-dim);
+        margin-bottom: 12px;
+      }
+      .stat-card .stat-value {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 56px;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 8px;
+        color: var(--accent);
+      }
+      .stat-card .stat-sub {
+        font-size: 14px;
+        color: var(--text-muted);
+        margin-bottom: 28px;
+      }
+      .stat-card .stat-divider {
+        height: 1px; background: var(--border); margin: 16px 0;
+      }
+      .mini-stats {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+      }
+      .mini-stat-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--text-dim);
+        margin-bottom: 6px;
+      }
+      .mini-stat-value {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 22px; font-weight: 600;
+      }
+
+      /* ─── Trust bar ─────────────────────────────────────────────── */
+      .trust-bar {
+        padding: 28px 0;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .trust-row {
+        display: flex; align-items: center; gap: 48px; flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .trust-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--text-dim);
+      }
+      .trust-items {
+        display: flex; gap: 40px; flex-wrap: wrap; align-items: center;
+      }
+      .trust-item {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px;
+        color: var(--text-muted);
+        display: inline-flex; gap: 6px; align-items: center;
+      }
+      .trust-item::before {
+        content: '✓'; color: var(--accent); font-weight: 700;
+      }
+
+      /* ─── Section heading ─────────────────────────────────────────── */
+      .section-head {
+        max-width: 760px;
+        margin-bottom: 64px;
+      }
+      .section-head h2 {
+        font-size: clamp(32px, 4vw, 48px);
+        margin-bottom: 16px;
+      }
+      .section-head p {
+        font-size: 17px;
+        color: var(--text-muted);
+        max-width: 600px;
+      }
+
+      /* ─── Features grid ─────────────────────────────────────────────── */
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+      .feature-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .feature-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent-soft);
+      }
+      .feature-icon {
+        width: 44px; height: 44px;
+        border-radius: 12px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        display: inline-flex; align-items: center; justify-content: center;
+        margin-bottom: 20px;
+      }
+      .feature-card h3 {
+        font-size: 18px; margin-bottom: 8px;
+      }
+      .feature-card p {
+        font-size: 14px; color: var(--text-muted);
+      }
+      .feature-card .feature-meta {
+        margin-top: 16px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        color: var(--text-dim);
+        display: flex; gap: 12px; flex-wrap: wrap;
+      }
+
+      /* ─── ROI Calculator ─────────────────────────────────────────────── */
+      .roi-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 48px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+      }
+      @media (max-width: 900px) {
+        .roi-card { grid-template-columns: 1fr; padding: 32px; gap: 32px; }
+      }
+      .roi-inputs label {
+        display: block;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--text-dim);
+        margin-bottom: 8px;
+        margin-top: 20px;
+      }
+      .roi-inputs label:first-child { margin-top: 0; }
+      .roi-inputs .input-row {
+        display: flex; gap: 8px;
+      }
+      .roi-inputs input,
+      .roi-inputs select {
+        background: var(--bg-elevated);
+        border: 1px solid var(--border-2);
+        color: var(--text);
+        padding: 12px 14px;
+        border-radius: 8px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 14px;
+        width: 100%;
+        transition: border-color 0.2s;
+      }
+      .roi-inputs input:focus,
+      .roi-inputs select:focus {
+        outline: none; border-color: var(--accent);
+      }
+      .slider-row {
+        display: flex; align-items: center; gap: 14px;
+        margin-top: 8px;
+      }
+      input[type=range] {
+        width: 100%;
+        -webkit-appearance: none;
+        background: transparent;
+      }
+      input[type=range]::-webkit-slider-runnable-track {
+        height: 4px;
+        background: var(--border-2);
+        border-radius: 2px;
+      }
+      input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 18px; height: 18px;
+        background: var(--accent);
+        border-radius: 50%;
+        margin-top: -7px;
+        cursor: pointer;
+        box-shadow: 0 0 10px var(--accent-glow);
+      }
+      .slider-value {
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 600;
+        color: var(--accent);
+        min-width: 50px; text-align: right;
+        font-size: 14px;
+      }
+      .roi-output {
+        background: linear-gradient(155deg, var(--bg-elevated), var(--surface));
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        display: flex; flex-direction: column;
+        justify-content: center;
+      }
+      .roi-output .output-eyebrow {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--text-dim);
+        margin-bottom: 8px;
+      }
+      .roi-output .delta {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 56px;
+        font-weight: 700;
+        color: var(--accent);
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+      .roi-output .delta-sub {
+        color: var(--text-muted);
+        font-size: 14px;
+        margin-bottom: 28px;
+      }
+      .roi-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 20px 0;
+        border-top: 1px solid var(--border);
+      }
+      .roi-stats > div .label {
+        font-size: 12px; color: var(--text-dim); margin-bottom: 4px;
+      }
+      .roi-stats > div .val {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .market-info {
+        margin-top: 16px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        color: var(--text-dim);
+        display: flex; gap: 16px; flex-wrap: wrap;
+      }
+      .market-info .dot {
+        width: 6px; height: 6px;
+        background: var(--success); border-radius: 50%;
+        display: inline-block;
+        animation: pulse 2s ease-in-out infinite;
+        margin-right: 6px;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(46,204,113,0.6); }
+        50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(46,204,113,0); }
+      }
+
+      /* ─── License Models ─────────────────────────────────────────────── */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      @media (max-width: 900px) {
+        .pricing-grid { grid-template-columns: 1fr; }
+      }
+      .price-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 36px 32px;
+        position: relative;
+        transition: all 0.3s ease;
+        display: flex; flex-direction: column;
+      }
+      .price-card.featured {
+        border-color: var(--accent);
+        background: linear-gradient(155deg, var(--surface), var(--surface-2));
+        box-shadow: 0 0 0 1px var(--accent), 0 20px 60px rgba(247, 147, 26, 0.15);
+      }
+      .price-card .price-badge {
+        position: absolute; top: -10px; left: 32px;
+        background: var(--accent); color: var(--bg);
+        font-size: 11px; font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 100px;
+        font-family: 'JetBrains Mono', monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .price-card h3 {
+        font-size: 24px; margin-bottom: 4px;
+      }
+      .price-card .price-subtitle {
+        color: var(--text-muted);
+        font-size: 14px;
+        margin-bottom: 24px;
+      }
+      .price-card .price-tier {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 4px;
+      }
+      .price-card .price-tier-sub {
+        font-size: 13px; color: var(--text-dim);
+        margin-bottom: 28px;
+      }
+      .price-card ul {
+        list-style: none;
+        margin-bottom: 32px;
+        flex: 1;
+      }
+      .price-card ul li {
+        font-size: 14px;
+        color: var(--text);
+        padding: 8px 0;
+        display: flex; gap: 10px;
+        align-items: flex-start;
+      }
+      .price-card ul li::before {
+        content: '';
+        width: 18px; height: 18px; flex-shrink: 0;
+        margin-top: 3px;
+        background: var(--accent-soft);
+        border-radius: 50%;
+        position: relative;
+      }
+      .price-card ul li::after {
+        content: '✓';
+        position: absolute;
+        margin-left: 5px; margin-top: 1px;
+        color: var(--accent);
+        font-size: 11px; font-weight: 700;
+      }
+
+      /* ─── Architecture ─────────────────────────────────────────────── */
+      .arch-card {
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px;
+        line-height: 1.7;
+        color: var(--text-muted);
+        white-space: pre;
+        overflow-x: auto;
+      }
+
+      /* ─── CTA Section ─────────────────────────────────────────────── */
+      .cta-section {
+        text-align: center;
+        padding: 100px 32px;
+        background: linear-gradient(155deg, var(--surface), var(--surface-2));
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        margin: 80px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 60% 80% at 50% 0%, var(--accent-soft), transparent 60%);
+        pointer-events: none;
+      }
+      .cta-section > * { position: relative; }
+      .cta-section h2 {
+        font-size: clamp(32px, 4vw, 48px);
+        margin-bottom: 16px;
+      }
+      .cta-section p {
+        color: var(--text-muted);
+        max-width: 560px;
+        margin: 0 auto 32px;
+        font-size: 17px;
+      }
+
+      /* ─── Demo Access Section ─────────────────────────────────────── */
+      .demo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      @media (max-width: 800px) {
+        .demo-grid { grid-template-columns: 1fr; }
+      }
+      .demo-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 36px;
+        position: relative;
+        display: flex; flex-direction: column;
+      }
+      .demo-card.live { border-color: var(--accent); }
+      .demo-card .demo-badge {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--accent);
+        margin-bottom: 12px;
+      }
+      .demo-card h3 { font-size: 22px; margin-bottom: 10px; }
+      .demo-card p { color: var(--text-muted); margin-bottom: 24px; flex: 1; }
+      .demo-card ul {
+        list-style: none;
+        margin: 12px 0 24px;
+      }
+      .demo-card ul li {
+        font-size: 13px; color: var(--text-muted);
+        padding: 4px 0; display: flex; gap: 8px;
+      }
+      .demo-card ul li::before {
+        content: '→'; color: var(--accent);
+      }
+
+      /* ─── Footer ─────────────────────────────────────────────── */
+      footer.site-footer {
+        border-top: 1px solid var(--border);
+        padding: 56px 0 36px;
+        margin-top: 80px;
+      }
+      footer .footer-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 40px;
+      }
+      @media (max-width: 800px) {
+        footer .footer-grid { grid-template-columns: 1fr 1fr; }
+      }
+      footer h4 {
+        font-size: 13px;
+        font-family: 'JetBrains Mono', monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--text-dim);
+        margin-bottom: 16px;
+      }
+      footer a {
+        display: block;
+        color: var(--text-muted);
+        text-decoration: none;
+        padding: 4px 0;
+        font-size: 14px;
+        transition: color 0.2s;
+      }
+      footer a:hover { color: var(--accent); }
+      .footer-bottom {
+        border-top: 1px solid var(--border);
+        padding-top: 28px;
+        display: flex; justify-content: space-between; flex-wrap: wrap;
+        gap: 16px;
+        font-size: 13px;
+        color: var(--text-dim);
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      /* ─── Animations on scroll ─────────────────────────────────────── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal.delay-1 { transition-delay: 0.08s; }
+      .reveal.delay-2 { transition-delay: 0.16s; }
+      .reveal.delay-3 { transition-delay: 0.24s; }
+
+      a { color: var(--accent); }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- HEADER                                                              -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<header class="site-header" data-testid="site-header">
+  <div class="container">
+    <a href="#top" class="brand" data-testid="brand-link">
+      <span class="brand-mark">P</span>
+      <span>PreBlock</span>
+    </a>
+    <nav class="primary-nav">
+      <a href="#features" data-testid="nav-features">Features</a>
+      <a href="#roi" data-testid="nav-roi">ROI Calculator</a>
+      <a href="#license" data-testid="nav-license">License Models</a>
+      <a href="#demo" data-testid="nav-demo">Demo</a>
+      <a href="https://github.com/Stoffel999/preblock-node" target="_blank" rel="noopener" class="btn btn-ghost" data-testid="nav-github">
+        <i data-lucide="github"></i> GitHub
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- HERO                                                                -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow reveal in" data-testid="hero-eyebrow">DATUM-Native · Bitcoin Mainnet · OCEAN Pool Ready</span>
+        <h1 class="reveal in delay-1">
+          Predict the <span class="accent-text">next three</span> Bitcoin block templates.
+        </h1>
+        <p class="lead reveal in delay-2">
+          PreBlock is a predictive mining platform built for OCEAN-pool operators running DATUM Gateway. Mempool intelligence, multi-block lookahead, and sub-50&nbsp;ms tip switching — on a single machine, no GPU farm required.
+        </p>
+        <div class="hero-cta reveal in delay-3">
+          <a href="#demo" class="btn btn-primary btn-lg" data-testid="hero-cta-demo">
+            See it live
+            <i data-lucide="arrow-right"></i>
+          </a>
+          <a href="https://github.com/Stoffel999/preblock-node" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-testid="hero-cta-github">
+            <i data-lucide="github"></i> View on GitHub
+          </a>
+        </div>
+        <div class="hero-tags">
+          <span class="hero-tag">Bitcoin Knots</span>
+          <span class="hero-tag">DATUM Gateway</span>
+          <span class="hero-tag">OCEAN Pool</span>
+          <span class="hero-tag">Mempool ZMQ</span>
+          <span class="hero-tag">MongoDB 7</span>
+          <span class="hero-tag">FastAPI</span>
+        </div>
+      </div>
+
+      <div class="stat-card reveal in delay-2" data-testid="hero-stat-card">
+        <div class="stat-label">24h hit-rate, observed</div>
+        <div class="stat-value">87–100<span style="font-size: 0.5em;">%</span></div>
+        <div class="stat-sub">Predicted TXs that landed in the next block. Peaks reach 98–100%. Conservatively advertised.</div>
+        <div class="stat-divider"></div>
+        <div class="mini-stats">
+          <div>
+            <div class="mini-stat-label">Lookahead</div>
+            <div class="mini-stat-value">3 blocks</div>
+          </div>
+          <div>
+            <div class="mini-stat-label">Tip switch</div>
+            <div class="mini-stat-value">&lt; 50 ms</div>
+          </div>
+          <div>
+            <div class="mini-stat-label">Hardware</div>
+            <div class="mini-stat-value">1 machine</div>
+          </div>
+          <div>
+            <div class="mini-stat-label">GPU farm</div>
+            <div class="mini-stat-value">Not required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- TRUST BAR                                                           -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-row">
+      <div class="trust-label">Built on a battle-tested stack</div>
+      <div class="trust-items">
+        <span class="trust-item">Bitcoin Knots v28</span>
+        <span class="trust-item">DATUM Gateway</span>
+        <span class="trust-item">MongoDB 7</span>
+        <span class="trust-item">FastAPI / React</span>
+        <span class="trust-item">systemd</span>
+        <span class="trust-item">Ubuntu LTS</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- FEATURES                                                            -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="features">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">What it does</span>
+      <h2>One platform. Eight modules. Zero noise.</h2>
+      <p>Every component is purpose-built for predictive mining on a single Sphere node — no GPU clusters, no obscure dependencies, no external SaaS.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card" data-testid="feature-mempool-radar">
+        <div class="feature-icon"><i data-lucide="radar"></i></div>
+        <h3>Mempool Radar</h3>
+        <p>Live ZMQ stream sorted by effective fee-rate. Three lookahead buckets (h+1, h+2, h+3) at every tick. Legacy-input + dormancy detection as second-order signals.</p>
+        <div class="feature-meta">
+          <span>ZMQ rawtx</span><span>3-block buckets</span>
+        </div>
+      </div>
+
+      <div class="feature-card" data-testid="feature-datum">
+        <div class="feature-icon"><i data-lucide="link-2"></i></div>
+        <h3>DATUM Gateway Monitor</h3>
+        <p>Real-time view of pool connection, stratum status and worker hashrates. Connected workers, last-seen timestamps, kumulated TXs delivered to OCEAN.</p>
+        <div class="feature-meta">
+          <span>OCEAN-native</span><span>Digest-auth</span>
+        </div>
+      </div>
+
+      <div class="feature-card" data-testid="feature-hashrate-race">
+        <div class="feature-icon"><i data-lucide="trophy"></i></div>
+        <h3>Hashrate Race</h3>
+        <p>Live worker comparison, hour-champion award, 24h history. Devices ≥ 1 TH/s individual; smaller ASICs (Bitaxe, LuckyMiner, Nerdminer) aggregated.</p>
+        <div class="feature-meta">
+          <span>Per-worker</span><span>24h history</span>
+        </div>
+      </div>
+
+      <div class="feature-card" data-testid="feature-perf-analytics">
+        <div class="feature-icon"><i data-lucide="bar-chart-3"></i></div>
+        <h3>Performance Analytics</h3>
+        <p>Hit-rate per block, outlier filter for empty blocks & reorgs, multi-block comparison (+1/+2/+3). CSV & PDF export for full audit trails.</p>
+        <div class="feature-meta">
+          <span>CSV export</span><span>PDF audit</span>
+        </div>
+      </div>
+
+      <div class="feature-card" data-testid="feature-ai-interpretation">
+        <div class="feature-icon"><i data-lucide="sparkles"></i></div>
+        <h3>AI Interpretation</h3>
+        <p>Claude Sonnet 4.5 summarises performance data scientifically on demand — strict English output for international buyers, configurable language.</p>
+        <div class="feature-meta">
+          <span>Claude Sonnet 4.5</span><span>EN/DE</span>
+        </div>
+      </div>
+
+      <div class="feature-card" data-testid="feature-telegram">
+        <div class="feature-icon"><i data-lucide="bell"></i></div>
+        <h3>Telegram Notifications</h3>
+        <p>Real-time alerts on new blocks, hit-rate drops, RPC failures, DATUM disconnects. Sunday 23:00 (Berlin) auto-PDF weekly report.</p>
+        <div class="feature-meta">
+          <span>Real-time</span><span>Weekly PDF</span>
+        </div>
+      </div>
+
+      <div class="feature-card" data-testid="feature-multilang">
+        <div class="feature-icon"><i data-lucide="globe"></i></div>
+        <h3>Multilingual UI</h3>
+        <p>DE/EN ships native. Smart hybrid auto-translate for additional languages on demand. Translations cached permanently — generate once, always available.</p>
+        <div class="feature-meta">
+          <span>Native DE/EN</span><span>Cached</span>
+        </div>
+      </div>
+
+      <div class="feature-card" data-testid="feature-system-health">
+        <div class="feature-icon"><i data-lucide="activity"></i></div>
+        <h3>System & Health Dashboard</h3>
+        <p>Service-status for backend, worker, DATUM, Bitcoin Core, MongoDB. Disk, RAM, CPU and ZMQ heartbeat. Auto-refresh every 30 seconds.</p>
+        <div class="feature-meta">
+          <span>All services</span><span>30s refresh</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ROI CALCULATOR                                                      -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="roi" style="padding-top: 60px;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Predictive uplift estimator</span>
+      <h2>What does a 6% lift mean for your pool?</h2>
+      <p>Live market data (BTC price via CoinGecko · network hashrate via blockchain.info). Adjust your inputs — the math is transparent and runs entirely in your browser.</p>
+    </div>
+
+    <div class="roi-card" data-testid="roi-calculator">
+      <div class="roi-inputs">
+        <label for="r-hashrate">Your hashrate</label>
+        <div class="input-row">
+          <input type="number" id="r-hashrate" value="50" min="0" step="1" data-testid="roi-hashrate"/>
+          <select id="r-unit" data-testid="roi-unit" style="max-width: 100px;">
+            <option value="1">TH/s</option>
+            <option value="1000" selected>PH/s</option>
+            <option value="1000000">EH/s</option>
+          </select>
+        </div>
+
+        <label for="r-uplift">Predictive uplift</label>
+        <div class="slider-row">
+          <input type="range" id="r-uplift" min="0" max="15" value="6" step="0.5" data-testid="roi-uplift"/>
+          <span class="slider-value" id="r-uplift-val">6.0%</span>
+        </div>
+
+        <label for="r-poolfee">Pool fee</label>
+        <div class="slider-row">
+          <input type="range" id="r-poolfee" min="0" max="5" value="0" step="0.1" data-testid="roi-poolfee"/>
+          <span class="slider-value" id="r-poolfee-val">0.0%</span>
+        </div>
+
+        <label for="r-currency">Currency</label>
+        <select id="r-currency" data-testid="roi-currency">
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+        </select>
+      </div>
+
+      <div class="roi-output" data-testid="roi-output">
+        <div class="output-eyebrow">Estimated monthly uplift</div>
+        <div class="delta" id="r-delta-fiat">$0</div>
+        <div class="delta-sub" id="r-delta-btc">+0.0000 BTC / month vs. standard templates</div>
+
+        <div class="roi-stats">
+          <div>
+            <div class="label">Standard setup</div>
+            <div class="val" id="r-std">0.0000 BTC</div>
+          </div>
+          <div>
+            <div class="label">With PreBlock</div>
+            <div class="val" id="r-with">0.0000 BTC</div>
+          </div>
+          <div>
+            <div class="label">Blocks/month</div>
+            <div class="val" id="r-blocks">0.00</div>
+          </div>
+          <div>
+            <div class="label">Network share</div>
+            <div class="val" id="r-share">0.000%</div>
+          </div>
+        </div>
+
+        <div class="market-info">
+          <span><span class="dot"></span>BTC&nbsp;<span id="r-mkt-btc">—</span></span>
+          <span>Network <span id="r-mkt-nh">—</span> EH/s</span>
+          <span>Block <span id="r-mkt-reward">3.125</span> BTC + fees</span>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 24px; font-size: 13px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; text-align: center;">
+      * Estimator. Actual results depend on mempool dynamics, pool routing, and hardware availability. Conservatively modelled.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ARCHITECTURE                                                        -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="architecture">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>The path from mempool to pool, in milliseconds.</h2>
+      <p>Bitcoin Core streams transactions via ZMQ. PreBlock's Mempool Streamer buckets them into three forward block templates. On every tip change, the predictive template is delivered to your OCEAN pool through DATUM Gateway — typically in under 50 ms.</p>
+    </div>
+
+    <div class="arch-card mono" data-testid="architecture-diagram">
+                    ┌──────────────────┐
+                    │  Bitcoin Knots   │
+                    │  (Mainnet node)  │
+                    └────────┬─────────┘
+                             │ ZMQ (rawtx, hashblock)
+                             ▼
+              ┌──────────────────────────┐
+              │   Mempool Streamer       │
+              │   ─ lookahead bucketing  │
+              │   ─ address analysis     │
+              │   ─ hit-rate tracking    │
+              └────────┬─────────────────┘
+                       │ MongoDB
+                       ▼
+        ┌─────────────────────────────────┐
+        │  PreBlock Backend (FastAPI)     │
+        │  ─ /api/datum/live              │
+        │  ─ /api/mempool/snapshot        │
+        │  ─ /api/thesis/ai-interpretation│
+        │  ─ /api/roi/market-data         │
+        │  ─ /api/health                  │
+        └────────┬────────────────┬───────┘
+                 │                │
+                 ▼                ▼
+         ┌──────────────┐   ┌──────────────┐
+         │   DATUM      │   │   React UI   │
+         │   Gateway    │   │ (sales-edition)
+         └──────┬───────┘   └──────────────┘
+                │
+                ▼
+         ┌──────────────┐
+         │  OCEAN Pool  │
+         └──────────────┘
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- LICENSE MODELS                                                      -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="license">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Commercial structure</span>
+      <h2>Three license models — built for serious operators.</h2>
+      <p>Each deployment carries a unique, cryptographically signed Authenticity Key. The backend verifies it at startup. NDA template provided on first contact.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card" data-testid="price-card-c">
+        <h3>Model C</h3>
+        <p class="price-subtitle">Single-Version · Up to 3 buyers</p>
+        <div class="price-tier">Entry tier</div>
+        <div class="price-tier-sub">~30% of A/B per buyer</div>
+        <ul>
+          <li>One production + one staging instance</li>
+          <li>Up to 3 buyers may hold the same version line</li>
+          <li>Next-version upgrade priced separately</li>
+          <li>Authenticity Key stays with vendor</li>
+          <li>Support: current (n) + previous (n-1)</li>
+          <li>Migration to B or A possible (pay difference)</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost" data-testid="price-cta-c">Get details <i data-lucide="arrow-right"></i></a>
+      </div>
+
+      <div class="price-card featured" data-testid="price-card-b">
+        <span class="price-badge">Most popular</span>
+        <h3>Model B</h3>
+        <p class="price-subtitle">Exclusive · Vendor-maintained</p>
+        <div class="price-tier">Highest tier</div>
+        <div class="price-tier-sub">Same tier as Model A</div>
+        <ul>
+          <li>Exclusive use of the current Version line</li>
+          <li>Vendor continues development against agreed fees</li>
+          <li>Custom modifications at published day-rate</li>
+          <li>Authenticity Key stays with vendor (audit)</li>
+          <li>Support: current (n) + previous (n-1)</li>
+          <li>Upgrade-path to Model A (pay difference)</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary" data-testid="price-cta-b">Get details <i data-lucide="arrow-right"></i></a>
+      </div>
+
+      <div class="price-card" data-testid="price-card-a">
+        <h3>Model A</h3>
+        <p class="price-subtitle">Exclusive · Self-maintained</p>
+        <div class="price-tier">Highest tier</div>
+        <div class="price-tier-sub">Outright IP transfer</div>
+        <ul>
+          <li>You own PreBlock outright</li>
+          <li>You develop updates yourself / via contractors</li>
+          <li>Authenticity Key transferred at IP-Transfer</li>
+          <li>Vendor demo-rights only for pre-Model-A state</li>
+          <li>No further vendor involvement</li>
+          <li>Best for mining-pool operators with in-house dev</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost" data-testid="price-cta-a">Get details <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+
+    <p style="margin-top: 32px; font-size: 13px; color: var(--text-dim); text-align: center; font-family: 'JetBrains Mono', monospace;">
+      Full comparison and FAQ on
+      <a href="https://github.com/Stoffel999/preblock-node/blob/main/docs/LICENSE_MODELS.md" target="_blank" rel="noopener">
+        LICENSE_MODELS.md</a>.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- DEMO ACCESS                                                         -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="demo">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Try it</span>
+      <h2>Two demo paths.</h2>
+      <p>Browse the public preview to see the UI and explore features. For a session against the real Sphere node — synced live with the Bitcoin mainnet — request access.</p>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-card" data-testid="demo-card-preview">
+        <div class="demo-badge">Public preview</div>
+        <h3>Browse the catcher</h3>
+        <p>
+          Hosted preview of the full UI on the Emergent infrastructure. Best for first impressions, screenshot tours, and getting familiar with the modules before scheduling a live walkthrough.
+        </p>
+        <ul>
+          <li>No login required</li>
+          <li>UI fully populated with realistic seed data</li>
+          <li>All modules navigable</li>
+        </ul>
+        <a href="https://kangaroo-jobs.preview.emergentagent.com" target="_blank" rel="noopener" class="btn btn-ghost" data-testid="demo-cta-preview">
+          Open preview
+          <i data-lucide="external-link"></i>
+        </a>
+      </div>
+
+      <div class="demo-card live" data-testid="demo-card-live">
+        <div class="demo-badge">Live sphere · NDA required</div>
+        <h3>Request live access</h3>
+        <p>
+          A 30-minute guided session against the live Sphere node. Real mempool data, real DATUM-feeder, real predictions hitting actual blocks. Conditioned on a signed NDA — buyer-vetting takes ~24h.
+        </p>
+        <ul>
+          <li>Real-time mempool & DATUM monitoring</li>
+          <li>Live hit-rate verification</li>
+          <li>Q&A with the architect</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary" data-testid="demo-cta-live">
+          Request live demo
+          <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- CTA                                                                 -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="contact" style="padding-top: 40px;">
+  <div class="container">
+    <div class="cta-section" data-testid="cta-section">
+      <h2>Ready to discuss models, pricing, and a live demo?</h2>
+      <p>Open a GitHub issue at the PreBlock repository, or reach out directly. NDA template provided on first contact.</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="https://github.com/Stoffel999/preblock-node/issues/new?title=Sales+inquiry&labels=sales" target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-testid="cta-issue">
+          <i data-lucide="git-pull-request"></i> Open sales inquiry
+        </a>
+        <a href="https://github.com/Stoffel999" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-testid="cta-contact">
+          <i data-lucide="github"></i> Contact @Stoffel999
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- FOOTER                                                              -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#top" class="brand" style="margin-bottom: 16px;">
+          <span class="brand-mark">P</span>
+          <span>PreBlock</span>
+        </a>
+        <p style="color: var(--text-muted); font-size: 14px; margin-top: 16px; max-width: 320px;">
+          Predictive mining for Bitcoin pools. Mempool intelligence, multi-block lookahead, and seamless DATUM-Gateway integration in a lean platform.
+        </p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#roi">ROI Calculator</a>
+        <a href="#license">License Models</a>
+        <a href="#architecture">Architecture</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="https://github.com/Stoffel999/preblock-node" target="_blank" rel="noopener">GitHub Repo</a>
+        <a href="https://github.com/Stoffel999/preblock-node/blob/main/docs/LICENSE_MODELS.md" target="_blank" rel="noopener">License Models</a>
+        <a href="https://github.com/Stoffel999/preblock-node/blob/main/docs/FEATURES.md" target="_blank" rel="noopener">Feature Docs</a>
+        <a href="https://github.com/Stoffel999/preblock-node/blob/main/SALES_INSTALL.md" target="_blank" rel="noopener">Installation Guide</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="https://github.com/Stoffel999" target="_blank" rel="noopener">@Stoffel999</a>
+        <a href="https://github.com/Stoffel999/preblock-node/issues" target="_blank" rel="noopener">Open issue</a>
+        <a href="#demo">Request demo</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Stoffel999 · PreBlock is a trademark in formation</span>
+      <span>Built for Bitcoin · DATUM-native · One machine</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SCRIPTS                                                             -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<script>
+  // Lucide icons
+  lucide.createIcons();
+
+  // ─── Scroll reveal ────────────────────────────────────────────
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('in');
+    });
+  }, { threshold: 0.08, rootMargin: '-40px' });
+  document.querySelectorAll('.section-head, .feature-card, .price-card, .demo-card, .arch-card, .roi-card, .stat-card, .cta-section').forEach(el => {
+    el.classList.add('reveal');
+    io.observe(el);
+  });
+
+  // ─── ROI Calculator ───────────────────────────────────────────
+  const BLOCK_REWARD_BTC = 3.125;            // post-halving 2024
+  const BLOCKS_PER_DAY   = 144;
+  const AVG_BLOCK_FEES_BTC = 0.3;            // conservative fallback
+  const DEFAULT_NETWORK_EHS = 950;           // EH/s fallback
+
+  let btcPriceUSD = 100000;
+  let btcPriceEUR = 92000;
+  let networkEHS  = DEFAULT_NETWORK_EHS;
+
+  const $ = id => document.getElementById(id);
+
+  async function loadMarket() {
+    try {
+      const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd,eur');
+      if (r.ok) {
+        const d = await r.json();
+        if (d.bitcoin) {
+          btcPriceUSD = d.bitcoin.usd || btcPriceUSD;
+          btcPriceEUR = d.bitcoin.eur || btcPriceEUR;
+        }
+      }
+    } catch(e) { /* offline fallback */ }
+    try {
+      const r2 = await fetch('https://blockchain.info/q/hashrate');
+      if (r2.ok) {
+        const ghs = parseFloat(await r2.text());     // GH/s
+        if (Number.isFinite(ghs) && ghs > 0) networkEHS = ghs / 1e9;
+      }
+    } catch(e) { /* offline fallback */ }
+    $('r-mkt-btc').textContent = `$${btcPriceUSD.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
+    $('r-mkt-nh').textContent = networkEHS.toFixed(0);
+    recompute();
+  }
+
+  function recompute() {
+    const hrInput = parseFloat($('r-hashrate').value) || 0;
+    const unitMult = parseFloat($('r-unit').value) || 1;
+    const userTHs = hrInput * unitMult;
+    const networkTHs = networkEHS * 1e6;
+    const share = networkTHs > 0 ? userTHs / networkTHs : 0;
+    const blocksPerMonth = share * BLOCKS_PER_DAY * 30;
+    const uplift = parseFloat($('r-uplift').value) / 100;
+    const poolFee = parseFloat($('r-poolfee').value) / 100;
+    const currency = $('r-currency').value;
+    const price = currency === 'EUR' ? btcPriceEUR : btcPriceUSD;
+
+    const stdBTC  = blocksPerMonth * (BLOCK_REWARD_BTC + AVG_BLOCK_FEES_BTC);
+    const stdNet  = stdBTC * (1 - poolFee);
+    const withBTC = stdBTC * (1 + uplift);
+    const withNet = withBTC * (1 - poolFee);
+    const deltaBTC = withNet - stdNet;
+    const deltaFiat = deltaBTC * price;
+
+    $('r-uplift-val').textContent = `${(uplift*100).toFixed(1)}%`;
+    $('r-poolfee-val').textContent = `${(poolFee*100).toFixed(1)}%`;
+    $('r-blocks').textContent = blocksPerMonth.toFixed(3);
+    $('r-share').textContent = `${(share*100).toFixed(4)}%`;
+    $('r-std').textContent  = `${stdNet.toFixed(4)} BTC`;
+    $('r-with').textContent = `${withNet.toFixed(4)} BTC`;
+    $('r-delta-btc').textContent = `+${deltaBTC.toFixed(4)} BTC / month vs. standard templates`;
+    $('r-delta-fiat').textContent = (currency === 'EUR' ? '€' : '$') + deltaFiat.toLocaleString('en-US', { maximumFractionDigits: 0 });
+  }
+
+  ['r-hashrate', 'r-unit', 'r-uplift', 'r-poolfee', 'r-currency'].forEach(id => {
+    $(id).addEventListener('input', recompute);
+    $(id).addEventListener('change', recompute);
+  });
+
+  loadMarket();
+</script>
+
+</body>
+</html>
