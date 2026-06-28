@@ -1,41 +1,58 @@
 # preblock-site
 
-Marketing landing page for **[PreBlock](https://preblock.io)** — predictive mining platform for Bitcoin pools.
+Marketing landing page for **PreBlock** — predictive mining platform for Bitcoin pools.
 
-Single-file static site, deployed via **GitHub Pages**.
+Single-file static site, deployed via **GitHub Pages**, served at **`sales.preblock.io`**.
+
+---
+
+## 🌐 Domain Architecture
+
+| Domain                  | Hosted on        | Purpose                                                     | Visibility       |
+|-------------------------|------------------|-------------------------------------------------------------|------------------|
+| **`preblock.io`**       | Emergent Cloud   | Public catcher with live-managed seed data                  | Public           |
+| **`sales.preblock.io`** | GitHub Pages     | Marketing landing page, ROI calculator, license terms       | Public           |
+| **`live.preblock.io`**  | VPS → Sphere     | Real Bitcoin mainnet demo, NDA + Basic-Auth required        | Hidden / invite  |
+
+- `preblock.io` links discreetly to `sales.preblock.io` (for serious inquirers)
+- `sales.preblock.io` links back to `preblock.io` (public preview) and offers a "Request live access" CTA
+- `live.preblock.io` is **never publicly linked** — strictly NDA + invitation
 
 ---
 
 ## 🚀 Deploy
 
-### One-time setup
+### One-time setup (this repo)
 
-1. Push this repo to GitHub: `Stoffel999/preblock-site`
-2. Settings → Pages → **Source: Deploy from a branch** → Branch: `main` / Folder: `/ (root)` → Save
-3. Add custom domain: `preblock.io` (the `CNAME` file in this repo handles that automatically)
-4. In your registrar (Porkbun / Namecheap) — set DNS:
-   - **A record** `@` → `185.199.108.153`
-   - **A record** `@` → `185.199.109.153`
-   - **A record** `@` → `185.199.110.153`
-   - **A record** `@` → `185.199.111.153`
-   - **CNAME record** `www` → `stoffel999.github.io`
-5. GitHub Pages → Enforce HTTPS ✅ (after cert provisioned, ~5–30 min)
+1. Push to GitHub: `Stoffel999/preblock-site`
+2. **Settings → Pages** → Source: `Deploy from a branch` → Branch `main` / `/ (root)` → Save
+3. **Custom domain** `sales.preblock.io` (CNAME file handles that)
+4. Wait ~5–30 min after DNS, enable **Enforce HTTPS** ✅
+
+### DNS at your registrar (Strato)
+
+```
+Type   Name    Value
+─────────────────────────────────────────────────────
+CNAME  sales   stoffel999.github.io.
+```
+
+GitHub Pages auto-provisions Let's Encrypt for `sales.preblock.io`.
 
 ### Updates
 
-Just push to `main`. GitHub Pages auto-deploys.
+Push to `main`. GitHub Pages auto-deploys.
 
 ---
 
 ## 🛠 Local preview
 
 ```bash
-# Any static server
 python3 -m http.server 8080
 # → http://localhost:8080
 ```
 
-Or just open `index.html` directly in a browser.
+Or open `index.html` directly in a browser.
 
 ---
 
@@ -57,7 +74,7 @@ Or just open `index.html` directly in a browser.
 5. **ROI Calculator** — interactive estimator, browser-side math
 6. **Architecture** — ASCII diagram of the data flow
 7. **License Models** — Model C / B / A cards
-8. **Demo Access** — Public preview + Live Sphere (NDA-required)
+8. **Demo Access** — Public preview (`preblock.io`) + Live Sphere (NDA-required)
 9. **CTA** — sales inquiry via GitHub issue
 10. **Footer** — links + brand
 
@@ -76,8 +93,8 @@ Or just open `index.html` directly in a browser.
 ## 🔗 Links
 
 - **Tool repo:** [github.com/Stoffel999/preblock-node](https://github.com/Stoffel999/preblock-node) *(private)*
-- **Public preview (catcher):** [kangaroo-jobs.preview.emergentagent.com](https://kangaroo-jobs.preview.emergentagent.com)
-- **Live Sphere (NDA):** `live.preblock.io` *(coming soon)*
+- **Public preview (catcher):** [preblock.io](https://preblock.io)
+- **Live Sphere (NDA, invite only):** `live.preblock.io`
 - **Contact:** [@Stoffel999](https://github.com/Stoffel999)
 
 ---
