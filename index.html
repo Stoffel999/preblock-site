@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PreBlock — Predictive Mining for Bitcoin Pools</title>
-    <meta name="description" content="PreBlock predicts the next three Bitcoin block templates with 87–100% hit-rate. Built for OCEAN-pool operators running DATUM. One machine. No GPU farm." />
-    <meta name="keywords" content="Bitcoin, Mining, Predictive, Mempool, DATUM, OCEAN, Pool, Block Template, Predictive Mining, Sphere Node" />
+    <title>PreBlock — Predictive Block-Template Engine for Bitcoin Pools</title>
+    <meta name="description" content="PreBlock is the Predictive Block-Template Engine for Bitcoin Pools. Bitcoin Knots spam-filter + 3-block lookahead + sub-50ms DATUM template injection. 87–100% hit-rate. One machine. No GPU farm." />
+    <meta name="keywords" content="Bitcoin, Mining, Predictive, Block Template Engine, Bitcoin Knots, Spam Filter, Mempool, DATUM, OCEAN, Pool, Sphere Node, Wallet-Master" />
     <meta name="author" content="Stoffel999" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="PreBlock — Predictive Mining for Bitcoin Pools" />
-    <meta property="og:description" content="87–100% hit-rate over the last 24h. Predicting the next 3 block templates with sub-50ms tip switching, DATUM-native." />
+    <meta property="og:title" content="PreBlock — Predictive Block-Template Engine for Bitcoin Pools" />
+    <meta property="og:description" content="Bitcoin Knots spam-filter + 3-block lookahead + sub-50ms DATUM template injection. 87–100% observed hit-rate." />
     <meta property="og:url" content="https://sales.preblock.io" />
     <meta property="og:site_name" content="PreBlock" />
 
@@ -603,6 +603,345 @@
         font-size: 11px; font-weight: 700;
       }
 
+      /* ─── Knots Spam-Filter Section ─────────────────────────────────── */
+      .knots-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 56px;
+      }
+      @media (max-width: 900px) { .knots-grid { grid-template-columns: 1fr; } }
+      .knots-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 36px;
+        position: relative;
+      }
+      .knots-card.preblock {
+        border-color: var(--accent);
+        background: linear-gradient(155deg, var(--surface), var(--surface-2));
+        box-shadow: 0 0 0 1px var(--accent), 0 20px 60px rgba(247, 147, 26, 0.12);
+      }
+      .knots-card .knots-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        margin-bottom: 12px;
+      }
+      .knots-card.preblock .knots-label { color: var(--accent); }
+      .knots-card h3 {
+        font-size: 26px;
+        margin-bottom: 8px;
+      }
+      .knots-card .knots-sub {
+        color: var(--text-muted);
+        font-size: 14px;
+        margin-bottom: 28px;
+      }
+      .knots-stat {
+        display: flex; align-items: baseline; gap: 12px;
+        margin-bottom: 24px;
+      }
+      .knots-stat .num {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 44px;
+        font-weight: 700;
+      }
+      .knots-card.preblock .knots-stat .num { color: var(--accent); }
+      .knots-stat .unit { font-size: 18px; color: var(--text-muted); }
+      .knots-bar {
+        height: 12px; border-radius: 6px;
+        background: var(--surface-2);
+        overflow: hidden;
+        margin-bottom: 8px;
+      }
+      .knots-bar > div {
+        height: 100%;
+        background: linear-gradient(90deg, #555, #777);
+        border-radius: 6px;
+      }
+      .knots-card.preblock .knots-bar > div {
+        background: linear-gradient(90deg, var(--accent), #ffa64d);
+      }
+      .knots-meta {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        color: var(--text-dim);
+        margin-bottom: 20px;
+      }
+      .knots-card ul { list-style: none; }
+      .knots-card ul li {
+        padding: 8px 0;
+        font-size: 14px;
+        color: var(--text);
+        display: flex; gap: 10px;
+        align-items: flex-start;
+      }
+      .knots-card ul li::before {
+        content: '✕';
+        color: #888;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .knots-card.preblock ul li::before {
+        content: '✓';
+        color: var(--accent);
+      }
+      .knots-footnote {
+        margin-top: 32px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--text-dim);
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      /* ─── Modules Section ─────────────────────────────────────────────── */
+      .modules-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+      .module-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 28px;
+        transition: all 0.3s ease;
+        position: relative;
+        display: flex; flex-direction: column;
+      }
+      .module-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-3px);
+      }
+      .module-card.crown {
+        border-color: var(--accent);
+        background: linear-gradient(155deg, var(--surface), var(--surface-2));
+      }
+      .module-tag {
+        position: absolute; top: -10px; right: 20px;
+        background: var(--accent); color: var(--bg);
+        font-size: 10px; font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 100px;
+        font-family: 'JetBrains Mono', monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+      .module-card .module-id {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        color: var(--accent);
+        margin-bottom: 8px;
+        letter-spacing: 0.08em;
+      }
+      .module-card h4 {
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+      .module-card .module-hook {
+        color: var(--text-muted);
+        font-size: 13px;
+        line-height: 1.55;
+        margin-bottom: 20px;
+        font-style: italic;
+        flex: 1;
+      }
+      .module-price {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text);
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+      }
+      .module-price .small {
+        font-size: 11px;
+        color: var(--text-dim);
+        font-weight: 400;
+        margin-left: 6px;
+      }
+
+      /* ─── Founder Story Section ─────────────────────────────────────── */
+      .founder-wrap {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 56px;
+        align-items: start;
+        margin-top: 32px;
+      }
+      @media (max-width: 800px) { .founder-wrap { grid-template-columns: 1fr; } }
+      .founder-card {
+        background: var(--surface);
+        border: 1px solid var(--accent);
+        border-radius: 16px;
+        padding: 32px;
+        text-align: center;
+        position: sticky;
+        top: 100px;
+      }
+      .founder-avatar {
+        width: 100px; height: 100px;
+        border-radius: 50%;
+        background: linear-gradient(155deg, var(--accent), #d97706);
+        display: flex; align-items: center; justify-content: center;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 36px;
+        color: var(--bg);
+        margin: 0 auto 16px;
+      }
+      .founder-card h4 {
+        font-size: 20px;
+        margin-bottom: 4px;
+      }
+      .founder-card .founder-role {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        color: var(--text-dim);
+        margin-bottom: 16px;
+        letter-spacing: 0.08em;
+      }
+      .founder-tag {
+        display: inline-block;
+        margin: 3px;
+        padding: 4px 10px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        border-radius: 100px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .story-block {
+        font-size: 16px;
+        line-height: 1.75;
+        color: var(--text-muted);
+      }
+      .story-block p { margin-bottom: 18px; }
+      .story-block p strong { color: var(--text); font-weight: 600; }
+      .story-block .quote {
+        border-left: 3px solid var(--accent);
+        padding: 8px 0 8px 20px;
+        font-style: italic;
+        color: var(--text);
+        font-size: 17px;
+        margin: 24px 0;
+      }
+
+      /* ─── Updates / Maintenance ─────────────────────────────────── */
+      .updates-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-top: 40px;
+      }
+      @media (max-width: 800px) { .updates-grid { grid-template-columns: 1fr; } }
+      .updates-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 36px;
+      }
+      .updates-card.year1 { border-color: var(--accent); }
+      .updates-card .updates-eyebrow {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        margin-bottom: 12px;
+      }
+      .updates-card.year1 .updates-eyebrow { color: var(--accent); }
+      .updates-card h3 { font-size: 22px; margin-bottom: 4px; }
+      .updates-card .updates-price {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--text);
+        margin: 12px 0 24px;
+      }
+      .updates-card.year1 .updates-price { color: var(--accent); }
+      .updates-card .updates-price .small {
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--text-muted);
+        margin-left: 8px;
+      }
+      .updates-card ul { list-style: none; }
+      .updates-card ul li {
+        padding: 6px 0;
+        font-size: 14px;
+        color: var(--text);
+        display: flex; gap: 10px;
+      }
+      .updates-card ul li::before {
+        content: '→';
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+
+      /* ─── Family of Tools ─────────────────────────────────────────── */
+      .family-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+      .family-card {
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        position: relative;
+      }
+      .family-card.active { border-color: var(--accent); }
+      .family-card .family-status {
+        position: absolute; top: 16px; right: 16px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 3px 8px;
+        border-radius: 100px;
+        background: var(--surface-2);
+        color: var(--text-dim);
+      }
+      .family-card.active .family-status {
+        background: var(--accent);
+        color: var(--bg);
+      }
+      .family-card h5 {
+        font-size: 16px;
+        margin-bottom: 4px;
+      }
+      .family-card .family-desc {
+        font-size: 13px;
+        color: var(--text-muted);
+        line-height: 1.55;
+      }
+
+      /* ─── Auction Banner (toggle-ready) ─────────────────────────── */
+      .auction-banner {
+        background: linear-gradient(155deg, var(--accent), #d97706);
+        color: var(--bg);
+        border-radius: 12px;
+        padding: 14px 24px;
+        margin: 24px auto 0;
+        max-width: 760px;
+        text-align: center;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        display: none;
+      }
+      .auction-banner.live { display: block; }
+
       /* ─── Architecture ─────────────────────────────────────────────── */
       .arch-card {
         background: var(--bg-elevated);
@@ -758,9 +1097,12 @@
       <span>PreBlock</span>
     </a>
     <nav class="primary-nav">
+      <a href="#knots" data-testid="nav-knots">Knots Filter</a>
       <a href="#features" data-testid="nav-features">Features</a>
-      <a href="#roi" data-testid="nav-roi">ROI Calculator</a>
-      <a href="#license" data-testid="nav-license">License Models</a>
+      <a href="#modules" data-testid="nav-modules">Modules</a>
+      <a href="#roi" data-testid="nav-roi">ROI</a>
+      <a href="#license" data-testid="nav-license">Pricing</a>
+      <a href="#founder" data-testid="nav-founder">Story</a>
       <a href="#demo" data-testid="nav-demo">Demo</a>
       <a href="https://github.com/Stoffel999/preblock-node" target="_blank" rel="noopener" class="btn btn-ghost" data-testid="nav-github">
         <i data-lucide="github"></i> GitHub
@@ -776,12 +1118,12 @@
   <div class="container">
     <div class="hero-grid">
       <div>
-        <span class="eyebrow reveal in" data-testid="hero-eyebrow">DATUM-Native · Bitcoin Mainnet · OCEAN Pool Ready</span>
+        <span class="eyebrow reveal in" data-testid="hero-eyebrow">Predictive Block-Template Engine · DATUM-Native · Knots Spam-Filter</span>
         <h1 class="reveal in delay-1">
           Predict the <span class="accent-text">next three</span> Bitcoin block templates.
         </h1>
         <p class="lead reveal in delay-2">
-          PreBlock is a predictive mining platform built for OCEAN-pool operators running DATUM Gateway. Mempool intelligence, multi-block lookahead, and sub-50&nbsp;ms tip switching — on a single machine, no GPU farm required.
+          PreBlock is the predictive block-template engine for Bitcoin pools. Bitcoin Knots filters the spam upstream, our scorer ranks the rest, and DATUM injects the optimised template — all on a single machine. No GPU farm required.
         </p>
         <div class="hero-cta reveal in delay-3">
           <a href="#demo" class="btn btn-primary btn-lg" data-testid="hero-cta-demo">
@@ -848,6 +1190,61 @@
     </div>
   </div>
 </div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- KNOTS SPAM-FILTER (our moat)                                        -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="knots">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Garbage out, signal in</span>
+      <h2>Clean blocks. Real fees. <span class="accent-text">No spam.</span></h2>
+      <p>We don't run Bitcoin Core — we run <strong>Bitcoin Knots</strong>. It filters Ordinals, Inscriptions and other non-financial payload <em>before</em> our predictor ever sees the mempool. The result: pool operators mine the transactions that actually pay, not data scribbles disguised as transfers.</p>
+    </div>
+
+    <div class="knots-grid">
+      <div class="knots-card" data-testid="knots-core">
+        <div class="knots-label">Bitcoin Core view — "everything counts"</div>
+        <h3>~255 MB</h3>
+        <div class="knots-sub">Full mempool, snapshot Feb 2026</div>
+        <div class="knots-stat">
+          <span class="num" style="color:#888">5</span>
+          <span class="unit">competing block templates</span>
+        </div>
+        <div class="knots-bar"><div style="width: 100%"></div></div>
+        <div class="knots-meta">≈ 80–95% of weight is Ordinals/Inscriptions noise</div>
+        <ul>
+          <li>Inscriptions inflate weight, not fees</li>
+          <li>Predictor wastes cycles on data-only payload</li>
+          <li>Pool template includes spam that pays sub-1 sat/vB</li>
+          <li>Fee-cliff visibility ≈ zero</li>
+        </ul>
+      </div>
+
+      <div class="knots-card preblock" data-testid="knots-preblock">
+        <div class="knots-label">PreBlock view — "money only, please"</div>
+        <h3>~12 MB</h3>
+        <div class="knots-sub">Knots-filtered, snapshot Feb 2026</div>
+        <div class="knots-stat">
+          <span class="num">1</span>
+          <span class="unit">clean template, every TX is real money</span>
+        </div>
+        <div class="knots-bar"><div style="width: 18%"></div></div>
+        <div class="knots-meta">≈ 95% spam removed before scoring</div>
+        <ul>
+          <li>Only financial transactions — Lightning opens, sweeps, transfers</li>
+          <li>Predictor sees the true fee market, not the noise</li>
+          <li>Template fee-density is real, not inflated</li>
+          <li>Fee-cliff detection is sharp & actionable</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="knots-footnote">
+      Snapshot Feb 2026 · Mainnet · Bitcoin Knots v28 vs Bitcoin Core v28 · ratio varies with network conditions
+    </div>
+  </div>
+</section>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- FEATURES                                                            -->
@@ -933,6 +1330,75 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- MODULES & ADD-ONS                                                   -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="modules">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Core + add-on modules</span>
+      <h2>Build your stack. Pay only for what you need.</h2>
+      <p>The PreBlock <strong>Core</strong> includes the Knots-filtered mempool radar, DATUM gateway monitor, hashrate race, ROI calculator and license system. Specialised capabilities are sold as add-on modules. Each module is an independent license entitlement keyed to your Authenticity Key.</p>
+    </div>
+
+    <div class="modules-grid">
+      <div class="module-card crown" data-testid="module-m1">
+        <span class="module-tag">Crown jewel</span>
+        <div class="module-id">M1</div>
+        <h4>Predictive Template Optimizer</h4>
+        <p class="module-hook">"Compare PreBlock's optimised template against the default Core template in real time. +0.3–1% fee uplift, provable in A/B mode."</p>
+        <div class="module-price">€25,000 – €30,000 <span class="small">one-time, per license</span></div>
+      </div>
+
+      <div class="module-card" data-testid="module-m2">
+        <div class="module-id">M2</div>
+        <h4>Multi-Pool / Multi-Worker</h4>
+        <p class="module-hook">"Run multiple DATUM gateways in parallel. Compare PreBlock templates vs ViaBTC, Foundry, AntPool side-by-side."</p>
+        <div class="module-price">€20,000 – €25,000 <span class="small">one-time</span></div>
+      </div>
+
+      <div class="module-card" data-testid="module-m3">
+        <div class="module-id">M3</div>
+        <h4>Audit &amp; Compliance Pack</h4>
+        <p class="module-hook">"SHA-256 audit logging, reorg-aware hit-rate, exportable PDF reports for your auditors and investors. Trust-anchor for institutional DD."</p>
+        <div class="module-price">€10,000 – €15,000 <span class="small">one-time</span></div>
+      </div>
+
+      <div class="module-card" data-testid="module-m4">
+        <div class="module-id">M4</div>
+        <h4>30/90-Day Backtest Engine</h4>
+        <p class="module-hook">"Historical mempool replay. Simulate ROI on 30 or 90 days of past data before you spend a single satoshi."</p>
+        <div class="module-price">€20,000 – €30,000 <span class="small">one-time</span></div>
+      </div>
+
+      <div class="module-card" data-testid="module-m5">
+        <div class="module-id">M5</div>
+        <h4>Alerts &amp; Reporting</h4>
+        <p class="module-hook">"Telegram, Slack and webhook alerts. Daily / weekly auto-PDF. We wake you only on anomalies — sleep through the routine."</p>
+        <div class="module-price">€10,000 – €12,000 <span class="small">one-time</span></div>
+      </div>
+
+      <div class="module-card" data-testid="module-m6">
+        <div class="module-id">M6</div>
+        <h4>White-Label / Multi-Tenant</h4>
+        <p class="module-hook">"Brand it your way. Run customer portals. For resellers and Mining-as-a-Service providers."</p>
+        <div class="module-price">€25,000 – €30,000 <span class="small">one-time</span></div>
+      </div>
+
+      <div class="module-card" data-testid="module-m7">
+        <div class="module-id">M7</div>
+        <h4>24/7 SLA &amp; On-Call</h4>
+        <p class="module-hook">"Vendor on-call. Priority bug-fix. Monthly health review. For pools who cannot afford downtime."</p>
+        <div class="module-price">€20,000 – €25,000 <span class="small">per year</span></div>
+      </div>
+    </div>
+
+    <p style="margin-top: 32px; font-size: 13px; color: var(--text-dim); text-align: center; font-family: 'JetBrains Mono', monospace;">
+      Module prices apply per license. Cross-module discounts available · Bundles negotiable on commercial discussion.
+    </p>
   </div>
 </section>
 
@@ -1066,6 +1532,48 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- FOUNDER STORY                                                       -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="founder">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">From forensics to foresight</span>
+      <h2>How PreBlock came to exist.</h2>
+      <p>This product is not a startup deck. It's the mining arm of a personal research lab — born from a real loss, hardened by science, sharpened on hardware.</p>
+    </div>
+
+    <div class="founder-wrap">
+      <div class="founder-card" data-testid="founder-card">
+        <div class="founder-avatar">S9</div>
+        <h4>Stoffel999</h4>
+        <div class="founder-role">Engineer · M.Sc.<br>Founder, Wallet-Master Lab</div>
+        <div>
+          <span class="founder-tag">Bitcoin Forensics</span>
+          <span class="founder-tag">GPU Rig 7×P106</span>
+          <span class="founder-tag">24 TB Fileserver</span>
+          <span class="founder-tag">Master Thesis</span>
+          <span class="founder-tag">Knots · DATUM · OCEAN</span>
+        </div>
+      </div>
+
+      <div class="story-block" data-testid="founder-story">
+        <p>In 2025 I was scammed out of <strong>€9,500 worth of Bitcoin</strong>. The polite response would have been to file a police report and move on. I chose the other path: I went after the keys.</p>
+
+        <p>That obsession became <strong>Wallet-Master</strong> — a personal research lab for Bitcoin internals. I built tooling around address-space pattern recognition, transaction forensics, mass key-candidate generation on a GPU rig (7× P106-16, 24 TB of cold storage), and a private node infrastructure to verify everything against the live chain.</p>
+
+        <p class="quote">"I never recovered the €9,500. But I learned how Bitcoin actually works — from the bottom of the protocol upward, not the top of a slide deck downward."</p>
+
+        <p>Along the way it turned into a <strong>Master's thesis</strong>: mass-production address analysis, statistical evaluation of search spaces, AI-assisted pattern detection across community-reported puzzle ranges. The puzzles were a side quest — could one narrow the address space by detecting structural fingerprints? I worked on the thesis until four months ago, refining the methodology so the lab could feed back into it.</p>
+
+        <p>One of those side roads led me to the mempool. <strong>Why do blocks look the way they do <em>before</em> they exist?</strong> That question — asked from a forensics mindset rather than a mining-operator mindset — became PreBlock. The same techniques I used to narrow address spaces, I now use to narrow which transactions actually make it into the next three blocks.</p>
+
+        <p>PreBlock is the first product from the Wallet-Master lab to leave research and enter commercial release. It is built for buyers who recognise that <strong>edge in Bitcoin doesn't come from bigger fleets — it comes from understanding the protocol from a different angle.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- LICENSE MODELS                                                      -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <section id="license">
@@ -1073,22 +1581,27 @@
     <div class="section-head">
       <span class="eyebrow">Commercial structure</span>
       <h2>Three license models — built for serious operators.</h2>
-      <p>Each deployment carries a unique, cryptographically signed Authenticity Key. The backend verifies it at startup. NDA template provided on first contact.</p>
+      <p>Each deployment carries a unique, cryptographically signed Authenticity Key. The backend verifies it at startup. NDA template provided on first contact. <strong>Year-1 technical updates included</strong> in every model.</p>
+    </div>
+
+    <div class="auction-banner" id="auctionBanner" data-testid="auction-banner">
+      🔥 Active auction · Model A — current high bid will be shown here once bidding opens. Best Offer welcome above list price.
     </div>
 
     <div class="pricing-grid">
       <div class="price-card" data-testid="price-card-c">
         <h3>Model C</h3>
-        <p class="price-subtitle">Single-Version · Up to 3 buyers</p>
-        <div class="price-tier">Entry tier</div>
-        <div class="price-tier-sub">~30% of A/B per buyer</div>
+        <p class="price-subtitle">Single-Version · Max 3 buyers (extensible to 5)</p>
+        <div class="price-tier">€150,000</div>
+        <div class="price-tier-sub">per license · scarce by design</div>
         <ul>
           <li>One production + one staging instance</li>
-          <li>Up to 3 buyers may hold the same version line</li>
+          <li>Max 3 buyers hold the same version line (rare seat)</li>
           <li>Next-version upgrade priced separately</li>
           <li>Authenticity Key stays with vendor</li>
           <li>Support: current (n) + previous (n-1)</li>
           <li>Migration to B or A possible (pay difference)</li>
+          <li>Year-1 technical updates included</li>
         </ul>
         <a href="#contact" class="btn btn-ghost" data-testid="price-cta-c">Get details <i data-lucide="arrow-right"></i></a>
       </div>
@@ -1097,8 +1610,8 @@
         <span class="price-badge">Most popular</span>
         <h3>Model B</h3>
         <p class="price-subtitle">Exclusive · Vendor-maintained</p>
-        <div class="price-tier">Highest tier</div>
-        <div class="price-tier-sub">Same tier as Model A</div>
+        <div class="price-tier">€400,000</div>
+        <div class="price-tier-sub">sole license · vendor keeps developing for you</div>
         <ul>
           <li>Exclusive use of the current Version line</li>
           <li>Vendor continues development against agreed fees</li>
@@ -1106,32 +1619,76 @@
           <li>Authenticity Key stays with vendor (audit)</li>
           <li>Support: current (n) + previous (n-1)</li>
           <li>Upgrade-path to Model A (pay difference)</li>
+          <li>Year-1 technical updates included</li>
         </ul>
         <a href="#contact" class="btn btn-primary" data-testid="price-cta-b">Get details <i data-lucide="arrow-right"></i></a>
       </div>
 
       <div class="price-card" data-testid="price-card-a">
         <h3>Model A</h3>
-        <p class="price-subtitle">Exclusive · Self-maintained</p>
-        <div class="price-tier">Highest tier</div>
-        <div class="price-tier-sub">Outright IP transfer</div>
+        <p class="price-subtitle">Exclusive · Self-maintained · IP transfer</p>
+        <div class="price-tier">€400,000<span style="font-size: 14px; color: var(--text-muted); margin-left: 8px;">+ Best Offer</span></div>
+        <div class="price-tier-sub">outright ownership · auction-eligible</div>
         <ul>
-          <li>You own PreBlock outright</li>
+          <li>You own PreBlock outright (full IP transfer)</li>
           <li>You develop updates yourself / via contractors</li>
           <li>Authenticity Key transferred at IP-Transfer</li>
           <li>Vendor demo-rights only for pre-Model-A state</li>
-          <li>No further vendor involvement</li>
-          <li>Best for mining-pool operators with in-house dev</li>
+          <li>No further vendor involvement (unless contracted)</li>
+          <li>Best for pool operators / funds with in-house dev</li>
+          <li><strong>Best-Offer / Auction welcome above €400k list</strong></li>
         </ul>
-        <a href="#contact" class="btn btn-ghost" data-testid="price-cta-a">Get details <i data-lucide="arrow-right"></i></a>
+        <a href="#contact" class="btn btn-ghost" data-testid="price-cta-a">Submit offer <i data-lucide="arrow-right"></i></a>
       </div>
     </div>
 
     <p style="margin-top: 32px; font-size: 13px; color: var(--text-dim); text-align: center; font-family: 'JetBrains Mono', monospace;">
+      Base prices exclude modules · Module add-ons €10–30k each (see Modules section above) · 3 × Model C = €450k ≥ Model A/B<br>
       Full comparison and FAQ on
       <a href="https://github.com/Stoffel999/preblock-node/blob/main/docs/LICENSE_MODELS.md" target="_blank" rel="noopener">
         LICENSE_MODELS.md</a>.
     </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- UPDATES & MAINTENANCE                                              -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="updates" style="padding-top: 40px;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Updates &amp; maintenance</span>
+      <h2>Year 1 included. Year 2+ optional.</h2>
+      <p>You are never forced into a subscription. Year-1 technical updates ship with every license. From year two onwards, choose annual maintenance — or pay per update at the published day-rate.</p>
+    </div>
+
+    <div class="updates-grid">
+      <div class="updates-card year1" data-testid="updates-year1">
+        <div class="updates-eyebrow">First year — included</div>
+        <h3>Year-1 technical updates</h3>
+        <div class="updates-price">€0 <span class="small">included with every license</span></div>
+        <ul>
+          <li>Security patches</li>
+          <li>Bitcoin Knots / DATUM compatibility updates</li>
+          <li>MongoDB / Python / React dependency upgrades</li>
+          <li>Bug fixes</li>
+          <li>Performance optimisations</li>
+        </ul>
+      </div>
+
+      <div class="updates-card" data-testid="updates-year2">
+        <div class="updates-eyebrow">Year 2 onwards — optional</div>
+        <h3>Annual maintenance</h3>
+        <div class="updates-price">15% / year <span class="small">of your license price</span></div>
+        <ul>
+          <li>Model A/B = €60,000 / year (covers all technical updates)</li>
+          <li>Model C = €22,500 / year</li>
+          <li>Or: pay-per-update at published day-rate</li>
+          <li>New features / new modules are always separate</li>
+          <li>Cancellable annually — no lock-in</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1205,6 +1762,45 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- FAMILY OF TOOLS                                                     -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="family" style="padding-top: 40px; padding-bottom: 40px;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Wallet-Master Lab — Family of tools</span>
+      <h2>PreBlock is one of four research products.</h2>
+      <p>PreBlock ships today. The remaining three are in active development inside the Wallet-Master research lab. Each will be released as an independent commercial product when ready.</p>
+    </div>
+
+    <div class="family-grid" data-testid="family-grid">
+      <div class="family-card active" data-testid="family-preblock">
+        <span class="family-status">Available now</span>
+        <h5>PreBlock</h5>
+        <p class="family-desc">Predictive block-template engine for Bitcoin pools. Knots-filtered mempool, DATUM-native, 87–100% hit-rate. <strong>This product.</strong></p>
+      </div>
+
+      <div class="family-card" data-testid="family-trace">
+        <span class="family-status">Coming 2026</span>
+        <h5>Trace-Master</h5>
+        <p class="family-desc">Bitcoin transaction forensics. Two editions: <em>Pro</em> for law firms representing scam victims, <em>Lab</em> for researchers and enthusiasts. Address clustering, taint analysis, OFAC overlay.</p>
+      </div>
+
+      <div class="family-card" data-testid="family-puzzle">
+        <span class="family-status">Coming 2026</span>
+        <h5>Puzzle-Master</h5>
+        <p class="family-desc">Standalone GPU-rig appliance for Bitcoin puzzles. Mass key-candidate generation, AI-driven address-space narrowing, community range coordination.</p>
+      </div>
+
+      <div class="family-card" data-testid="family-crack">
+        <span class="family-status">Coming 2026</span>
+        <h5>Crack-Master</h5>
+        <p class="family-desc">Educational address-cracking rig — mass address generation, key-collision probability visualisation. For nerds, courses and CTF events.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- FOOTER                                                              -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <footer class="site-footer">
@@ -1216,21 +1812,24 @@
           <span>PreBlock</span>
         </a>
         <p style="color: var(--text-muted); font-size: 14px; margin-top: 16px; max-width: 320px;">
-          Predictive mining for Bitcoin pools. Mempool intelligence, multi-block lookahead, and seamless DATUM-Gateway integration in a lean platform.
+          The predictive block-template engine for Bitcoin pools. A Wallet-Master Lab research product.
         </p>
       </div>
       <div>
         <h4>Product</h4>
+        <a href="#knots">Knots Spam-Filter</a>
         <a href="#features">Features</a>
+        <a href="#modules">Modules</a>
         <a href="#roi">ROI Calculator</a>
         <a href="#license">License Models</a>
-        <a href="#architecture">Architecture</a>
+        <a href="#updates">Updates</a>
       </div>
       <div>
-        <h4>Resources</h4>
+        <h4>Lab</h4>
+        <a href="#founder">Founder's story</a>
+        <a href="#family">Family of tools</a>
         <a href="https://github.com/Stoffel999/preblock-node" target="_blank" rel="noopener">GitHub Repo</a>
         <a href="https://github.com/Stoffel999/preblock-node/blob/main/docs/LICENSE_MODELS.md" target="_blank" rel="noopener">License Models</a>
-        <a href="https://github.com/Stoffel999/preblock-node/blob/main/docs/FEATURES.md" target="_blank" rel="noopener">Feature Docs</a>
         <a href="https://github.com/Stoffel999/preblock-node/blob/main/SALES_INSTALL.md" target="_blank" rel="noopener">Installation Guide</a>
       </div>
       <div>
@@ -1238,10 +1837,11 @@
         <a href="https://github.com/Stoffel999" target="_blank" rel="noopener">@Stoffel999</a>
         <a href="https://github.com/Stoffel999/preblock-node/issues" target="_blank" rel="noopener">Open issue</a>
         <a href="#demo">Request demo</a>
+        <a href="#contact">Sales inquiry</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Stoffel999 · PreBlock is a trademark in formation</span>
+      <span>© 2026 Stoffel999 / Wallet-Master Lab · PreBlock is a trademark in formation</span>
       <span>Built for Bitcoin · DATUM-native · One machine</span>
     </div>
   </div>
