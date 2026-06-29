@@ -14,14 +14,23 @@
     <meta property="og:description" content="Bitcoin Knots spam-filter + 3-block lookahead + sub-50ms DATUM template injection. 87–100% observed hit-rate." />
     <meta property="og:url" content="https://sales.preblock.io" />
     <meta property="og:site_name" content="PreBlock" />
+    <meta property="og:image" content="https://sales.preblock.io/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="PreBlock — Crystal block hovering above Bitcoin block, brand mark" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PreBlock — Predictive Mining" />
     <meta name="twitter:description" content="Predict the next 3 Bitcoin block templates. DATUM-ready. One machine. No GPU farm." />
+    <meta name="twitter:image" content="https://sales.preblock.io/assets/og-image.png" />
 
-    <!-- Favicon (inline SVG, Bitcoin-orange P) -->
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0c'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%23F7931A'%3EP%3C/text%3E%3C/svg%3E" />
+    <!-- Favicons (Hexagon, Bitcoin-orange on charcoal) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+    <link rel="mask-icon" href="assets/favicon-32.png" color="#F7931A" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -156,12 +165,12 @@
         display: inline-flex; align-items: center; gap: 10px;
       }
       .brand-mark {
-        width: 28px; height: 28px;
+        width: 32px; height: 32px;
         border-radius: 7px;
-        background: linear-gradient(135deg, var(--accent), #c5740d);
-        display: inline-flex; align-items: center; justify-content: center;
-        font-family: 'JetBrains Mono', monospace;
-        font-weight: 700; color: var(--bg); font-size: 16px;
+        display: inline-block;
+        object-fit: contain;
+        background: transparent;
+        filter: drop-shadow(0 0 6px rgba(247, 147, 26, 0.25));
       }
       nav.primary-nav { display: flex; gap: 32px; align-items: center; }
       nav.primary-nav a {
@@ -1093,7 +1102,7 @@
 <header class="site-header" data-testid="site-header">
   <div class="container">
     <a href="#top" class="brand" data-testid="brand-link">
-      <span class="brand-mark">P</span>
+      <img class="brand-mark" src="assets/favicon-32.png" alt="PreBlock hexagon mark" width="32" height="32" />
       <span>PreBlock</span>
     </a>
     <nav class="primary-nav">
@@ -1104,8 +1113,8 @@
       <a href="#license" data-testid="nav-license">Pricing</a>
       <a href="#founder" data-testid="nav-founder">Story</a>
       <a href="#demo" data-testid="nav-demo">Demo</a>
-      <a href="https://github.com/Stoffel999/preblock-node" target="_blank" rel="noopener" class="btn btn-ghost" data-testid="nav-github">
-        <i data-lucide="github"></i> GitHub
+      <a href="mailto:sales@preblock.io" class="btn btn-primary" data-testid="nav-sales-contact">
+        <i data-lucide="mail"></i> Contact sales
       </a>
     </nav>
   </div>
@@ -1130,8 +1139,8 @@
             See it live
             <i data-lucide="arrow-right"></i>
           </a>
-          <a href="https://github.com/Stoffel999/preblock-node" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-testid="hero-cta-github">
-            <i data-lucide="github"></i> View on GitHub
+          <a href="mailto:sales@preblock.io?subject=PreBlock%20sales%20inquiry" class="btn btn-ghost btn-lg" data-testid="hero-cta-contact">
+            <i data-lucide="mail"></i> sales@preblock.io
           </a>
         </div>
         <div class="hero-tags">
@@ -1644,9 +1653,8 @@
 
     <p style="margin-top: 32px; font-size: 13px; color: var(--text-dim); text-align: center; font-family: 'JetBrains Mono', monospace;">
       Base prices exclude modules · Module add-ons €10–30k each (see Modules section above) · 3 × Model C = €450k ≥ Model A/B<br>
-      Full comparison and FAQ on
-      <a href="https://github.com/Stoffel999/preblock-node/blob/main/docs/LICENSE_MODELS.md" target="_blank" rel="noopener">
-        LICENSE_MODELS.md</a>.
+      Full comparison and FAQ available on request — e-mail
+      <a href="mailto:sales@preblock.io?subject=License%20models%20FAQ">sales@preblock.io</a>.
     </p>
   </div>
 </section>
@@ -1748,13 +1756,13 @@
   <div class="container">
     <div class="cta-section" data-testid="cta-section">
       <h2>Ready to discuss models, pricing, and a live demo?</h2>
-      <p>Open a GitHub issue at the PreBlock repository, or reach out directly. NDA template provided on first contact.</p>
+      <p>Reach out directly via e-mail or Telegram. NDA template provided on first contact. Typical response within one business day.</p>
       <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-        <a href="https://github.com/Stoffel999/preblock-node/issues/new?title=Sales+inquiry&labels=sales" target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-testid="cta-issue">
-          <i data-lucide="git-pull-request"></i> Open sales inquiry
+        <a href="mailto:sales@preblock.io?subject=PreBlock%20sales%20inquiry" class="btn btn-primary btn-lg" data-testid="cta-email">
+          <i data-lucide="mail"></i> sales@preblock.io
         </a>
-        <a href="https://github.com/Stoffel999" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-testid="cta-contact">
-          <i data-lucide="github"></i> Contact @Stoffel999
+        <a href="https://t.me/Stoffel999" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-testid="cta-telegram">
+          <i data-lucide="send"></i> Telegram @Stoffel999
         </a>
       </div>
     </div>
@@ -1808,7 +1816,7 @@
     <div class="footer-grid">
       <div>
         <a href="#top" class="brand" style="margin-bottom: 16px;">
-          <span class="brand-mark">P</span>
+          <img class="brand-mark" src="assets/favicon-32.png" alt="PreBlock hexagon mark" width="32" height="32" />
           <span>PreBlock</span>
         </a>
         <p style="color: var(--text-muted); font-size: 14px; margin-top: 16px; max-width: 320px;">
@@ -1828,15 +1836,15 @@
         <h4>Lab</h4>
         <a href="#founder">Founder's story</a>
         <a href="#family">Family of tools</a>
-        <a href="https://github.com/Stoffel999/preblock-node" target="_blank" rel="noopener">GitHub Repo</a>
-        <a href="https://github.com/Stoffel999/preblock-node/blob/main/docs/LICENSE_MODELS.md" target="_blank" rel="noopener">License Models</a>
-        <a href="https://github.com/Stoffel999/preblock-node/blob/main/SALES_INSTALL.md" target="_blank" rel="noopener">Installation Guide</a>
+        <a href="#license">License Models</a>
+        <a href="mailto:sales@preblock.io?subject=Installation%20guide%20request">Installation Guide (on request)</a>
+        <a href="#updates">Updates & maintenance</a>
       </div>
       <div>
         <h4>Contact</h4>
-        <a href="https://github.com/Stoffel999" target="_blank" rel="noopener">@Stoffel999</a>
-        <a href="https://github.com/Stoffel999/preblock-node/issues" target="_blank" rel="noopener">Open issue</a>
-        <a href="#demo">Request demo</a>
+        <a href="mailto:sales@preblock.io">sales@preblock.io</a>
+        <a href="https://t.me/Stoffel999" target="_blank" rel="noopener">Telegram @Stoffel999</a>
+        <a href="#demo">Request live demo</a>
         <a href="#contact">Sales inquiry</a>
       </div>
     </div>
