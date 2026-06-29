@@ -1802,6 +1802,67 @@
         opacity: 0;
       }
 
+      /* NDA receipt confirmation block (shown post-submit) */
+      .bid-modal .bid-nda-block {
+        margin-top: 14px;
+        padding: 14px 16px;
+        border-radius: 10px;
+        background: rgba(255, 138, 52, 0.06);
+        border: 1px solid rgba(255, 138, 52, 0.35);
+        color: var(--text-muted);
+        font-size: 12px;
+        line-height: 1.55;
+      }
+      .bid-modal .bid-nda-title {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+        margin-bottom: 6px;
+      }
+      .bid-modal .bid-nda-id {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px;
+        color: var(--text);
+        margin-bottom: 8px;
+        word-break: break-all;
+      }
+      .bid-modal .bid-nda-desc { margin-bottom: 12px; }
+      .bid-modal .bid-nda-desc code {
+        font-family: 'JetBrains Mono', monospace;
+        background: var(--surface-2);
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 11px;
+      }
+      .bid-modal .bid-nda-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+      .bid-modal .bid-nda-cta .btn-secondary {
+        background: var(--surface-2);
+        color: var(--text);
+        border: 1px solid var(--border-2);
+        padding: 6px 14px;
+        font-size: 12px;
+        text-decoration: none;
+        border-radius: 6px;
+      }
+      .bid-modal .bid-nda-cta .btn-secondary:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .bid-modal .bid-nda-verify-link {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        color: var(--text-dim);
+        text-decoration: none;
+      }
+      .bid-modal .bid-nda-verify-link:hover { color: var(--accent); }
+
     </style>
 </head>
 <body>
@@ -3289,7 +3350,32 @@
       }
       const data = await r.json();
       status.className = 'bid-status success';
-      status.textContent = `✅ Offer received. Queue position: #${data.queue_position}. We will reply within 24h to ${payload.email}.`;
+      const rid  = data.nda_receipt_id;
+      const verifyUrl = data.nda_verify_url || '';
+      let html = `✅ Offer received. Queue position: #${data.queue_position}. We will reply within 24h to ${payload.email}.`;
+      if (rid && data.nda_receipt) {
+        // Make the signed receipt JSON downloadable as a Blob URL
+        const blob = new Blob([JSON.stringify(data.nda_receipt, null, 2)],
+                              { type: 'application/json' });
+        const url  = URL.createObjectURL(blob);
+        html += `
+          <div class="bid-nda-block" data-testid="bid-nda-block">
+            <div class="bid-nda-title">🔐 Cryptographic NDA receipt issued</div>
+            <div class="bid-nda-id" data-testid="bid-nda-id">${rid}</div>
+            <div class="bid-nda-desc">
+              RSA-4096 PSS-SHA256 signature against the PreBlock vendor public key.
+              Anchored to NDA terms <strong>v1.0.0</strong>. Verifiable offline
+              with the public key shipped in every install
+              (<code>backend/vendor_public_key.pem</code>), or online via
+              the verify endpoint.
+            </div>
+            <div class="bid-nda-cta">
+              <a href="${url}" download="preblock-${rid}.json" class="btn btn-secondary" data-testid="bid-nda-download">Download receipt</a>
+              <a href="${INQ_API.replace('/api/inquiry','')}${verifyUrl}" target="_blank" rel="noopener" class="bid-nda-verify-link" data-testid="bid-nda-verify-link">Verify online ↗</a>
+            </div>
+          </div>`;
+      }
+      status.innerHTML = html;
       document.getElementById('bidForm').reset();
       refreshActivityTicker();
     } catch (e) {
