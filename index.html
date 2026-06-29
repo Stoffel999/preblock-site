@@ -778,10 +778,13 @@
         transition: all 0.3s ease;
         position: relative;
         display: flex; flex-direction: column;
+        text-decoration: none;
+        color: inherit;
       }
       .module-card:hover {
         border-color: var(--accent);
         transform: translateY(-3px);
+        cursor: pointer;
       }
       .module-card.crown {
         border-color: var(--accent);
@@ -829,6 +832,323 @@
         color: var(--text-dim);
         font-weight: 400;
         margin-left: 6px;
+      }
+
+      /* ─── Module Detail Sections (M1–M7) ──────────────────────────── */
+      .m-jump-strip {
+        display: flex; flex-wrap: wrap; gap: 8px;
+        justify-content: center;
+        margin: 24px 0 8px;
+      }
+      .m-jump-pill {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-muted);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        padding: 6px 14px;
+        text-decoration: none;
+        transition: all 0.18s ease;
+      }
+      .m-jump-pill:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      .m-detail {
+        padding: 80px 0 40px;
+        border-top: 1px solid var(--border);
+        scroll-margin-top: 80px;
+      }
+      .m-detail:first-of-type { border-top: none; }
+      .m-detail-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+      @media (max-width: 900px) {
+        .m-detail-grid { grid-template-columns: 1fr; gap: 36px; }
+      }
+      .m-detail .m-id {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .m-detail h3 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(28px, 3.4vw, 38px);
+        font-weight: 600;
+        margin-bottom: 20px;
+        letter-spacing: -0.01em;
+      }
+      .m-detail .m-block {
+        margin-bottom: 22px;
+      }
+      .m-detail .m-block-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--text-dim);
+        margin-bottom: 8px;
+      }
+      .m-detail .m-block p {
+        color: var(--text-muted);
+        font-size: 15px;
+        line-height: 1.7;
+        margin: 0;
+      }
+      .m-detail .m-price-row {
+        display: flex; flex-wrap: wrap; align-items: center;
+        gap: 16px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+      }
+      .m-detail .m-price {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 22px; font-weight: 700;
+        color: var(--text);
+      }
+      .m-detail .m-price-sub {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        color: var(--text-dim);
+      }
+      .m-detail .m-cta {
+        margin-left: auto;
+      }
+
+      /* Mockup canvas (shared frame for all M1–M7) */
+      .m-mock {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+        min-height: 280px;
+        box-shadow: 0 24px 64px -36px rgba(0,0,0,.55);
+      }
+      .m-mock::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: radial-gradient(ellipse 90% 60% at 50% 0%, var(--accent-soft), transparent 70%);
+        pointer-events: none;
+      }
+      .m-mock > * { position: relative; z-index: 1; }
+      .m-mock-title {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--text-dim);
+        margin-bottom: 16px;
+      }
+      .m-mock-live {
+        display: inline-flex; align-items: center; gap: 6px;
+        color: var(--text-muted);
+      }
+      .m-mock-live::before {
+        content: ''; width: 6px; height: 6px; border-radius: 50%;
+        background: var(--accent); box-shadow: 0 0 6px var(--accent);
+        animation: heroPulse 1.6s ease-in-out infinite;
+      }
+
+      /* M1 — A/B fee uplift bars */
+      .m1-bars { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: end; height: 180px; }
+      .m1-bar { display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; }
+      .m1-bar .bar-fill {
+        width: 100%;
+        background: linear-gradient(180deg, var(--accent), #d97706);
+        border-radius: 8px 8px 0 0;
+        position: relative;
+        box-shadow: 0 0 24px rgba(255,138,52,0.25);
+      }
+      .m1-bar.muted .bar-fill {
+        background: linear-gradient(180deg, #4a4a52, #2c2c33);
+        box-shadow: none;
+      }
+      .m1-bar .bar-val {
+        position: absolute; top: -22px; left: 50%; transform: translateX(-50%);
+        font-family: 'JetBrains Mono', monospace; font-size: 12px;
+        color: var(--text); font-weight: 700;
+      }
+      .m1-bar .bar-label {
+        font-family: 'JetBrains Mono', monospace; font-size: 11px;
+        text-align: center; color: var(--text-muted);
+        text-transform: uppercase; letter-spacing: 0.08em;
+      }
+      .m1-uplift {
+        margin-top: 18px; padding-top: 14px;
+        border-top: 1px dashed var(--border-2);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px; color: var(--text-muted);
+        text-align: center;
+      }
+      .m1-uplift strong { color: var(--accent); font-size: 18px; }
+
+      /* M2 — Pool leaderboard */
+      .m2-row {
+        display: grid; grid-template-columns: 24px 1fr 90px;
+        align-items: center; gap: 12px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        font-family: 'JetBrains Mono', monospace; font-size: 13px;
+      }
+      .m2-row.first {
+        background: rgba(255,138,52,0.10);
+        border-color: var(--accent);
+      }
+      .m2-row .rank {
+        font-weight: 700; color: var(--text-dim);
+      }
+      .m2-row.first .rank { color: var(--accent); }
+      .m2-row .pool { color: var(--text); }
+      .m2-row .delta { text-align: right; color: var(--text-muted); }
+      .m2-row.first .delta { color: var(--accent); font-weight: 700; }
+
+      /* M3 — Merkle tree + audit hash */
+      .m3-tree {
+        display: flex; flex-direction: column; gap: 12px;
+        align-items: center;
+        padding: 12px 0;
+      }
+      .m3-tree .layer {
+        display: flex; gap: 6px;
+        font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      }
+      .m3-node {
+        background: var(--surface-2);
+        border: 1px solid var(--border-2);
+        padding: 4px 8px;
+        border-radius: 4px;
+        color: var(--text-muted);
+      }
+      .m3-node.root { background: rgba(255,138,52,0.10); border-color: var(--accent); color: var(--accent); }
+      .m3-hash {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        color: var(--text-muted);
+        word-break: break-all;
+        background: var(--surface-2);
+        padding: 10px 12px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        margin-top: 8px;
+      }
+      .m3-hash .hash-label { color: var(--accent); }
+
+      /* M4 — Backtest sparkline */
+      .m4-chart {
+        height: 140px;
+        position: relative;
+        margin-bottom: 12px;
+      }
+      .m4-chart svg { width: 100%; height: 100%; display: block; }
+      .m4-axis-x {
+        display: flex; justify-content: space-between;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px; color: var(--text-dim);
+      }
+      .m4-stat {
+        margin-top: 14px; padding-top: 12px;
+        border-top: 1px solid var(--border);
+        font-family: 'JetBrains Mono', monospace; font-size: 13px;
+        color: var(--text-muted);
+        display: flex; justify-content: space-between;
+      }
+      .m4-stat strong { color: var(--accent); }
+
+      /* M5 — Alert notification */
+      .m5-notif {
+        background: var(--surface-2);
+        border: 1px solid var(--border-2);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 10px;
+        display: flex; gap: 12px;
+      }
+      .m5-notif .channel {
+        width: 36px; height: 36px; border-radius: 50%;
+        background: var(--accent-soft);
+        display: flex; align-items: center; justify-content: center;
+        color: var(--accent); font-weight: 700;
+        font-family: 'JetBrains Mono', monospace; font-size: 12px;
+        flex-shrink: 0;
+      }
+      .m5-notif .body { flex: 1; min-width: 0; }
+      .m5-notif .body .head {
+        display: flex; justify-content: space-between;
+        font-family: 'JetBrains Mono', monospace; font-size: 11px;
+        color: var(--text-dim);
+        margin-bottom: 4px;
+      }
+      .m5-notif .body .head .name { color: var(--text); font-weight: 700; }
+      .m5-notif .body .msg {
+        font-size: 13px; color: var(--text-muted); line-height: 1.5;
+      }
+
+      /* M6 — White-label tenant cards */
+      .m6-tenants {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      .m6-tenant {
+        padding: 14px;
+        border-radius: 10px;
+        border: 1px solid var(--border-2);
+        text-align: center;
+      }
+      .m6-tenant .dot {
+        width: 14px; height: 14px; border-radius: 50%;
+        margin: 0 auto 8px;
+      }
+      .m6-tenant .name {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px; color: var(--text);
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+      .m6-tenant .sub {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9px; color: var(--text-dim);
+        text-transform: uppercase; letter-spacing: 0.06em;
+      }
+      .m6-tenant.preblock { background: rgba(255,138,52,0.07); border-color: var(--accent); }
+      .m6-tenant.preblock .dot { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+      .m6-tenant.acme .dot     { background: #3b82f6; }
+      .m6-tenant.xpool .dot    { background: #a855f7; }
+
+      /* M7 — Update timeline */
+      .m7-timeline {
+        display: grid; grid-template-columns: repeat(5, 1fr);
+        gap: 4px; align-items: stretch;
+      }
+      .m7-year {
+        padding: 16px 8px;
+        border-radius: 8px;
+        text-align: center;
+        font-family: 'JetBrains Mono', monospace;
+      }
+      .m7-year.included { background: rgba(34,197,94,0.10); border: 1px solid rgba(34,197,94,0.35); }
+      .m7-year.renewal  { background: rgba(255,138,52,0.07); border: 1px solid var(--border-2); }
+      .m7-year .yr { font-size: 11px; color: var(--text-dim); margin-bottom: 4px; }
+      .m7-year .status { font-size: 12px; font-weight: 700; }
+      .m7-year.included .status { color: #22c55e; }
+      .m7-year.renewal .status  { color: var(--accent); }
+      .m7-foot {
+        margin-top: 14px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px; color: var(--text-dim);
+        text-align: center;
       }
 
       /* ─── Founder Story Section ─────────────────────────────────────── */
@@ -1652,60 +1972,434 @@
     </div>
 
     <div class="modules-grid">
-      <div class="module-card crown" data-testid="module-m1">
+      <a href="#m1" class="module-card crown" data-testid="module-m1">
         <span class="module-tag">Crown jewel</span>
         <div class="module-id">M1</div>
         <h4>Predictive Template Optimizer</h4>
         <p class="module-hook">"Compare PreBlock's optimised template against the default Core template in real time. +0.3–1% fee uplift, provable in A/B mode."</p>
         <div class="module-price">€25,000 – €30,000 <span class="small">one-time, per license</span></div>
-      </div>
+      </a>
 
-      <div class="module-card" data-testid="module-m2">
+      <a href="#m2" class="module-card" data-testid="module-m2">
         <div class="module-id">M2</div>
         <h4>Multi-Pool / Multi-Worker</h4>
         <p class="module-hook">"Run multiple DATUM gateways in parallel. Compare PreBlock templates vs ViaBTC, Foundry, AntPool side-by-side."</p>
         <div class="module-price">€20,000 – €25,000 <span class="small">one-time</span></div>
-      </div>
+      </a>
 
-      <div class="module-card" data-testid="module-m3">
+      <a href="#m3" class="module-card" data-testid="module-m3">
         <div class="module-id">M3</div>
         <h4>Audit &amp; Compliance Pack</h4>
         <p class="module-hook">"SHA-256 audit logging, reorg-aware hit-rate, exportable PDF reports for your auditors and investors. Trust-anchor for institutional DD."</p>
         <div class="module-price">€10,000 – €15,000 <span class="small">one-time</span></div>
-      </div>
+      </a>
 
-      <div class="module-card" data-testid="module-m4">
+      <a href="#m4" class="module-card" data-testid="module-m4">
         <div class="module-id">M4</div>
         <h4>30/90-Day Backtest Engine</h4>
         <p class="module-hook">"Historical mempool replay. Simulate ROI on 30 or 90 days of past data before you spend a single satoshi."</p>
         <div class="module-price">€20,000 – €30,000 <span class="small">one-time</span></div>
-      </div>
+      </a>
 
-      <div class="module-card" data-testid="module-m5">
+      <a href="#m5" class="module-card" data-testid="module-m5">
         <div class="module-id">M5</div>
         <h4>Alerts &amp; Reporting</h4>
         <p class="module-hook">"Telegram, Slack and webhook alerts. Daily / weekly auto-PDF. We wake you only on anomalies — sleep through the routine."</p>
         <div class="module-price">€10,000 – €12,000 <span class="small">one-time</span></div>
-      </div>
+      </a>
 
-      <div class="module-card" data-testid="module-m6">
+      <a href="#m6" class="module-card" data-testid="module-m6">
         <div class="module-id">M6</div>
         <h4>White-Label / Multi-Tenant</h4>
         <p class="module-hook">"Brand it your way. Run customer portals. For resellers and Mining-as-a-Service providers."</p>
         <div class="module-price">€25,000 – €30,000 <span class="small">one-time</span></div>
-      </div>
+      </a>
 
-      <div class="module-card" data-testid="module-m7">
+      <a href="#m7" class="module-card" data-testid="module-m7">
         <div class="module-id">M7</div>
         <h4>Extended Update &amp; Support Plan</h4>
         <p class="module-hook">"Stack additional years of vendor updates + priority support. Buy on demand — no auto-renewal, no subscription lock-in."</p>
         <div class="module-price">€15,000 – €25,000 <span class="small">per additional year</span></div>
-      </div>
+      </a>
     </div>
 
     <p style="margin-top: 32px; font-size: 13px; color: var(--text-dim); text-align: center; font-family: 'JetBrains Mono', monospace;">
       Module prices apply per license. Cross-module discounts available · Bundles negotiable on commercial discussion.
     </p>
+
+    <!-- Anchor strip: jump to any module detail page -->
+    <div class="m-jump-strip" data-testid="module-jump-strip">
+      <a href="#m1" class="m-jump-pill">M1 Optimizer</a>
+      <a href="#m2" class="m-jump-pill">M2 Multi-Pool</a>
+      <a href="#m3" class="m-jump-pill">M3 Audit</a>
+      <a href="#m4" class="m-jump-pill">M4 Backtest</a>
+      <a href="#m5" class="m-jump-pill">M5 Alerts</a>
+      <a href="#m6" class="m-jump-pill">M6 White-Label</a>
+      <a href="#m7" class="m-jump-pill">M7 Support</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- MODULE DETAIL PAGES (M1–M7)                                       -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<!-- ─── M1 ────────────────────────────────────────────────────────── -->
+<section id="m1" class="m-detail" data-testid="m-detail-m1">
+  <div class="container">
+    <div class="m-detail-grid">
+      <div>
+        <div class="m-id">Module M1 · Crown jewel</div>
+        <h3>Predictive Template Optimizer</h3>
+        <div class="m-block">
+          <div class="m-block-label">What it does</div>
+          <p>Runs PreBlock's optimised block template side-by-side with the
+          Core template each round. Scores both against the actual fees of
+          the next mined block, exposes the delta via a live A/B endpoint
+          and surfaces an aggregated 24h / 7d / 30d uplift. Observed uplift
+          on Sphere (4 miners, OCEAN pool, Knots-filtered mempool) over
+          Feb 2026: <strong>+0.3% to +1.0%</strong> against the Core
+          template, in line with the conservative published figure.</p>
+        </div>
+        <div class="m-block">
+          <div class="m-block-label">Who needs it</div>
+          <p>Mid-to-large mining pools optimising their own DATUM pipelines.
+          The uplift compounds on every block — at 100 PH/s pool hashrate
+          a sustained +0.5% fee uplift translates to a 5-to-7-figure
+          additional yearly revenue at current fee market levels.</p>
+        </div>
+        <div class="m-price-row">
+          <span class="m-price">€25,000 – €30,000</span>
+          <span class="m-price-sub">one-time · per license</span>
+          <a href="mailto:sales@preblock.io?subject=PreBlock%20M1%20inquiry" class="btn btn-primary m-cta" data-testid="m1-cta">Inquire about M1</a>
+        </div>
+      </div>
+      <div class="m-mock" data-testid="m1-mock">
+        <div class="m-mock-title"><span class="m-mock-live">A/B template uplift · last block</span></div>
+        <div class="m1-bars">
+          <div class="m1-bar muted">
+            <div class="bar-fill" style="height: 78%;"><span class="bar-val">100.0%</span></div>
+            <div class="bar-label">Core</div>
+          </div>
+          <div class="m1-bar">
+            <div class="bar-fill" style="height: 100%;"><span class="bar-val">103.4%</span></div>
+            <div class="bar-label">PreBlock</div>
+          </div>
+        </div>
+        <div class="m1-uplift">Fee uplift: <strong>+3.4%</strong> · 24h avg <strong>+0.71%</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── M2 ────────────────────────────────────────────────────────── -->
+<section id="m2" class="m-detail" data-testid="m-detail-m2">
+  <div class="container">
+    <div class="m-detail-grid">
+      <div>
+        <div class="m-id">Module M2</div>
+        <h3>Multi-Pool / Multi-Worker</h3>
+        <div class="m-block">
+          <div class="m-block-label">What it does</div>
+          <p>Runs multiple DATUM gateways and worker streams in parallel
+          against the same predicted template, and ranks them by uplift in
+          real time. Lets you benchmark PreBlock against any other
+          DATUM-compatible pool (Ocean's own gateway, ViaBTC, Foundry,
+          AntPool — whichever you connect). Deterministic 6.5–8.5% uplift
+          for PreBlock-DATUM in the demo dataset; competitors fluctuate
+          within ±3% jitter.</p>
+        </div>
+        <div class="m-block">
+          <div class="m-block-label">Who needs it</div>
+          <p>Operators running mixed-pool strategies, hashrate brokers
+          and any commercial buyer who wants <em>numerical</em> proof
+          that PreBlock beats the alternative they're already paying
+          for. Also the natural pre-purchase POC vehicle.</p>
+        </div>
+        <div class="m-price-row">
+          <span class="m-price">€20,000 – €25,000</span>
+          <span class="m-price-sub">one-time</span>
+          <a href="mailto:sales@preblock.io?subject=PreBlock%20M2%20inquiry" class="btn btn-primary m-cta" data-testid="m2-cta">Inquire about M2</a>
+        </div>
+      </div>
+      <div class="m-mock" data-testid="m2-mock">
+        <div class="m-mock-title"><span class="m-mock-live">Pool uplift leaderboard · 24h</span></div>
+        <div class="m2-row first">
+          <span class="rank">#1</span><span class="pool">PreBlock · OCEAN-DATUM</span><span class="delta">+7.42%</span>
+        </div>
+        <div class="m2-row">
+          <span class="rank">#2</span><span class="pool">ViaBTC</span><span class="delta">+1.85%</span>
+        </div>
+        <div class="m2-row">
+          <span class="rank">#3</span><span class="pool">Foundry USA</span><span class="delta">+0.94%</span>
+        </div>
+        <div class="m2-row">
+          <span class="rank">#4</span><span class="pool">AntPool</span><span class="delta">−0.21%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── M3 ────────────────────────────────────────────────────────── -->
+<section id="m3" class="m-detail" data-testid="m-detail-m3">
+  <div class="container">
+    <div class="m-detail-grid">
+      <div>
+        <div class="m-id">Module M3</div>
+        <h3>Audit &amp; Compliance Pack</h3>
+        <div class="m-block">
+          <div class="m-block-label">What it does</div>
+          <p>Every block prediction is committed to a SHA-256 Merkle log
+          before the actual block lands. The audit log is reorg-aware
+          (re-evaluates on chain reorganisation), produces signed,
+          time-stamped PDF reports and exposes a verification endpoint
+          for third-party auditors. Each report ships with the Merkle
+          root and per-block leaves so any external party can
+          independently verify hit-rate claims.</p>
+        </div>
+        <div class="m-block">
+          <div class="m-block-label">Who needs it</div>
+          <p>Pools with institutional LPs, mining co-operatives running
+          investor reports, and any buyer about to put €400k on the table
+          who needs cryptographic — not vendor-claim — proof of the
+          published hit-rate.</p>
+        </div>
+        <div class="m-price-row">
+          <span class="m-price">€10,000 – €15,000</span>
+          <span class="m-price-sub">one-time · smallest scope, biggest trust hook</span>
+          <a href="mailto:sales@preblock.io?subject=PreBlock%20M3%20inquiry" class="btn btn-primary m-cta" data-testid="m3-cta">Inquire about M3</a>
+        </div>
+      </div>
+      <div class="m-mock" data-testid="m3-mock">
+        <div class="m-mock-title"><span class="m-mock-live">Merkle root · block 898600</span></div>
+        <div class="m3-tree">
+          <div class="layer"><span class="m3-node root">root</span></div>
+          <div class="layer"><span class="m3-node">h0</span><span class="m3-node">h1</span></div>
+          <div class="layer"><span class="m3-node">t0</span><span class="m3-node">t1</span><span class="m3-node">t2</span><span class="m3-node">t3</span></div>
+        </div>
+        <div class="m3-hash"><span class="hash-label">SHA256:</span> a3f7b1c9d8e4…2af50c7d2e1b9 · 64 chars</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── M4 ────────────────────────────────────────────────────────── -->
+<section id="m4" class="m-detail" data-testid="m-detail-m4">
+  <div class="container">
+    <div class="m-detail-grid">
+      <div>
+        <div class="m-id">Module M4</div>
+        <h3>30 / 90-Day Backtest Engine</h3>
+        <div class="m-block">
+          <div class="m-block-label">What it does</div>
+          <p>Replays historical mempool snapshots block-by-block and
+          simulates how the PreBlock optimised template would have
+          performed against the actual mined block. Outputs cumulative
+          fee uplift for 7 / 30 / 90 / 365-day windows, with a
+          counterfactual ROI estimate priced at your hashrate and fee
+          curve. Lets you de-risk the buy decision with empirical past
+          data before committing capital.</p>
+        </div>
+        <div class="m-block">
+          <div class="m-block-label">Who needs it</div>
+          <p>Capital-conservative buyers, miners who want a verifiable
+          pre-purchase business case, and analytics teams running due
+          diligence on the Bitcoin fee market.</p>
+        </div>
+        <div class="m-price-row">
+          <span class="m-price">€20,000 – €30,000</span>
+          <span class="m-price-sub">one-time</span>
+          <a href="mailto:sales@preblock.io?subject=PreBlock%20M4%20inquiry" class="btn btn-primary m-cta" data-testid="m4-cta">Inquire about M4</a>
+        </div>
+      </div>
+      <div class="m-mock" data-testid="m4-mock">
+        <div class="m-mock-title"><span class="m-mock-live">90-day cumulative uplift · backtest</span></div>
+        <div class="m4-chart">
+          <svg viewBox="0 0 300 140" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="m4grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ff8a34" stop-opacity="0.45"/>
+                <stop offset="100%" stop-color="#ff8a34" stop-opacity="0.02"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,128 L20,124 L40,118 L60,110 L80,103 L100,98 L120,88 L140,82 L160,73 L180,64 L200,57 L220,48 L240,40 L260,32 L280,22 L300,14 L300,140 L0,140 Z"
+                  fill="url(#m4grad)"/>
+            <path d="M0,128 L20,124 L40,118 L60,110 L80,103 L100,98 L120,88 L140,82 L160,73 L180,64 L200,57 L220,48 L240,40 L260,32 L280,22 L300,14"
+                  fill="none" stroke="#ff8a34" stroke-width="2.2"/>
+          </svg>
+        </div>
+        <div class="m4-axis-x"><span>day 1</span><span>day 30</span><span>day 60</span><span>day 90</span></div>
+        <div class="m4-stat"><span>Total uplift (90d)</span><strong>+6.82%</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── M5 ────────────────────────────────────────────────────────── -->
+<section id="m5" class="m-detail" data-testid="m-detail-m5">
+  <div class="container">
+    <div class="m-detail-grid">
+      <div>
+        <div class="m-id">Module M5</div>
+        <h3>Alerts &amp; Reporting</h3>
+        <div class="m-block">
+          <div class="m-block-label">What it does</div>
+          <p>Routes anomaly events (DATUM gateway down, hit-rate cliff,
+          tip-switch latency spike, reorg) to Telegram, Slack and generic
+          webhooks. Auto-generates a daily PDF digest at 08:00 local time
+          and a weekly executive summary on Mondays. Severity filtering
+          (critical / warning / info / success) ensures pagers only fire
+          on the events that matter.</p>
+        </div>
+        <div class="m-block">
+          <div class="m-block-label">Who needs it</div>
+          <p>Operators who don't want to babysit a dashboard 24/7. Pool
+          NOC teams running multi-shift coverage. Investors who want a
+          weekly board-grade KPI report without a phone call.</p>
+        </div>
+        <div class="m-price-row">
+          <span class="m-price">€10,000 – €12,000</span>
+          <span class="m-price-sub">one-time</span>
+          <a href="mailto:sales@preblock.io?subject=PreBlock%20M5%20inquiry" class="btn btn-primary m-cta" data-testid="m5-cta">Inquire about M5</a>
+        </div>
+      </div>
+      <div class="m-mock" data-testid="m5-mock">
+        <div class="m-mock-title"><span class="m-mock-live">Live notification feed</span></div>
+        <div class="m5-notif">
+          <div class="channel">TG</div>
+          <div class="body">
+            <div class="head"><span class="name">PreBlock</span><span>2 min ago</span></div>
+            <div class="msg">DATUM uptime restored · 99.4% (24h)</div>
+          </div>
+        </div>
+        <div class="m5-notif">
+          <div class="channel">SL</div>
+          <div class="body">
+            <div class="head"><span class="name">#mining-ops</span><span>17 min ago</span></div>
+            <div class="msg">Hit-rate +1 block: <strong style="color:var(--accent);">96.2%</strong> (rolling 1h)</div>
+          </div>
+        </div>
+        <div class="m5-notif">
+          <div class="channel">WH</div>
+          <div class="body">
+            <div class="head"><span class="name">webhook · pagerduty</span><span>1h ago</span></div>
+            <div class="msg">Weekly PDF digest delivered to ops@example.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── M6 ────────────────────────────────────────────────────────── -->
+<section id="m6" class="m-detail" data-testid="m-detail-m6">
+  <div class="container">
+    <div class="m-detail-grid">
+      <div>
+        <div class="m-id">Module M6</div>
+        <h3>White-Label / Multi-Tenant</h3>
+        <div class="m-block">
+          <div class="m-block-label">What it does</div>
+          <p>Rebrands the entire frontend (colours, logos, domain, custom
+          legal pages) and isolates per-tenant data in MongoDB. Each
+          customer gets their own login-scoped dashboard while you keep
+          a single PreBlock install to maintain. Includes a tenant
+          provisioning admin endpoint and a per-tenant license seal.</p>
+        </div>
+        <div class="m-block">
+          <div class="m-block-label">Who needs it</div>
+          <p>Mining-as-a-Service providers, pool resellers, hosting
+          operators who want to sell PreBlock as part of their stack
+          without exposing the upstream vendor. Recurring tenants =
+          recurring margin.</p>
+        </div>
+        <div class="m-price-row">
+          <span class="m-price">€25,000 – €30,000</span>
+          <span class="m-price-sub">one-time</span>
+          <a href="mailto:sales@preblock.io?subject=PreBlock%20M6%20inquiry" class="btn btn-primary m-cta" data-testid="m6-cta">Inquire about M6</a>
+        </div>
+      </div>
+      <div class="m-mock" data-testid="m6-mock">
+        <div class="m-mock-title"><span class="m-mock-live">Active tenants · 3 of 12 shown</span></div>
+        <div class="m6-tenants">
+          <div class="m6-tenant preblock">
+            <div class="dot"></div>
+            <div class="name">PreBlock</div>
+            <div class="sub">core · vendor</div>
+          </div>
+          <div class="m6-tenant acme">
+            <div class="dot"></div>
+            <div class="name">Acme Pool</div>
+            <div class="sub">reseller</div>
+          </div>
+          <div class="m6-tenant xpool">
+            <div class="dot"></div>
+            <div class="name">Pool-X</div>
+            <div class="sub">MaaS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── M7 ────────────────────────────────────────────────────────── -->
+<section id="m7" class="m-detail" data-testid="m-detail-m7">
+  <div class="container">
+    <div class="m-detail-grid">
+      <div>
+        <div class="m-id">Module M7</div>
+        <h3>Extended Update &amp; Support Plan</h3>
+        <div class="m-block">
+          <div class="m-block-label">What it does</div>
+          <p>Stacks an additional year of vendor updates and priority
+          support on top of the included Year-1 window. No auto-renewal,
+          no subscription lock-in — purchased on-demand, year by year,
+          at your discretion. Includes minor / patch releases for every
+          licensed module, a priority response SLA on critical incidents,
+          and quarterly architecture review calls.</p>
+        </div>
+        <div class="m-block">
+          <div class="m-block-label">Who needs it</div>
+          <p>Anyone running PreBlock past the first year who wants
+          guaranteed continued maintenance from the vendor rather than
+          taking the codebase fully in-house. Aligns vendor and
+          customer incentives without forcing a SaaS billing model.</p>
+        </div>
+        <div class="m-price-row">
+          <span class="m-price">€15,000 – €25,000</span>
+          <span class="m-price-sub">per additional year</span>
+          <a href="mailto:sales@preblock.io?subject=PreBlock%20M7%20inquiry" class="btn btn-primary m-cta" data-testid="m7-cta">Inquire about M7</a>
+        </div>
+      </div>
+      <div class="m-mock" data-testid="m7-mock">
+        <div class="m-mock-title"><span class="m-mock-live">Update entitlement timeline</span></div>
+        <div class="m7-timeline">
+          <div class="m7-year included">
+            <div class="yr">Year 1</div>
+            <div class="status">included</div>
+          </div>
+          <div class="m7-year renewal">
+            <div class="yr">Year 2</div>
+            <div class="status">+ M7</div>
+          </div>
+          <div class="m7-year renewal">
+            <div class="yr">Year 3</div>
+            <div class="status">+ M7</div>
+          </div>
+          <div class="m7-year renewal" style="opacity:.65;">
+            <div class="yr">Year 4</div>
+            <div class="status">optional</div>
+          </div>
+          <div class="m7-year renewal" style="opacity:.45;">
+            <div class="yr">Year 5</div>
+            <div class="status">optional</div>
+          </div>
+        </div>
+        <div class="m7-foot">Buy each year on demand · no auto-renewal · no subscription lock-in</div>
+      </div>
+    </div>
   </div>
 </section>
 
