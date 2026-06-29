@@ -1829,6 +1829,17 @@
         word-break: break-all;
       }
       .bid-modal .bid-nda-desc { margin-bottom: 12px; }
+      .bid-modal .bid-nda-mail {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        color: #10b981;
+        margin: 0 0 12px;
+        padding: 8px 12px;
+        background: rgba(16, 185, 129, 0.08);
+        border: 1px solid rgba(16, 185, 129, 0.25);
+        border-radius: 6px;
+      }
+      .bid-modal .bid-nda-mail strong { color: var(--text); font-weight: 700; }
       .bid-modal .bid-nda-desc code {
         font-family: 'JetBrains Mono', monospace;
         background: var(--surface-2);
@@ -3352,12 +3363,16 @@
       status.className = 'bid-status success';
       const rid  = data.nda_receipt_id;
       const verifyUrl = data.nda_verify_url || '';
+      const mailStatus = data.nda_mail || {};
       let html = `✅ Offer received. Queue position: #${data.queue_position}. We will reply within 24h to ${payload.email}.`;
       if (rid && data.nda_receipt) {
         // Make the signed receipt JSON downloadable as a Blob URL
         const blob = new Blob([JSON.stringify(data.nda_receipt, null, 2)],
                               { type: 'application/json' });
         const url  = URL.createObjectURL(blob);
+        const mailLine = mailStatus.sent
+          ? `<div class="bid-nda-mail">📬 A signed copy has been emailed to <strong>${mailStatus.to || payload.email}</strong>.</div>`
+          : '';
         html += `
           <div class="bid-nda-block" data-testid="bid-nda-block">
             <div class="bid-nda-title">🔐 Cryptographic NDA receipt issued</div>
@@ -3369,6 +3384,7 @@
               (<code>backend/vendor_public_key.pem</code>), or online via
               the verify endpoint.
             </div>
+            ${mailLine}
             <div class="bid-nda-cta">
               <a href="${url}" download="preblock-${rid}.json" class="btn btn-secondary" data-testid="bid-nda-download">Download receipt</a>
               <a href="${INQ_API.replace('/api/inquiry','')}${verifyUrl}" target="_blank" rel="noopener" class="bid-nda-verify-link" data-testid="bid-nda-verify-link">Verify online ↗</a>
