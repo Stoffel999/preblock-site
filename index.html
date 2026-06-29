@@ -845,11 +845,12 @@
       /* ─── Updates / Maintenance ─────────────────────────────────── */
       .updates-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 24px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
         margin-top: 40px;
       }
-      @media (max-width: 800px) { .updates-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 1100px) { .updates-grid { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 700px)  { .updates-grid { grid-template-columns: 1fr;     } }
       .updates-card {
         background: var(--surface);
         border: 1px solid var(--border);
@@ -1902,15 +1903,15 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Updates &amp; maintenance</span>
-      <h2>Year 1 included. Year 2+ optional.</h2>
-      <p>You are never forced into a subscription. Year-1 technical updates ship with every license. From year two onwards, choose annual maintenance — or pay per update at the published day-rate.</p>
+      <h2>Lifetime license. Year 1 maintenance included.</h2>
+      <p>Every license — Core or module — is a <strong>one-time, lifetime</strong> purchase. Year-1 technical updates ship with it for free. From year two onwards, technical updates are pay-as-you-go. New major versions get a discount path for existing owners. No subscription, ever.</p>
     </div>
 
     <div class="updates-grid">
       <div class="updates-card year1" data-testid="updates-year1">
-        <div class="updates-eyebrow">First year — included</div>
-        <h3>Year-1 technical updates</h3>
-        <div class="updates-price">€0 <span class="small">included with every license</span></div>
+        <div class="updates-eyebrow">Year 1 — included</div>
+        <h3>Technical updates · free</h3>
+        <div class="updates-price">€0 <span class="small">with every Core / module license</span></div>
         <ul>
           <li>Security patches</li>
           <li>Bitcoin Knots / DATUM compatibility updates</li>
@@ -1921,15 +1922,26 @@
       </div>
 
       <div class="updates-card" data-testid="updates-year2">
-        <div class="updates-eyebrow">Year 2 onwards — optional</div>
-        <h3>Annual maintenance</h3>
-        <div class="updates-price">15% / year <span class="small">of your license price</span></div>
+        <div class="updates-eyebrow">Year 2 onwards — pay-as-you-go</div>
+        <h3>Technical updates · on request</h3>
+        <div class="updates-price">case-by-case <span class="small">no subscription, no auto-renewal</span></div>
         <ul>
-          <li>Model A/B = €60,000 / year (covers all technical updates)</li>
-          <li>Model C = €22,500 / year</li>
-          <li>Or: pay-per-update at published day-rate</li>
-          <li>New features / new modules are always separate</li>
-          <li>Cancellable annually — no lock-in</li>
+          <li>Buyer decides annually whether to renew updates</li>
+          <li>Custom feature requests billed at vendor day-rate</li>
+          <li>No lock-in, no cancellation fees</li>
+          <li>Existing license stays fully operational without updates</li>
+        </ul>
+      </div>
+
+      <div class="updates-card" data-testid="updates-major">
+        <div class="updates-eyebrow">Major version (1.x → 2.x)</div>
+        <h3>Upgrade discount for owners</h3>
+        <div class="updates-price">40–60 % off <span class="small">of the new version's list price</span></div>
+        <ul>
+          <li>Existing owners pay only the upgrade delta</li>
+          <li>New buyers pay the full list price</li>
+          <li>Resets Year-1 free technical updates on the new major</li>
+          <li>Applies to Core <em>and</em> each module independently</li>
         </ul>
       </div>
     </div>
