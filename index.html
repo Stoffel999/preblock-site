@@ -2311,7 +2311,7 @@
         <div class="m-price-row">
           <span class="m-price">€25,000 – €30,000</span>
           <span class="m-price-sub">one-time · per license</span>
-          <a href="mailto:sales@preblock.io?subject=PreBlock%20M1%20inquiry" class="btn btn-primary m-cta" data-testid="m1-cta">Inquire about M1</a>
+          <a href="#contact" class="btn btn-primary m-cta" data-testid="m1-cta" onclick="openBidModal('A', 'M1'); return false;">Inquire about M1</a>
         </div>
       </div>
       <div class="m-mock" data-testid="m1-mock">
@@ -2367,7 +2367,7 @@
         <div class="m-price-row">
           <span class="m-price">€20,000 – €25,000</span>
           <span class="m-price-sub">one-time</span>
-          <a href="mailto:sales@preblock.io?subject=PreBlock%20M2%20inquiry" class="btn btn-primary m-cta" data-testid="m2-cta">Inquire about M2</a>
+          <a href="#contact" class="btn btn-primary m-cta" data-testid="m2-cta" onclick="openBidModal('A', 'M2'); return false;">Inquire about M2</a>
         </div>
       </div>
       <div class="m-mock" data-testid="m2-mock">
@@ -2427,7 +2427,7 @@
         <div class="m-price-row">
           <span class="m-price">€10,000 – €15,000</span>
           <span class="m-price-sub">one-time · smallest scope, biggest trust hook</span>
-          <a href="mailto:sales@preblock.io?subject=PreBlock%20M3%20inquiry" class="btn btn-primary m-cta" data-testid="m3-cta">Inquire about M3</a>
+          <a href="#contact" class="btn btn-primary m-cta" data-testid="m3-cta" onclick="openBidModal('A', 'M3'); return false;">Inquire about M3</a>
         </div>
       </div>
       <div class="m-mock" data-testid="m3-mock">
@@ -2480,7 +2480,7 @@
         <div class="m-price-row">
           <span class="m-price">€20,000 – €30,000</span>
           <span class="m-price-sub">one-time</span>
-          <a href="mailto:sales@preblock.io?subject=PreBlock%20M4%20inquiry" class="btn btn-primary m-cta" data-testid="m4-cta">Inquire about M4</a>
+          <a href="#contact" class="btn btn-primary m-cta" data-testid="m4-cta" onclick="openBidModal('A', 'M4'); return false;">Inquire about M4</a>
         </div>
       </div>
       <div class="m-mock" data-testid="m4-mock">
@@ -2542,7 +2542,7 @@
         <div class="m-price-row">
           <span class="m-price">€10,000 – €12,000</span>
           <span class="m-price-sub">one-time</span>
-          <a href="mailto:sales@preblock.io?subject=PreBlock%20M5%20inquiry" class="btn btn-primary m-cta" data-testid="m5-cta">Inquire about M5</a>
+          <a href="#contact" class="btn btn-primary m-cta" data-testid="m5-cta" onclick="openBidModal('A', 'M5'); return false;">Inquire about M5</a>
         </div>
       </div>
       <div class="m-mock" data-testid="m5-mock">
@@ -2609,7 +2609,7 @@
         <div class="m-price-row">
           <span class="m-price">€25,000 – €30,000</span>
           <span class="m-price-sub">one-time</span>
-          <a href="mailto:sales@preblock.io?subject=PreBlock%20M6%20inquiry" class="btn btn-primary m-cta" data-testid="m6-cta">Inquire about M6</a>
+          <a href="#contact" class="btn btn-primary m-cta" data-testid="m6-cta" onclick="openBidModal('A', 'M6'); return false;">Inquire about M6</a>
         </div>
       </div>
       <div class="m-mock" data-testid="m6-mock">
@@ -2673,7 +2673,7 @@
         <div class="m-price-row">
           <span class="m-price">€15,000 – €25,000</span>
           <span class="m-price-sub">per additional year</span>
-          <a href="mailto:sales@preblock.io?subject=PreBlock%20M7%20inquiry" class="btn btn-primary m-cta" data-testid="m7-cta">Inquire about M7</a>
+          <a href="#contact" class="btn btn-primary m-cta" data-testid="m7-cta" onclick="openBidModal('A', 'M7'); return false;">Inquire about M7</a>
         </div>
       </div>
       <div class="m-mock" data-testid="m7-mock">
@@ -3372,11 +3372,24 @@
   setInterval(refreshActivityTicker, 90_000);
 
   // ── Modal open/close ───────────────────────────────────────────
-  window.openBidModal = function (model) {
+  window.openBidModal = function (model, moduleId, source) {
     const m = document.getElementById('bidModal');
     if (!m) return;
     const sel = document.getElementById('bid-model');
     if (sel && model) sel.value = model;
+
+    // When a specific module is referenced (e.g. user clicked "Inquire
+    // about M3" or arrived from the Demo with ?module=M3), prefill the
+    // notes textarea so the inquiry lands with full context.
+    const notes = document.getElementById('bid-notes');
+    if (notes && moduleId) {
+      const tag = `[Module of interest: ${moduleId}${source ? ` · referred from ${source}` : ''}]`;
+      // Don't overwrite if the user already typed something below the tag
+      if (!notes.value.startsWith('[Module of interest:')) {
+        notes.value = tag + (notes.value ? '\n\n' + notes.value : '');
+      }
+    }
+
     document.getElementById('bidStatus').className = 'bid-status';
     document.getElementById('bidStatus').textContent = '';
     m.classList.add('open');
@@ -3394,6 +3407,20 @@
     const backdrop = document.getElementById('bidModal');
     if (e.target === backdrop) window.closeBidModal();
   });
+
+  // ── Auto-open from URL query (?from=demo&module=M3) ───────────
+  // The Demo (preblock.io) routes its module CTAs here with the
+  // module pre-selected. Wait one tick so the form is in the DOM.
+  (function tryAutoOpenFromQuery() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const moduleId = params.get('module');
+      const source = params.get('from');
+      if (moduleId) {
+        setTimeout(() => window.openBidModal('A', moduleId, source), 200);
+      }
+    } catch (_) { /* no-op */ }
+  })();
 
   // ── Submit ────────────────────────────────────────────────────
   async function submitBid(ev) {
