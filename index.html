@@ -1874,6 +1874,55 @@
       }
       .bid-modal .bid-nda-verify-link:hover { color: var(--accent); }
 
+      /* ─── Scroll-to-Top Button (dynamic, appears on scroll) ─────── */
+      .scroll-top-btn {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--accent);
+        color: #0a0a0f;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.35), 0 0 0 0 var(--accent);
+        opacity: 0;
+        transform: translateY(20px) scale(0.85);
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.2s ease;
+        z-index: 9999;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .scroll-top-btn.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+      }
+      .scroll-top-btn:hover {
+        box-shadow: 0 8px 28px rgba(0,0,0,0.45), 0 0 0 6px rgba(245, 158, 11, 0.15);
+        transform: translateY(-2px) scale(1.05);
+      }
+      .scroll-top-btn:active {
+        transform: translateY(0) scale(0.95);
+      }
+      .scroll-top-btn svg {
+        width: 22px;
+        height: 22px;
+        stroke-width: 2.5;
+      }
+      @media (max-width: 640px) {
+        .scroll-top-btn {
+          bottom: 16px;
+          right: 16px;
+          width: 44px;
+          height: 44px;
+        }
+      }
+
     </style>
 </head>
 <body>
@@ -2705,6 +2754,12 @@
           <option value="USD">USD ($)</option>
           <option value="EUR">EUR (€)</option>
         </select>
+
+        <label for="r-custom-price">Custom BTC price <span style="color: var(--text-dim); font-weight: 400; font-size: 12px;">(optional · leave blank for live)</span></label>
+        <div class="input-row">
+          <input type="number" id="r-custom-price" min="0" step="100" placeholder="auto: live market price" data-testid="roi-custom-price" />
+          <span id="r-custom-price-currency" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); align-self: center; padding-left: 4px;">USD</span>
+        </div>
       </div>
 
       <div class="roi-output" data-testid="roi-output">
@@ -3244,7 +3299,16 @@
     const uplift = parseFloat($('r-uplift').value) / 100;
     const poolFee = parseFloat($('r-poolfee').value) / 100;
     const currency = $('r-currency').value;
-    const price = currency === 'EUR' ? btcPriceEUR : btcPriceUSD;
+    const livePrice = currency === 'EUR' ? btcPriceEUR : btcPriceUSD;
+
+    // Custom-price override: if user entered a value > 0, use it instead of live
+    const customRaw = parseFloat($('r-custom-price').value);
+    const useCustom = Number.isFinite(customRaw) && customRaw > 0;
+    const price = useCustom ? customRaw : livePrice;
+
+    // Update placeholder + currency label of the custom-price input
+    $('r-custom-price').placeholder = `auto: ${(currency === 'EUR' ? '€' : '$')}${livePrice.toLocaleString('en-US', { maximumFractionDigits: 0 })} (live)`;
+    $('r-custom-price-currency').textContent = currency;
 
     const stdBTC  = blocksPerMonth * (BLOCK_REWARD_BTC + AVG_BLOCK_FEES_BTC);
     const stdNet  = stdBTC * (1 - poolFee);
@@ -3263,9 +3327,17 @@
     $('r-with').textContent = `${withNet.toFixed(4)} BTC`;
     $('r-delta-btc').textContent = `+${deltaBTC.toFixed(4)} BTC / month vs. standard templates`;
     $('r-delta-fiat').textContent = (currency === 'EUR' ? '€' : '$') + deltaFiat.toLocaleString('en-US', { maximumFractionDigits: 0 });
+
+    // Market-info row: show whether live or custom price is active
+    const liveDisplay = `${currency === 'EUR' ? '€' : '$'}${livePrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
+    if (useCustom) {
+      $('r-mkt-btc').innerHTML = `<span style="text-decoration: line-through; opacity: 0.6;">${liveDisplay}</span> → <span style="color: var(--accent); font-weight: 600;">${currency === 'EUR' ? '€' : '$'}${customRaw.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span> <span style="font-size: 10px; color: var(--text-dim);">(custom)</span>`;
+    } else {
+      $('r-mkt-btc').textContent = liveDisplay;
+    }
   }
 
-  ['r-hashrate', 'r-unit', 'r-uplift', 'r-poolfee', 'r-currency'].forEach(id => {
+  ['r-hashrate', 'r-unit', 'r-uplift', 'r-poolfee', 'r-currency', 'r-custom-price'].forEach(id => {
     $(id).addEventListener('input', recompute);
     $(id).addEventListener('change', recompute);
   });
@@ -3491,6 +3563,40 @@
     </form>
   </div>
 </div>
+
+<!-- ─── Scroll-to-Top Button (visible after scroll > 600px) ────── -->
+<button class="scroll-top-btn" id="scrollTopBtn" data-testid="scroll-top-btn" aria-label="Scroll to top" title="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
+<script>
+  (function() {
+    const btn = document.getElementById('scrollTopBtn');
+    if (!btn) return;
+    const SHOW_AFTER_PX = 600;
+    let ticking = false;
+    function update() {
+      if (window.scrollY > SHOW_AFTER_PX) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    update();
+  })();
+</script>
 
 </body>
 </html>
