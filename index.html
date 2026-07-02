@@ -3431,23 +3431,50 @@
   const INQ_API = 'https://preblock.io/api/inquiry';
 
   // ── Live ticker: refresh every 90s ─────────────────────────────
+  // Owner-Direktive: NUR echte Daten anzeigen. Wenn nichts los ist,
+  // bleibt der Ticker unsichtbar — keine synthetic-floor-Zahlen mehr.
   async function refreshActivityTicker() {
+    const ticker = document.getElementById('activityTicker');
+    if (!ticker) return;
     try {
       const r = await fetch(INQ_API + '/stats', { cache: 'no-cache' });
-      if (!r.ok) return;
+      if (!r.ok) { ticker.style.display = 'none'; return; }
       const s = await r.json();
-      const inq  = document.getElementById('actInquiries');
-      const last = document.getElementById('actLastOffer');
-      if (inq)  inq.textContent = s.inquiries_30d;
-      if (last) {
+
+      // Kein Traffic + keine offene Auktion → Ticker komplett hidden
+      const hasInquiries = (s.inquiries_30d || 0) > 0;
+      const hasAuction   = !!s.auction_live && Array.isArray(s.models_active) && s.models_active.length > 0;
+      if (!hasInquiries && !hasAuction) {
+        ticker.style.display = 'none';
+        return;
+      }
+      ticker.style.display = '';
+
+      // Baue Text-Fragmente dynamisch auf, join mit ' · '
+      const parts = [];
+      if (hasInquiries) {
+        parts.push(`<span class="activity-stat"><strong>${s.inquiries_30d}</strong> inquir${s.inquiries_30d === 1 ? 'y' : 'ies'} in last 30 days</span>`);
+      }
+      if (s.last_offer_ago_minutes != null && s.last_offer_model) {
         const m = s.last_offer_ago_minutes;
         const human = m < 60 ? m + 'm ago'
                     : m < 24 * 60 ? Math.round(m / 60) + 'h ago'
                     : Math.round(m / (24 * 60)) + 'd ago';
-        last.textContent = `last offer ${human} — Model ${s.last_offer_model}`;
+        parts.push(`<span class="activity-stat">last offer ${human} — Model ${s.last_offer_model}</span>`);
       }
-    } catch (_) { /* network errors: leave the placeholder text */ }
+      if (hasAuction) {
+        parts.push(`<span class="activity-stat">auction <strong>live</strong> for Model ${s.models_active.join(' / ')}</span>`);
+      }
+      const stats = document.getElementById('activityStats');
+      if (stats) stats.innerHTML = parts.join('<span class="sep">·</span>');
+    } catch (_) {
+      // Network fail → hide, kein broken UI
+      ticker.style.display = 'none';
+    }
   }
+  // Hide by default until we know there's real data to show
+  const _initTicker = document.getElementById('activityTicker');
+  if (_initTicker) _initTicker.style.display = 'none';
   refreshActivityTicker();
   setInterval(refreshActivityTicker, 90_000);
 
