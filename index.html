@@ -143,6 +143,63 @@
         box-shadow: 0 0 8px var(--accent-glow);
       }
 
+      /* ─── Live Status Ticker (sanitized — zero algorithm hints) ── */
+      .live-ticker {
+        position: sticky; top: 65px; z-index: 90;
+        background: rgba(6, 6, 8, 0.88);
+        backdrop-filter: blur(20px) saturate(140%);
+        -webkit-backdrop-filter: blur(20px) saturate(140%);
+        border-bottom: 1px solid var(--border);
+        padding: 9px 0;
+        font-family: 'JetBrains Mono', 'Menlo', monospace;
+        font-size: 12.5px;
+        color: var(--text-dim);
+      }
+      .live-ticker .ticker-inner {
+        display: flex; align-items: center; gap: 12px;
+        flex-wrap: wrap;
+      }
+      .ticker-dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        display: inline-block; flex-shrink: 0;
+        background: #666; /* default: unknown */
+        box-shadow: 0 0 0 0 rgba(0,0,0,0);
+        transition: background 400ms ease, box-shadow 400ms ease;
+      }
+      .ticker-dot.online {
+        background: #22c55e;
+        box-shadow: 0 0 10px rgba(34, 197, 94, 0.55);
+        animation: tickerPulse 2s ease-in-out infinite;
+      }
+      .ticker-dot.stale {
+        background: #f59e0b;
+        box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+      }
+      .ticker-dot.offline {
+        background: #666;
+      }
+      @keyframes tickerPulse {
+        0%, 100% { box-shadow: 0 0 10px rgba(34, 197, 94, 0.55); }
+        50%      { box-shadow: 0 0 16px rgba(34, 197, 94, 0.85); }
+      }
+      .ticker-text { color: var(--text); flex: 1; min-width: 0; }
+      .ticker-text .ticker-sep { color: #333; margin: 0 2px; }
+      .ticker-muted { color: var(--text-dim); }
+      .ticker-live-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 12px;
+        white-space: nowrap;
+        transition: opacity 200ms;
+      }
+      .ticker-live-link:hover { opacity: 0.75; }
+      @media (max-width: 700px) {
+        .live-ticker { font-size: 11.5px; padding: 8px 0; }
+        .ticker-text .ticker-sep:nth-of-type(3) { display: none; }
+        .ticker-live-link { display: none; }
+      }
+
       /* ─── Header ─────────────────────────────────────────────── */
       header.site-header {
         position: sticky; top: 0; z-index: 100;
@@ -1952,6 +2009,31 @@
 </header>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- LIVE STATUS TICKER — reads /api/public/status every 30s              -->
+<!-- Sanitized: engine dot + last block seen + sync freshness.            -->
+<!-- Zero algorithm hints (no dormancy, buckets, ages, weights, hashrate).-->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="live-ticker" id="liveTicker" data-testid="live-ticker" hidden>
+  <div class="container">
+    <div class="ticker-inner">
+      <span class="ticker-dot" id="tickerDot" data-testid="ticker-dot"></span>
+      <span class="ticker-text">
+        <span id="tickerEngineLabel" data-testid="ticker-engine-label">Sphere</span>
+        <span class="ticker-sep">·</span>
+        <span id="tickerBlockLabel" data-testid="ticker-block-label">—</span>
+        <span class="ticker-sep">·</span>
+        <span id="tickerTemplateLabel" data-testid="ticker-template-label">Template engine standby</span>
+        <span class="ticker-sep">·</span>
+        <span id="tickerSyncLabel" class="ticker-muted" data-testid="ticker-sync-label">sync —</span>
+      </span>
+      <a href="https://preblock.io" target="_blank" rel="noopener" class="ticker-live-link" data-testid="ticker-live-link">
+        See live demo →
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- HERO                                                                -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <section class="hero" id="top">
@@ -3499,6 +3581,80 @@
     }
   }
   window.submitBid = submitBid;
+
+  // ── Live Status Ticker ────────────────────────────────────────
+  // Fetches /api/public/status every 30s and updates the sticky bar.
+  // Payload is sanitized server-side (no dormancy, buckets, hashrate).
+  // If the endpoint is unreachable, the ticker stays hidden — no
+  // half-broken UI on the sales site.
+  const STATUS_API = 'https://preblock.io/api/public/status';
+
+  function _fmtAgo(sec) {
+    if (sec == null) return '—';
+    if (sec < 60) return sec + 's ago';
+    if (sec < 3600) return Math.round(sec / 60) + 'm ago';
+    if (sec < 86400) return Math.round(sec / 3600) + 'h ago';
+    return Math.round(sec / 86400) + 'd ago';
+  }
+
+  async function updateLiveTicker() {
+    try {
+      const r = await fetch(STATUS_API, { cache: 'no-cache' });
+      if (!r.ok) return;
+      const s = await r.json();
+
+      const dot   = document.getElementById('tickerDot');
+      const eng   = document.getElementById('tickerEngineLabel');
+      const blk   = document.getElementById('tickerBlockLabel');
+      const tmpl  = document.getElementById('tickerTemplateLabel');
+      const sync  = document.getElementById('tickerSyncLabel');
+      const bar   = document.getElementById('liveTicker');
+
+      if (!dot || !bar) return;
+
+      // Dot color + label
+      dot.className = 'ticker-dot ' + (s.engine || 'offline');
+      if (s.engine === 'online') {
+        eng.textContent = 'Sphere online';
+      } else if (s.engine === 'stale') {
+        eng.textContent = 'Sphere syncing';
+      } else {
+        eng.textContent = 'Sphere · standby';
+      }
+
+      // Block height + when seen (public chain data, safe)
+      const h = s.latest_block?.height;
+      const bAgo = s.latest_block?.seen_ago_seconds;
+      if (h) {
+        blk.textContent = 'Block ' + h.toLocaleString('en-US') +
+                          (bAgo != null ? ' · seen ' + _fmtAgo(bAgo) : '');
+      } else {
+        blk.textContent = 'Awaiting first block';
+      }
+
+      // Template-engine effect (proves it ran — no algorithm hint)
+      const t = s.last_template_seconds;
+      if (t != null && t < 3600) {
+        tmpl.textContent = 'Template engine active · last cycle ' + _fmtAgo(t);
+      } else if (t != null) {
+        tmpl.textContent = 'Template engine · last cycle ' + _fmtAgo(t);
+      } else {
+        tmpl.textContent = 'Template engine standby';
+      }
+
+      // Sync freshness
+      sync.textContent = 'sync ' + _fmtAgo(s.sync_age_seconds);
+
+      // Reveal on first successful fetch
+      bar.hidden = false;
+    } catch (e) {
+      /* silent — endpoint down, ticker stays hidden */
+    }
+  }
+
+  // Kick off + poll every 30s
+  updateLiveTicker();
+  setInterval(updateLiveTicker, 30_000);
 
   // ── Toggle opt-in checkbox: only shown for Model A + Offer > 0 ─
   window.toggleAuctionOptIn = function () {
