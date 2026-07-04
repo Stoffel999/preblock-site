@@ -3176,6 +3176,196 @@
       <p>Every Sunday we publish a sanitized 1-pager from our reference PreBlock node: hit-rate across the next 3 blocks, dormancy patterns, multipool comparison. Real numbers, no synthetic data, no algorithm leaks. Subscribe to get it in your inbox.</p>
     </div>
 
+    <!-- ═══════════════════════════════════════════════════════════════
+         Peak-UTXO Live Widget — the emotional hook
+         Fetches /api/public/reports/latest.json every 5 min. Fails
+         silently to a "warming up" state so a broken endpoint never
+         breaks the page.
+         ═══════════════════════════════════════════════════════════════ -->
+    <div class="peak-utxo-widget" data-testid="peak-utxo-widget">
+      <div class="pu-eyebrow">
+        <span class="pu-dot" data-testid="peak-utxo-dot"></span>
+        <span data-testid="peak-utxo-eyebrow-text">Oldest UTXO surfaced this week</span>
+      </div>
+      <div class="pu-value">
+        <span class="pu-years" data-testid="peak-utxo-years">—</span>
+        <span class="pu-unit">years dormant</span>
+      </div>
+      <div class="pu-meta">
+        <span data-testid="peak-utxo-bucket">in bucket <strong>—</strong></span>
+        <span class="pu-sep">·</span>
+        <span data-testid="peak-utxo-blocks"><strong>—</strong> blocks analyzed / 7d</span>
+        <span class="pu-sep">·</span>
+        <span data-testid="peak-utxo-hitrate">hit-rate +1: <strong>—</strong></span>
+      </div>
+      <div class="pu-foot">
+        <a href="https://preblock.io/api/public/reports/latest.json" target="_blank" rel="noopener" data-testid="peak-utxo-json-link">
+          <i data-lucide="code-2" style="width: 12px; height: 12px; vertical-align: -1px;"></i>
+          Raw JSON
+        </a>
+        <span class="pu-sep">·</span>
+        <a href="https://preblock.io/api/public/reports/latest.md" target="_blank" rel="noopener" data-testid="peak-utxo-md-link">
+          <i data-lucide="file-text" style="width: 12px; height: 12px; vertical-align: -1px;"></i>
+          Full report (Markdown)
+        </a>
+        <span class="pu-sep">·</span>
+        <span class="pu-updated" data-testid="peak-utxo-updated">updating…</span>
+      </div>
+    </div>
+    <style>
+      .peak-utxo-widget {
+        max-width: 900px;
+        margin: 0 auto 32px;
+        padding: 28px 32px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(23, 37, 84, 0.55) 100%);
+        border: 1px solid rgba(251, 146, 60, 0.25);
+        box-shadow: 0 8px 32px rgba(251, 146, 60, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px);
+        position: relative;
+        overflow: hidden;
+      }
+      .peak-utxo-widget::before {
+        content: "";
+        position: absolute;
+        top: 0; right: 0;
+        width: 240px; height: 240px;
+        background: radial-gradient(circle, rgba(251, 146, 60, 0.10) 0%, transparent 65%);
+        pointer-events: none;
+      }
+      .pu-eyebrow {
+        display: flex; align-items: center; gap: 10px;
+        font-size: 11px; text-transform: uppercase; letter-spacing: 1.8px;
+        color: rgba(251, 146, 60, 0.85);
+        margin-bottom: 14px;
+        position: relative;
+      }
+      .pu-dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        background: #22c55e;
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55);
+        animation: puPulse 2.4s ease-in-out infinite;
+      }
+      .pu-dot.stale { background: #eab308; }
+      .pu-dot.offline { background: #ef4444; animation: none; }
+      @keyframes puPulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55); }
+        50%      { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);   }
+      }
+      .pu-value {
+        display: flex; align-items: baseline; gap: 12px;
+        margin-bottom: 12px;
+        position: relative;
+      }
+      .pu-years {
+        font-size: 64px; font-weight: 700; line-height: 1;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        letter-spacing: -0.02em;
+        color: #fb923c;
+        text-shadow: 0 0 40px rgba(251, 146, 60, 0.25);
+      }
+      .pu-unit {
+        font-size: 16px; color: rgba(226, 232, 240, 0.85);
+        font-weight: 500;
+      }
+      .pu-meta {
+        display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+        font-size: 14px; color: rgba(203, 213, 225, 0.9);
+        margin-bottom: 16px;
+        position: relative;
+      }
+      .pu-meta strong { color: #f8fafc; font-weight: 600; }
+      .pu-sep { color: rgba(148, 163, 184, 0.4); }
+      .pu-foot {
+        display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+        font-size: 12px; color: rgba(148, 163, 184, 0.7);
+        padding-top: 12px;
+        border-top: 1px solid rgba(148, 163, 184, 0.12);
+        position: relative;
+      }
+      .pu-foot a {
+        color: rgba(226, 232, 240, 0.85);
+        text-decoration: none;
+        display: inline-flex; align-items: center; gap: 4px;
+        transition: color 0.15s;
+      }
+      .pu-foot a:hover { color: #fb923c; }
+      .pu-updated { margin-left: auto; font-variant-numeric: tabular-nums; }
+      @media (max-width: 600px) {
+        .peak-utxo-widget { padding: 20px 20px; }
+        .pu-years { font-size: 48px; }
+        .pu-value { flex-wrap: wrap; }
+      }
+    </style>
+    <script>
+      (function() {
+        var API = "https://preblock.io/api/public/reports/latest.json";
+
+        function fmt(v) {
+          if (v === null || v === undefined || isNaN(v)) return "—";
+          return Number(v).toFixed(2);
+        }
+        function fmtPct(v) {
+          if (v === null || v === undefined || isNaN(v)) return "—";
+          return Number(v).toFixed(1) + "%";
+        }
+        function fmtInt(v) {
+          if (v === null || v === undefined || isNaN(v)) return "—";
+          return Number(v).toLocaleString("en-US");
+        }
+        function updateDom(data) {
+          var peaks = data.dormancy_peak_years || {};
+          var entries = Object.keys(peaks)
+            .filter(function(k) { return typeof peaks[k] === "number"; })
+            .map(function(k) { return [k, peaks[k]]; })
+            .sort(function(a, b) { return b[1] - a[1]; });
+          var leader = entries[0];
+
+          var yearsEl = document.querySelector('[data-testid="peak-utxo-years"]');
+          var bucketEl = document.querySelector('[data-testid="peak-utxo-bucket"]');
+          var blocksEl = document.querySelector('[data-testid="peak-utxo-blocks"]');
+          var hitEl = document.querySelector('[data-testid="peak-utxo-hitrate"]');
+          var dotEl = document.querySelector('[data-testid="peak-utxo-dot"]');
+          var updEl = document.querySelector('[data-testid="peak-utxo-updated"]');
+
+          if (leader) {
+            yearsEl.textContent = fmt(leader[1]);
+            bucketEl.innerHTML = "in bucket <strong>" + leader[0] + "</strong>";
+          } else {
+            yearsEl.textContent = "—";
+            bucketEl.innerHTML = "warming up…";
+          }
+          blocksEl.innerHTML = "<strong>" + fmtInt(data.blocks_analyzed) + "</strong> blocks analyzed / 7d";
+          hitEl.innerHTML = "hit-rate +1: <strong>" + fmtPct(data.hit_rate_plus1_pct) + "</strong>";
+
+          if (dotEl) {
+            dotEl.classList.remove("stale", "offline");
+            if (data.node_sync_status === "stale") dotEl.classList.add("stale");
+            else if (data.node_sync_status !== "online") dotEl.classList.add("offline");
+          }
+          if (updEl) {
+            var now = new Date();
+            updEl.textContent = "updated " + now.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }) + " UTC";
+          }
+        }
+        function markError() {
+          var dotEl = document.querySelector('[data-testid="peak-utxo-dot"]');
+          var updEl = document.querySelector('[data-testid="peak-utxo-updated"]');
+          if (dotEl) { dotEl.classList.remove("stale"); dotEl.classList.add("offline"); }
+          if (updEl) updEl.textContent = "reconnecting…";
+        }
+        function fetchOnce() {
+          fetch(API, { cache: "no-store" })
+            .then(function(r) { if (!r.ok) throw new Error("http " + r.status); return r.json(); })
+            .then(updateDom)
+            .catch(markError);
+        }
+        // Kick off immediately + refresh every 5 min
+        fetchOnce();
+        setInterval(fetchOnce, 5 * 60 * 1000);
+      })();
+    </script>
+
     <!-- Sample Report Preview — sanitized shape without revealing IP -->
     <div class="report-preview" data-testid="report-preview"
          style="max-width: 900px; margin: 0 auto 32px; padding: 24px; border-radius: 12px;
@@ -3216,9 +3406,9 @@
 
         <!-- Dormancy pattern -->
         <div style="padding: 16px; border-radius: 8px; background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(148, 163, 184, 0.1);">
-          <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(148, 163, 184, 0.7); margin-bottom: 6px;">Dormancy median</div>
-          <div style="font-size: 18px; font-weight: 600;">Multi-year</div>
-          <div style="font-size: 12px; color: rgba(148, 163, 184, 0.7); margin-top: 8px;">Older money surfaces in +2/+3.</div>
+          <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(148, 163, 184, 0.7); margin-bottom: 6px;">Peak dormancy</div>
+          <div style="font-size: 18px; font-weight: 600;">15+ years</div>
+          <div style="font-size: 12px; color: rgba(148, 163, 184, 0.7); margin-top: 8px;">Peak old-money surfaces at +2.</div>
         </div>
 
         <!-- Multipool -->
