@@ -3235,7 +3235,7 @@
           <i data-lucide="lock" style="width: 14px; height: 14px; display: inline-block; vertical-align: text-bottom; margin-right: 4px;"></i>
           Exact figures under NDA. Public report shows shape + trend only.
         </span>
-        <a href="/api/public/reports/latest" target="_blank" rel="noopener" style="font-size: 13px; color: rgba(251, 146, 60, 0.9); text-decoration: none; font-weight: 500;">
+        <a href="https://preblock.io/api/public/reports/latest" target="_blank" rel="noopener" style="font-size: 13px; color: rgba(251, 146, 60, 0.9); text-decoration: none; font-weight: 500;">
           See the current live report →
         </a>
       </div>
@@ -3252,7 +3252,7 @@
           <li>Sanitized — no algorithm details leaked</li>
           <li>Real numbers from our production node</li>
         </ul>
-        <a href="/api/public/reports/latest" target="_blank" rel="noopener" class="btn btn-ghost" data-testid="report-cta-read">
+        <a href="https://preblock.io/api/public/reports/latest" target="_blank" rel="noopener" class="btn btn-ghost" data-testid="report-cta-read">
           Read latest report
           <i data-lucide="external-link"></i>
         </a>
@@ -3303,7 +3303,7 @@ async function submitNewsletter(event) {
   feedback.style.color = '';
   btn.disabled = true;
   try {
-    const resp = await fetch('/api/newsletter/subscribe', {
+    const resp = await fetch('https://preblock.io/api/newsletter/subscribe', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(payload),
