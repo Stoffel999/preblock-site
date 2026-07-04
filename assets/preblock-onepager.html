@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PreBlock — Predictive Block-Template Engine for DATUM Miners</title>
+  <style>
+    @page { size: A4; margin: 20mm; }
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: #0f172a;
+      font-size: 10pt;
+      line-height: 1.5;
+      margin: 0;
+    }
+    h1 {
+      font-size: 22pt;
+      color: #0891b2;
+      margin: 0 0 4pt 0;
+      letter-spacing: -0.5pt;
+    }
+    h2 {
+      font-size: 13pt;
+      color: #0f172a;
+      margin: 12pt 0 4pt 0;
+      border-bottom: 1pt solid #e2e8f0;
+      padding-bottom: 2pt;
+    }
+    h3 { font-size: 10pt; color: #334155; margin: 8pt 0 2pt 0; }
+    .subtitle { color: #64748b; font-size: 11pt; margin-bottom: 12pt; }
+    .callout {
+      background: #fef3c7;
+      border-left: 3pt solid #f59e0b;
+      padding: 6pt 10pt;
+      margin: 8pt 0;
+      font-size: 9.5pt;
+    }
+    ul { margin: 4pt 0; padding-left: 16pt; }
+    li { margin: 2pt 0; }
+    table { width: 100%; border-collapse: collapse; margin: 6pt 0; font-size: 9pt; }
+    th, td { padding: 4pt 8pt; text-align: left; border-bottom: 0.5pt solid #e2e8f0; }
+    th { background: #f1f5f9; color: #0f172a; font-weight: 600; }
+    .footer {
+      margin-top: 20pt;
+      padding-top: 8pt;
+      border-top: 1pt solid #e2e8f0;
+      color: #64748b;
+      font-size: 8pt;
+    }
+    .contact-box {
+      background: #f8fafc;
+      border: 1pt solid #cbd5e1;
+      padding: 8pt 12pt;
+      margin: 10pt 0;
+      font-size: 9pt;
+    }
+    .highlight { color: #0891b2; font-weight: 600; }
+    .disclaimer { color: #94a3b8; font-size: 7.5pt; margin-top: 6pt; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<h1>PreBlock</h1>
+<div class="subtitle">Predictive Block-Template Engine for DATUM-Native Bitcoin Miners</div>
+
+<div class="callout">
+  <strong>Contract-locked to three buyers globally.</strong> One deploying.
+  Two seats open at time of writing. NDA gate on technical demo.
+</div>
+
+<h2>The Problem</h2>
+<p>Every mining pool worldwide optimizes block templates for the same signal:
+current fee rate visible in the mempool. By the time a high-fee transaction
+is broadcast, the value is competed away — pool template builders converge
+on the same fee/vB threshold within milliseconds.</p>
+<p>For DATUM-native operations, this convergence is even sharper. Miners
+constructing their own templates need an <em>edge</em> that isn't already
+priced into the shared mempool consensus.</p>
+
+<h2>The PreBlock Signal</h2>
+<p>PreBlock reads a second, slower-moving signal: <span class="highlight">UTXO dormancy age</span>.
+When a Bitcoin that has been dormant for multiple years starts moving, the
+sender is either a large institutional player, a long-term holder, or somebody
+recovering lost keys — the transaction tends to carry higher value than fee/vB
+alone suggests.</p>
+<p>Our engine surfaces these dormancy events <span class="highlight">30 to 60 seconds
+before mempool consensus</span> — using peer-observation of raw transaction
+propagation on a Bitcoin Knots full node.</p>
+
+<h2>System Architecture</h2>
+<ul>
+  <li><strong>Single-machine deploy</strong> — one rack server, no cloud, no Kubernetes</li>
+  <li><strong>Bitcoin Knots full node</strong> — spam-filtered mempool</li>
+  <li><strong>Predictive Engine</strong> — proprietary UTXO-age scoring (IP-protected)</li>
+  <li><strong>DATUM Feeder</strong> — direct pool-communication via Stratum V2</li>
+  <li><strong>Multipool Comparison</strong> — AntPool, Foundry USA, ViaBTC, F2Pool references</li>
+  <li><strong>Owner Dashboard</strong> — React SPA, real-time metrics, license-gated</li>
+</ul>
+
+<h2>Real-World Performance</h2>
+<p>Reference PreBlock node running on Bitcoin mainnet against OCEAN pool
+since Q1 2025. Weekly performance reports published to
+<span class="highlight">sales.preblock.io/api/public/reports/latest</span> —
+sanitized figures, no algorithm details.</p>
+<table>
+  <tr><th>Metric</th><th>Range (public sanitized)</th></tr>
+  <tr><td>Predictive hit rate +1 block</td><td>High — exact figure under NDA</td></tr>
+  <tr><td>Predictive hit rate +2 blocks</td><td>Multi-tier — exact figure under NDA</td></tr>
+  <tr><td>Median dormancy in +2 bucket</td><td>Multi-year (2–7y typical)</td></tr>
+  <tr><td>Multipool comparison</td><td>Majority-of-days outperform vs. major pools</td></tr>
+  <tr><td>Uptime</td><td>Continuous since Q1 2025</td></tr>
+</table>
+
+<h2>Licensing Tiers</h2>
+<table>
+  <tr><th>Tier</th><th>Fits</th><th>Approx. price</th></tr>
+  <tr><td>Model A — Multi-pool Enterprise</td><td>Mining farms &gt;100 MW, multi-pool operators</td><td>€400,000 one-time + support</td></tr>
+  <tr><td>Model B — Single-pool Enterprise</td><td>Mining farms &gt;50 MW, single primary pool</td><td>€250,000 one-time + support</td></tr>
+  <tr><td>Model C — Small-scale DATUM</td><td>DATUM operators &lt;50 MW, hosted or self-hosted</td><td>€150,000 one-time + support</td></tr>
+</table>
+<p style="font-size: 9pt;">Optional Modules (M1–M7) available separately: bidding-war analytics,
+multi-region template shipping, advanced dormancy tiering, custom pool
+integration. €10,000–€30,000 each.</p>
+
+<h2>Hardware Requirements</h2>
+<p style="font-size: 9pt;">Recycled mining-datacenter class hardware (Dell R620/R630, HPE DL360 G9/G10,
+Supermicro 1028U typical). Minimum: 4-core CPU with AVX2, 16 GB RAM (ECC recommended),
+500 GB SSD, Gigabit Ethernet. Full requirements in SALES_INSTALL.md.</p>
+
+<div class="contact-box">
+  <strong>Next steps:</strong><br>
+  → NDA-gated technical demo: <strong>nda@preblock.io</strong><br>
+  → Sales enquiries: <strong>sales@preblock.io</strong><br>
+  → Weekly performance reports: <strong>sales.preblock.io/#report</strong><br>
+  → Public sales one-pager (this document): <strong>sales.preblock.io/assets/preblock-onepager.pdf</strong>
+</div>
+
+<div class="footer">
+  PreBlock — a single-vendor project. Contract-locked to three buyers globally
+  to preserve the market edge for licensed operators. Physical operations
+  in Central Europe. All correspondence in English.
+  <div class="disclaimer">Version 1.0 · Prepared 2026-07 · Non-binding informational document. Subject to NDA
+  for detailed technical review.</div>
+</div>
+
+</body>
+</html>
