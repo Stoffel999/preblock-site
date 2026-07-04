@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PreBlock — Predictive Block-Template Engine for Bitcoin Pools</title>
     <meta name="description" content="PreBlock is the Predictive Block-Template Engine for Bitcoin Pools. Bitcoin Knots spam-filter + 3-block lookahead + sub-50ms DATUM template injection. 87–100% hit-rate. One machine. No GPU farm." />
-    <meta name="keywords" content="Bitcoin, Mining, Predictive, Block Template Engine, Bitcoin Knots, Spam Filter, Mempool, DATUM, OCEAN, Pool, Sphere Node" />
+    <meta name="keywords" content="Bitcoin, Mining, Predictive, Block Template Engine, Bitcoin Knots, Spam Filter, Mempool, DATUM, OCEAN, Pool, PreBlock Node" />
     <meta name="author" content="Stoffel999" />
 
     <!-- Open Graph -->
@@ -2001,6 +2001,7 @@
       <a href="#license" data-testid="nav-license">Pricing</a>
       <a href="#founder" data-testid="nav-founder">Story</a>
       <a href="#demo" data-testid="nav-demo">Demo</a>
+      <a href="#report" data-testid="nav-report">Report</a>
       <a href="mailto:sales@preblock.io" class="btn btn-primary" data-testid="nav-sales-contact">
         <i data-lucide="mail"></i> Contact sales
       </a>
@@ -2018,7 +2019,7 @@
     <div class="ticker-inner">
       <span class="ticker-dot" id="tickerDot" data-testid="ticker-dot"></span>
       <span class="ticker-text">
-        <span id="tickerEngineLabel" data-testid="ticker-engine-label">Sphere</span>
+        <span id="tickerEngineLabel" data-testid="ticker-engine-label">PreBlock</span>
         <span class="ticker-sep">·</span>
         <span id="tickerBlockLabel" data-testid="ticker-block-label">—</span>
         <span class="ticker-sep">·</span>
@@ -2192,7 +2193,7 @@
     <div class="section-head">
       <span class="eyebrow">What it does</span>
       <h2>One platform. Eight modules. Zero noise.</h2>
-      <p>Every component is purpose-built for predictive mining on a single Sphere node — no GPU clusters, no obscure dependencies, no external SaaS.</p>
+      <p>Every component is purpose-built for predictive mining on a single PreBlock node — no GPU clusters, no obscure dependencies, no external SaaS.</p>
     </div>
 
     <div class="features-grid">
@@ -2379,7 +2380,7 @@
           Core template each round. Scores both against the actual fees of
           the next mined block, exposes the delta via a live A/B endpoint
           and surfaces an aggregated 24h / 7d / 30d uplift. Observed uplift
-          on Sphere (4 miners, OCEAN pool, Knots-filtered mempool) over
+          on our reference PreBlock node (4 miners, OCEAN pool, Knots-filtered mempool) over
           Feb 2026: <strong>+0.3% to +1.0%</strong> against the Core
           template, in line with the conservative published figure.</p>
         </div>
@@ -3123,7 +3124,7 @@
     <div class="section-head">
       <span class="eyebrow">Try it</span>
       <h2>Two demo paths.</h2>
-      <p>Browse the public preview to see the UI and explore features. For a session against the real Sphere node — synced live with the Bitcoin mainnet — request access.</p>
+      <p>Browse the public preview to see the UI and explore features. For a session against our live PreBlock reference node — synced with the Bitcoin mainnet — request access.</p>
     </div>
 
     <div class="demo-grid">
@@ -3145,14 +3146,17 @@
       </div>
 
       <div class="demo-card live" data-testid="demo-card-live">
-        <div class="demo-badge">Live sphere · NDA required</div>
+        <div class="demo-badge">Live node · NDA required</div>
         <h3>Request live access</h3>
         <p>
-          A 30-minute guided session against the live Sphere node. Real mempool data, real DATUM-feeder, real predictions hitting actual blocks. Conditioned on a signed NDA — buyer-vetting takes ~24h.
+          A 30-minute guided session against our live PreBlock reference node. Real mempool data, real DATUM-feeder, real predictions hitting actual blocks. Conditioned on a signed NDA — buyer-vetting takes ~24h.
         </p>
         <ul>
           <li>Real-time mempool & DATUM monitoring</li>
-          <li>Live hittestid="demo-cta-live">
+          <li>Live hit-rate visualization across +1 / +2 / +3 buckets</li>
+          <li>Guided walk-through with the founder</li>
+        </ul>
+        <a href="/nda-signing" class="btn btn-primary" data-testid="demo-cta-live">
           Request live demo
           <i data-lucide="arrow-right"></i>
         </a>
@@ -3160,6 +3164,104 @@
     </div>
   </div>
 </section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- WEEKLY REPORT / NEWSLETTER                                          -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="report" style="background: linear-gradient(180deg, transparent, rgba(8, 145, 178, 0.03));">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Public data</span>
+      <h2>Weekly PreBlock Report.</h2>
+      <p>Every Sunday we publish a sanitized 1-pager from our reference PreBlock node: hit-rate across the next 3 blocks, dormancy patterns, multipool comparison. Real numbers, no synthetic data, no algorithm leaks. Subscribe to get it in your inbox.</p>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-card" data-testid="report-card-read">
+        <div class="demo-badge">This week</div>
+        <h3>Read the latest report</h3>
+        <p>
+          Node health, predictive engine hit rates, dormancy median per bucket, multipool comparison summary. No signup required — pure open data.
+        </p>
+        <ul>
+          <li>Updated Sundays 22:15 UTC</li>
+          <li>Sanitized — no algorithm details leaked</li>
+          <li>Real numbers from our production node</li>
+        </ul>
+        <a href="/api/public/reports/latest" target="_blank" rel="noopener" class="btn btn-ghost" data-testid="report-cta-read">
+          Read latest report
+          <i data-lucide="external-link"></i>
+        </a>
+      </div>
+
+      <div class="demo-card live" data-testid="report-card-subscribe">
+        <div class="demo-badge">Weekly · Email</div>
+        <h3>Get it in your inbox</h3>
+        <p>
+          Delivered every Sunday evening. Double opt-in, GDPR-compliant, unsubscribe anytime. No sales spam — just the data.
+        </p>
+        <form id="newsletterForm" data-testid="newsletter-form" onsubmit="return submitNewsletter(event)">
+          <div style="display: flex; flex-direction: column; gap: 10px; margin: 12px 0;">
+            <input type="text" name="company" placeholder="Company / Farm name" required data-testid="newsletter-company"
+                   style="padding: 10px 12px; border-radius: 6px; border: 1px solid var(--border, #334155); background: rgba(255,255,255,0.05); color: inherit; font: inherit;">
+            <input type="text" name="name" placeholder="Your name" required data-testid="newsletter-name"
+                   style="padding: 10px 12px; border-radius: 6px; border: 1px solid var(--border, #334155); background: rgba(255,255,255,0.05); color: inherit; font: inherit;">
+            <input type="email" name="email" placeholder="Your email" required data-testid="newsletter-email"
+                   style="padding: 10px 12px; border-radius: 6px; border: 1px solid var(--border, #334155); background: rgba(255,255,255,0.05); color: inherit; font: inherit;">
+            <input type="text" name="current_pool" placeholder="Which pool do you use? (optional)" data-testid="newsletter-pool"
+                   style="padding: 10px 12px; border-radius: 6px; border: 1px solid var(--border, #334155); background: rgba(255,255,255,0.05); color: inherit; font: inherit;">
+          </div>
+          <button type="submit" class="btn btn-primary" data-testid="newsletter-submit">
+            Subscribe
+            <i data-lucide="mail"></i>
+          </button>
+          <div id="newsletterFeedback" data-testid="newsletter-feedback"
+               style="margin-top: 12px; font-size: 14px; min-height: 20px;"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+async function submitNewsletter(event) {
+  event.preventDefault();
+  const form = event.target;
+  const feedback = document.getElementById('newsletterFeedback');
+  const btn = form.querySelector('button[type="submit"]');
+  const payload = {
+    company: form.company.value.trim(),
+    name: form.name.value.trim(),
+    email: form.email.value.trim().toLowerCase(),
+    current_pool: form.current_pool.value.trim() || null,
+  };
+  feedback.textContent = 'Submitting...';
+  feedback.style.color = '';
+  btn.disabled = true;
+  try {
+    const resp = await fetch('/api/newsletter/subscribe', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload),
+    });
+    const data = await resp.json();
+    if (resp.ok && data.ok) {
+      feedback.style.color = '#22c55e';
+      feedback.textContent = data.message;
+      if (!data.already_subscribed) form.reset();
+    } else {
+      feedback.style.color = '#ef4444';
+      feedback.textContent = data.detail || data.message || 'Subscription failed. Please retry.';
+    }
+  } catch (err) {
+    feedback.style.color = '#ef4444';
+    feedback.textContent = 'Network error. Please try again in a moment.';
+  } finally {
+    btn.disabled = false;
+  }
+  return false;
+}
+</script>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- CTA                                                                 -->
@@ -3642,11 +3744,11 @@
       // Dot color + label
       dot.className = 'ticker-dot ' + (s.engine || 'offline');
       if (s.engine === 'online') {
-        eng.textContent = 'Sphere online';
+        eng.textContent = 'Node online';
       } else if (s.engine === 'stale') {
-        eng.textContent = 'Sphere syncing';
+        eng.textContent = 'Node syncing';
       } else {
-        eng.textContent = 'Sphere · standby';
+        eng.textContent = 'Node · standby';
       }
 
       // Block height + when seen (public chain data, safe)
