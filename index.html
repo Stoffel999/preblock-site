@@ -3176,6 +3176,70 @@
       <p>Every Sunday we publish a sanitized 1-pager from our reference PreBlock node: hit-rate across the next 3 blocks, dormancy patterns, multipool comparison. Real numbers, no synthetic data, no algorithm leaks. Subscribe to get it in your inbox.</p>
     </div>
 
+    <!-- Sample Report Preview — sanitized shape without revealing IP -->
+    <div class="report-preview" data-testid="report-preview"
+         style="max-width: 900px; margin: 0 auto 32px; padding: 24px; border-radius: 12px;
+                background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(148, 163, 184, 0.15);
+                backdrop-filter: blur(8px);">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+        <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(251, 146, 60, 0.9);">Sample preview · anonymized week</span>
+        <span style="font-size: 12px; color: rgba(148, 163, 184, 0.7); font-family: 'JetBrains Mono', monospace;">report-v1.0</span>
+      </div>
+      <h3 style="margin: 0 0 20px 0; font-size: 22px;">What the weekly report looks like</h3>
+
+      <!-- Preview grid — 4 cards -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
+
+        <!-- Node health -->
+        <div style="padding: 16px; border-radius: 8px; background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(148, 163, 184, 0.1);">
+          <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(148, 163, 184, 0.7); margin-bottom: 6px;">Node health</div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; display: inline-block;"></span>
+            <span style="font-size: 18px; font-weight: 600;">Online</span>
+          </div>
+          <div style="font-size: 12px; color: rgba(148, 163, 184, 0.7); margin-top: 4px;">Uptime since Q1 2025</div>
+        </div>
+
+        <!-- Predictive hit rate -->
+        <div style="padding: 16px; border-radius: 8px; background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(148, 163, 184, 0.1);">
+          <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(148, 163, 184, 0.7); margin-bottom: 6px;">Hit rate +1 block</div>
+          <div style="font-size: 18px; font-weight: 600;">High</div>
+          <div style="display: flex; gap: 3px; margin-top: 8px;">
+            <span style="flex: 1; height: 6px; border-radius: 3px; background: rgba(251, 146, 60, 0.9);"></span>
+            <span style="flex: 1; height: 6px; border-radius: 3px; background: rgba(251, 146, 60, 0.7);"></span>
+            <span style="flex: 1; height: 6px; border-radius: 3px; background: rgba(251, 146, 60, 0.5);"></span>
+            <span style="flex: 1; height: 6px; border-radius: 3px; background: rgba(148, 163, 184, 0.2);"></span>
+            <span style="flex: 1; height: 6px; border-radius: 3px; background: rgba(148, 163, 184, 0.2);"></span>
+          </div>
+          <div style="font-size: 12px; color: rgba(148, 163, 184, 0.7); margin-top: 4px;">Full value under NDA</div>
+        </div>
+
+        <!-- Dormancy pattern -->
+        <div style="padding: 16px; border-radius: 8px; background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(148, 163, 184, 0.1);">
+          <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(148, 163, 184, 0.7); margin-bottom: 6px;">Dormancy median</div>
+          <div style="font-size: 18px; font-weight: 600;">Multi-year</div>
+          <div style="font-size: 12px; color: rgba(148, 163, 184, 0.7); margin-top: 8px;">Older money surfaces in +2/+3.</div>
+        </div>
+
+        <!-- Multipool -->
+        <div style="padding: 16px; border-radius: 8px; background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(148, 163, 184, 0.1);">
+          <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(148, 163, 184, 0.7); margin-bottom: 6px;">Multipool compare</div>
+          <div style="font-size: 18px; font-weight: 600;">Majority wins</div>
+          <div style="font-size: 12px; color: rgba(148, 163, 184, 0.7); margin-top: 8px;">vs. AntPool / Foundry / ViaBTC / F2Pool</div>
+        </div>
+
+      </div>
+
+      <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(148, 163, 184, 0.15); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <span style="font-size: 13px; color: rgba(148, 163, 184, 0.85);">
+          <i data-lucide="lock" style="width: 14px; height: 14px; display: inline-block; vertical-align: text-bottom; margin-right: 4px;"></i>
+          Exact figures under NDA. Public report shows shape + trend only.
+        </span>
+        <a href="/api/public/reports/latest" target="_blank" rel="noopener" style="font-size: 13px; color: rgba(251, 146, 60, 0.9); text-decoration: none; font-weight: 500;">
+          See the current live report →
+        </a>
+      </div>
+    </div>
     <div class="demo-grid">
       <div class="demo-card" data-testid="report-card-read">
         <div class="demo-badge">This week</div>
