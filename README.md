@@ -73,7 +73,7 @@ Or open `index.html` directly in a browser.
 4. **Features** — 8 modules from the product
 5. **ROI Calculator** — interactive estimator, browser-side math
 6. **Architecture** — ASCII diagram of the data flow
-7. **License Models** — Model C / B / A cards
+7. **Pricing Tiers** — Community banner + 4 tier cards (Starter-Share, Starter-Fix, Pro, Enterprise)
 8. **Demo Access** — Public preview (`preblock.io`) + Live Sphere (NDA-required)
 9. **CTA** — sales inquiry via GitHub issue
 10. **Footer** — links + brand
