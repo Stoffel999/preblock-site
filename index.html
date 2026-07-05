@@ -148,6 +148,25 @@
         position: sticky; top: 0; z-index: 100;
       }
 
+      /* ─── Emergent Vote Badge (dezenter Highlight in der Nav) ─── */
+      .emergent-vote-badge {
+        display: inline-flex; align-items: center; gap: 6px;
+        margin-left: 10px;
+        padding: 6px 12px;
+        border: 1px solid rgba(255, 170, 0, 0.35);
+        border-radius: 999px;
+        color: #ffb74a;
+        background: rgba(255, 170, 0, 0.06);
+        font-size: 0.85em; font-weight: 500;
+        text-decoration: none;
+        transition: background 150ms ease, border-color 150ms ease;
+      }
+      .emergent-vote-badge:hover {
+        background: rgba(255, 170, 0, 0.14);
+        border-color: rgba(255, 170, 0, 0.55);
+      }
+      .emergent-vote-badge i { width: 14px; height: 14px; }
+
       /* ─── Live Status Ticker (sanitized — zero algorithm hints) ── */
       .live-ticker {
         background: rgba(6, 6, 8, 0.88);
@@ -2008,6 +2027,13 @@
       <a href="#report" data-testid="nav-report">Report</a>
       <a href="mailto:sales@preblock.io" class="btn btn-primary" data-testid="nav-sales-contact">
         <i data-lucide="mail"></i> Contact sales
+      </a>
+      <a href="https://app.emergent.sh/showcase/fabrizio/28aa0486-ef9e-4e93-acb8-b9383407bf60"
+         target="_blank" rel="noopener"
+         class="emergent-vote-badge"
+         data-testid="emergent-vote-link"
+         title="PreBlock auf Emergent Showcase — Upvote hilft uns hoch in die Liste">
+        <i data-lucide="award"></i> Vote on Emergent
       </a>
     </nav>
   </div>
