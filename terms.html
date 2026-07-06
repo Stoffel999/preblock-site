@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index,follow" />
+  <title>Terms of Service · PreBlock</title>
+  <meta name="description" content="Terms of Service for PreBlock — Predictive Block-Template Engine, operated by Joachim Richter-Steidl, Bremerhaven, Germany." />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-32.png" />
+
+  <style>
+    :root { --bg: #0a0a0c; --fg: #d4d4d8; --muted: #6b7280; --accent: #fb923c; --border: #27272a; --strong: #f4f4f5; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 15px; line-height: 1.65; }
+    header { border-bottom: 1px solid var(--border); background: rgba(15,15,18,0.6); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 10; }
+    header .container { max-width: 860px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .back-link { color: var(--muted); text-decoration: none; font-size: 0.9em; }
+    .back-link:hover { color: var(--fg); }
+    .meta-tag { font-family: ui-monospace, monospace; font-size: 0.8em; color: var(--muted); }
+    .lang-switch { font-family: ui-monospace, monospace; font-size: 0.85em; color: var(--muted); }
+    .lang-switch a { color: var(--muted); text-decoration: none; }
+    .lang-switch a.active { color: var(--accent); font-weight: 600; }
+    main { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+    h1 { font-size: 1.9em; font-weight: 600; color: var(--strong); margin: 0 0 8px; }
+    h2 { font-size: 1.1em; font-weight: 600; color: var(--strong); margin: 32px 0 8px; }
+    h3 { font-size: 1em; font-weight: 600; color: var(--strong); margin: 20px 0 6px; }
+    section { margin-bottom: 20px; }
+    p { margin: 0 0 8px; }
+    ul, ol { margin: 4px 0 8px; padding-left: 24px; }
+    li { margin-bottom: 4px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .small { font-size: 0.88em; color: var(--muted); }
+    .stand { padding-top: 24px; border-top: 1px solid var(--border); font-family: ui-monospace, monospace; font-size: 0.8em; color: var(--muted); margin-top: 40px; }
+    .callout { background: rgba(251, 146, 60, 0.08); border-left: 3px solid var(--accent); padding: 12px 16px; margin: 12px 0; border-radius: 4px; font-size: 0.95em; }
+    .callout-warn { background: rgba(239, 68, 68, 0.08); border-left: 3px solid #ef4444; padding: 12px 16px; margin: 12px 0; border-radius: 4px; font-size: 0.95em; }
+    code { font-family: ui-monospace, monospace; color: #a1a1aa; background: #18181b; padding: 1px 5px; border-radius: 3px; }
+    strong { color: var(--strong); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="back-link" data-testid="terms-back">← preblock.io</a>
+    <span class="meta-tag">Terms of Service</span>
+    <span class="lang-switch">
+      <a href="/agb.html">DE</a> · <a href="/terms.html" class="active">EN</a>
+    </span>
+  </div>
+</header>
+
+<main data-testid="terms-content">
+  <h1>Terms of Service</h1>
+  <p class="small">for the sale of digital services by PreBlock · Version 2026-07-06</p>
+
+  <div class="callout-warn">
+    <strong>Governing language:</strong> The German version of these Terms (<a href="/agb.html">AGB</a>) is legally binding under German law. This English translation is provided for convenience only. In case of conflict, the German version prevails.
+  </div>
+
+  <div class="callout">
+    <strong>Summary:</strong> These Terms govern the purchase of PreBlock licenses and API access by consumers (B2C). German law applies. Prices are gross (including 19% VAT for German consumers). For digital deliveries you expressly consent to, your statutory right of withdrawal expires the moment provision begins (§356(5) German Civil Code).
+  </div>
+
+  <section>
+    <h2>§ 1 Scope and Provider</h2>
+    <p>(1) These Terms of Service ("Terms") apply to all contracts between</p>
+    <p><strong>Joachim Richter-Steidl</strong><br />
+    Süderwürden 10<br />
+    27570 Bremerhaven<br />
+    Germany<br />
+    Email: <a href="mailto:sales@preblock.io">sales@preblock.io</a></p>
+    <p>(hereinafter "Provider" or "PreBlock") and the customer regarding the use of the PreBlock software and associated services offered via <a href="https://preblock.io">preblock.io</a> and <a href="https://sales.preblock.io">sales.preblock.io</a>.</p>
+    <p>(2) These Terms apply to consumers under § 13 of the German Civil Code (BGB) as well as entrepreneurs under § 14 BGB. Where a provision applies to only one of these groups, this is stated explicitly.</p>
+    <p>(3) The customer's differing terms are not accepted unless the Provider expressly agrees in writing.</p>
+  </section>
+
+  <section>
+    <h2>§ 2 Subject of the Contract</h2>
+    <p>(1) PreBlock is a <em>Predictive Block-Template Engine</em> — a software that generates forecast signals for Bitcoin mining operators based on public blockchain data. The software is offered in several tiers:</p>
+    <ul>
+      <li><strong>Community</strong> — free access to weekly reports and a public Discord signal channel</li>
+      <li><strong>Starter · Success-Fee</strong> — API access with a one-time base fee plus a success-based share of transaction fees from blocks found using PreBlock templates (see § 7)</li>
+      <li><strong>Starter · Fix</strong> — API access at a flat rate, no success-based share</li>
+      <li><strong>Pro</strong> — annual license with support SLA and adapter options (individual quote)</li>
+      <li><strong>Enterprise</strong> — full IP transfer / going-concern transfer under § 16 EStG (individual quote)</li>
+    </ul>
+    <p>(2) The exact scope of services is defined by the product description on <a href="https://sales.preblock.io/#pricing">sales.preblock.io</a> at the time of order.</p>
+    <p>(3) PreBlock is <strong>not investment advice, not a financial service, and not a custody service</strong>. The Provider does not hold Bitcoin or other crypto assets on behalf of the customer. The customer is solely responsible for securing their own wallets and keys.</p>
+  </section>
+
+  <section>
+    <h2>§ 3 Formation of Contract</h2>
+    <p>(1) The presentation of tiers and prices on <a href="https://sales.preblock.io">sales.preblock.io</a> does not constitute a legally binding offer, but a <em>request to submit an offer</em> (invitatio ad offerendum).</p>
+    <p>(2) By submitting the inquiry form on <a href="https://preblock.io/sales/inquiry">preblock.io/sales/inquiry</a>, the customer makes a binding offer to conclude a contract.</p>
+    <p>(3) The contract is formed as soon as the Provider confirms acceptance by email (order confirmation) or begins performing the ordered service (e.g. issuing an API key or an invoice).</p>
+    <p>(4) The Community tier does not create a paid contract; use is free and may be discontinued at any time.</p>
+  </section>
+
+  <section>
+    <h2>§ 4 Prices and Payment</h2>
+    <p>(1) All prices shown on <a href="https://sales.preblock.io">sales.preblock.io</a> and <a href="https://preblock.io">preblock.io</a> are <strong>gross prices including the applicable VAT</strong> (currently 19% under § 12(1) German VAT Act).</p>
+    <p>(2) Payment methods:</p>
+    <ul>
+      <li><strong>Bitcoin (BTCPay Server)</strong> — invoice via <a href="https://pay.preblock.io">pay.preblock.io</a>, exchange rate snapshot at invoice creation</li>
+      <li><strong>SEPA bank transfer</strong> — bank details provided on the invoice</li>
+      <li><strong>SEPA direct debit</strong> — only after explicit mandate</li>
+    </ul>
+    <p>(3) The purchase price is due upon receipt of the invoice and payable within <strong>14 calendar days</strong> unless otherwise agreed. Service delivery begins after payment is received.</p>
+    <p>(4) For customers outside the EU, no German VAT is charged under § 3a(4) German VAT Act, provided the service is an electronically supplied service to a non-entrepreneur in a third country. The buyer is responsible for reporting and remitting any local consumption tax (e.g. Sales Tax, GST, VAT) in their country of residence.</p>
+    <p>(5) Introductory offers or discounts are time-limited and displayed with an end date on the product page.</p>
+  </section>
+
+  <section>
+    <h2>§ 5 Service Delivery and Availability</h2>
+    <p>(1) The service is provided exclusively in <strong>digital form</strong> — in particular by activating an API key, granting access to an endpoint, or emailing configuration data.</p>
+    <p>(2) Delivery typically occurs <strong>within 24 hours</strong> after full receipt of payment.</p>
+    <p>(3) The Provider endeavours to keep the service highly available but does not guarantee uninterrupted availability. Maintenance windows, technical faults, and disruptions of the public Bitcoin network may affect availability.</p>
+    <p>(4) Access credentials sent to the customer (API keys, passwords) must be treated as confidential. In case of loss or suspected compromise, the Provider must be notified without delay.</p>
+  </section>
+
+  <section>
+    <h2>§ 6 Right of Withdrawal and Waiver</h2>
+
+    <h3>6.1 Statutory right of withdrawal for consumers</h3>
+    <p>Consumers under § 13 BGB generally have a <strong>14-day right of withdrawal</strong> under §§ 312g, 355 BGB. The full withdrawal instructions are available on the <a href="/widerruf.html">Withdrawal page</a>.</p>
+
+    <h3>6.2 Expiry of the withdrawal right for immediate delivery (§ 356(5) BGB)</h3>
+    <div class="callout">
+      <strong>Important:</strong> The right of withdrawal expires for contracts on the supply of <em>digital content not delivered on a physical medium</em> if:
+      <ul style="margin-top: 8px;">
+        <li>the Provider has begun performing the contract <strong>before the end of the withdrawal period</strong>, <em>and</em></li>
+        <li>the customer has <strong>expressly consented</strong> to the Provider beginning performance before the end of the withdrawal period, <em>and</em></li>
+        <li>the customer has <strong>acknowledged</strong> that this consent causes their withdrawal right to expire once performance begins.</li>
+      </ul>
+    </div>
+    <p>The customer gives this consent by actively ticking the corresponding checkbox in the inquiry form and/or by written confirmation by email.</p>
+
+    <h3>6.3 Community tier</h3>
+    <p>The free Community tier does not entail a right of withdrawal because no fee is charged and no contract under § 312 BGB is concluded.</p>
+  </section>
+
+  <section>
+    <h2>§ 7 Success-Fee Model (Starter · Success-Fee tier only)</h2>
+    <p>(1) With the "Starter · Success-Fee" tier, in addition to the one-time base fee, the customer accepts a <strong>success-based fee</strong> in the form of a share of the transaction fees of all Bitcoin blocks mined using PreBlock templates.</p>
+    <p>(2) The split is <strong>cryptographically enforced</strong> via the coinbase output split defined by the issued License-v2. The block subsidy (currently 3.125 BTC) remains 100% with the customer. All transaction fees of the respective block are paid to a Bitcoin address controlled by the Provider.</p>
+    <p>(3) The customer receives a detailed monthly statement listing all relevant coinbase transactions with block heights and amounts.</p>
+    <p>(4) If the customer stops using PreBlock templates, the Success-Fee obligation ends from the time of discontinuation.</p>
+  </section>
+
+  <section>
+    <h2>§ 8 Licence and Intellectual Property</h2>
+    <p>(1) Upon conclusion of the contract, the customer receives a <strong>non-exclusive, non-transferable licence</strong> to use the PreBlock software within the scope of the respective tier. Without prior written consent, it is prohibited to:</p>
+    <ul>
+      <li>decompile, disassemble, or reverse-engineer the software (except as permitted by law)</li>
+      <li>share, resell, or make API keys available to multiple users</li>
+      <li>redistribute signal data in commercial products (whitelabelling is only permitted under the Enterprise tier)</li>
+    </ul>
+    <p>(2) All rights to the PreBlock algorithm and codebase are held exclusively by the Provider (see also Imprint). The Enterprise tier includes a separate agreement covering full IP transfer.</p>
+  </section>
+
+  <section>
+    <h2>§ 9 Warranty</h2>
+    <p>(1) The PreBlock software is provided <strong>as-is according to the current state of the art</strong>. The Provider warrants the core functionality described in the contract.</p>
+    <p>(2) The Provider gives <strong>no assurance of specific hit rates, mining yields, coinbase attribution or mining success</strong>. Actual performance depends on many external factors (mempool state, network hashrate, pool routing, hardware availability).</p>
+    <p>(3) For consumers, the statutory warranty rights under §§ 434 ff. BGB and, for digital products, §§ 327 ff. BGB apply.</p>
+    <p>(4) For entrepreneurs, the warranty period is limited to <strong>12 months</strong> from delivery.</p>
+  </section>
+
+  <section>
+    <h2>§ 10 Limitation of Liability</h2>
+    <p>(1) The Provider is liable without limitation for intent and gross negligence, injury to life, body or health, and cases of mandatory statutory liability (e.g. Product Liability Act).</p>
+    <p>(2) For simple negligence, the Provider is only liable for breach of <em>essential contractual duties</em> (cardinal obligations). In such cases, liability is limited to the <strong>foreseeable damage typical for the contract</strong>.</p>
+    <p>(3) In particular, the Provider is <strong>not liable</strong> for:</p>
+    <ul>
+      <li>lost profits or missed mining revenue of the customer</li>
+      <li>replacement hardware costs or downtime of customer infrastructure</li>
+      <li>losses from wallet compromise, loss of private keys or API keys on the customer's side</li>
+      <li>damage caused by third parties (e.g. BTCPay hacks, DDoS, pool outages)</li>
+      <li>indirect consequential damage, data loss, or reputation damage</li>
+    </ul>
+    <p>(4) In any case, the Provider's liability is limited to the <strong>value of the individual contract</strong>; for the Success-Fee tier, to the last twelve months.</p>
+  </section>
+
+  <section>
+    <h2>§ 11 Data Protection</h2>
+    <p>Personal data is processed only in accordance with applicable data-protection law (in particular GDPR and BDSG). Details are available in the <a href="/datenschutz.html">Privacy Policy</a>.</p>
+  </section>
+
+  <section>
+    <h2>§ 12 Changes to these Terms</h2>
+    <p>(1) The Provider reserves the right to change these Terms with future effect, provided that no essential contract provisions are affected.</p>
+    <p>(2) Changes are communicated to the customer at least six weeks before they take effect, in text form. If the customer does not object within this period, the changes are deemed accepted. The Provider will specifically point out this legal consequence when announcing the changes.</p>
+  </section>
+
+  <section>
+    <h2>§ 13 Consumer Dispute Resolution</h2>
+    <p>(1) The EU Commission provides an Online Dispute Resolution platform: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">ec.europa.eu/consumers/odr</a></p>
+    <p>(2) The Provider is <strong>neither willing nor obligated</strong> to participate in dispute resolution procedures before a consumer arbitration board under the German Consumer Dispute Resolution Act (VSBG).</p>
+  </section>
+
+  <section>
+    <h2>§ 14 Final Provisions</h2>
+    <p>(1) These Terms are governed exclusively by the <strong>laws of the Federal Republic of Germany</strong>, excluding the UN Convention on Contracts for the International Sale of Goods (CISG). For consumers habitually resident in another country, mandatory consumer protection provisions of that country remain unaffected.</p>
+    <p>(2) The exclusive place of jurisdiction for all disputes arising from this contract — insofar as the customer is a merchant, a legal entity under public law, or a special fund under public law — is <strong>Bremerhaven, Germany</strong>. The Provider is entitled to sue the customer at their general place of jurisdiction as well.</p>
+    <p>(3) Should any provision of these Terms be or become invalid in whole or in part, the validity of the remaining provisions shall not be affected. The statutory provisions apply in place of the invalid provision.</p>
+    <p>(4) Amendments and supplements to these Terms and to individual side agreements require text form.</p>
+  </section>
+
+  <section class="stand">
+    Version: 2026-07-06 · Joachim Richter-Steidl · PreBlock · Süderwürden 10 · 27570 Bremerhaven · Germany
+  </section>
+</main>
+
+</body>
+</html>
