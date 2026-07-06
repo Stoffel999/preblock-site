@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index,follow" />
+  <title>Privacy Policy · PreBlock</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <style>
+    :root { --bg: #0a0a0c; --fg: #d4d4d8; --muted: #6b7280; --accent: #fb923c; --border: #27272a; --strong: #f4f4f5; }
+    * { box-sizing: border-box; } html, body { margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--fg); font-family: -apple-system, sans-serif; font-size: 15px; line-height: 1.65; }
+    header { border-bottom: 1px solid var(--border); background: rgba(15,15,18,0.6); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 10; }
+    header .container { max-width: 860px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .back-link { color: var(--muted); text-decoration: none; font-size: 0.9em; } .back-link:hover { color: var(--fg); }
+    .meta-tag { font-family: ui-monospace, monospace; font-size: 0.8em; color: var(--muted); }
+    .lang-switch { font-family: ui-monospace, monospace; font-size: 0.85em; color: var(--muted); }
+    .lang-switch a { color: var(--muted); text-decoration: none; } .lang-switch a.active { color: var(--accent); font-weight: 600; }
+    main { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+    h1 { font-size: 1.9em; font-weight: 600; color: var(--strong); margin: 0 0 8px; }
+    h2 { font-size: 1.1em; font-weight: 600; color: var(--strong); margin: 32px 0 8px; }
+    section { margin-bottom: 20px; }
+    p { margin: 0 0 8px; } ul { margin: 4px 0 8px; padding-left: 24px; } li { margin-bottom: 4px; }
+    a { color: var(--accent); text-decoration: none; } a:hover { text-decoration: underline; }
+    .small { font-size: 0.88em; color: var(--muted); }
+    .stand { padding-top: 24px; border-top: 1px solid var(--border); font-family: ui-monospace, monospace; font-size: 0.8em; color: var(--muted); margin-top: 40px; }
+    .callout-warn { background: rgba(239, 68, 68, 0.08); border-left: 3px solid #ef4444; padding: 12px 16px; margin: 12px 0; border-radius: 4px; font-size: 0.95em; }
+    strong { color: var(--strong); }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <a href="/" class="back-link" data-testid="privacy-back">← preblock.io</a>
+    <span class="meta-tag">Privacy · GDPR Art. 13</span>
+    <span class="lang-switch"><a href="/datenschutz.html">DE</a> · <a href="/privacy.html" class="active">EN</a></span>
+  </div>
+</header>
+<main data-testid="privacy-content">
+  <h1>Privacy Policy</h1>
+  <p class="small">GDPR Articles 13, 14 · Version 2026-07-06</p>
+  <div class="callout-warn"><strong>Governing language:</strong> The German version (<a href="/datenschutz.html">Datenschutzerklärung</a>) is legally binding. This English translation is provided for convenience only.</div>
+
+  <section>
+    <h2>1. Data Controller</h2>
+    <p><strong>Joachim Richter-Steidl</strong><br />Süderwürden 10, 27570 Bremerhaven, Germany<br />Email: <a href="mailto:sales@preblock.io">sales@preblock.io</a></p>
+    <p>A Data Protection Officer is not required under § 38 BDSG (below the statutory threshold).</p>
+  </section>
+
+  <section>
+    <h2>2. Data We Collect and Process</h2>
+    <p><strong>Server logs (Art. 6(1)(f) GDPR — legitimate interest):</strong> hashed IP address (rotating daily salt, non-reversible), user agent (truncated 200 chars), referrer URL, timestamp (UTC), requested URL, ISO country code (from IP geolocation, no precise location). Retention: 90 days, then automatic deletion.</p>
+    <p><strong>Newsletter (Art. 6(1)(a) GDPR — consent):</strong> email address only, double opt-in required. You can unsubscribe any time via the link in every newsletter or by emailing <a href="mailto:sales@preblock.io">sales@preblock.io</a>.</p>
+    <p><strong>Inquiry form / purchase (Art. 6(1)(b) GDPR — contract):</strong> name, email (required); company, country, tier, hashrate range, pool setup, message (optional); for paid tiers: full billing address (street, postcode, city, country) — required by § 14 German VAT Act. Retention: 10 years for invoice-relevant data (§ 147 AO / § 257 HGB); otherwise up to 12 months after contract end.</p>
+    <p><strong>Bitcoin payments via BTCPay Server (Art. 6(1)(b) GDPR):</strong> processed on our self-hosted <a href="https://pay.preblock.io">pay.preblock.io</a> — no external payment processor. Stored: invoice number, amount, timestamp, payment blockchain address.</p>
+    <p><strong>Discord community (Art. 6(1)(a) and (f) GDPR):</strong> optional. Discord Inc. (USA) processes the data under its own privacy policy.</p>
+  </section>
+
+  <section>
+    <h2>3. Data Processors and External Services</h2>
+    <p>We use the following processors under data processing agreements (DPA) or equivalent legal frameworks:</p>
+    <ul>
+      <li><strong>Strato AG (Germany)</strong> — SMTP for newsletter, NDA delivery, invoices</li>
+      <li><strong>IONOS SE (Germany)</strong> — reverse-proxy VPS for pay.preblock.io and api.preblock.io</li>
+      <li><strong>Emergent Labs (USA, EU-US DPF)</strong> — hosting of the Demo Pod preblock.io</li>
+      <li><strong>GitHub Inc. (USA, EU-US DPF)</strong> — hosting sales.preblock.io via GitHub Pages</li>
+      <li><strong>Cloudflare Inc. (USA, EU-US DPF)</strong> — DNS resolution, DDoS protection (if used)</li>
+      <li><strong>Discord Inc. (USA, EU-US DPF)</strong> — public signal channel (optional use)</li>
+    </ul>
+    <p class="small">Third-country transfers occur only to countries with an adequacy decision under Art. 45 GDPR (currently the USA under the EU-US Data Privacy Framework for certified companies) or with supplementary safeguards under Art. 46 GDPR (Standard Contractual Clauses).</p>
+  </section>
+
+  <section>
+    <h2>4. Cookies and Local Storage</h2>
+    <p>Our sites use <strong>no tracking cookies</strong> and no analytics such as Google Analytics.</p>
+    <p>Browser <code>localStorage</code> is used to store your language preference (DE/EN) and for the newsletter double opt-in. This data stays on your device and is not sent to us.</p>
+  </section>
+
+  <section>
+    <h2>5. Your Rights Under GDPR</h2>
+    <p>You may exercise these rights at any time by email to <a href="mailto:sales@preblock.io">sales@preblock.io</a>:</p>
+    <ul>
+      <li>Right of access (Art. 15 GDPR)</li>
+      <li>Right to rectification (Art. 16 GDPR)</li>
+      <li>Right to erasure ("right to be forgotten", Art. 17 GDPR)</li>
+      <li>Right to restriction of processing (Art. 18 GDPR)</li>
+      <li>Right to data portability (Art. 20 GDPR)</li>
+      <li>Right to object (Art. 21 GDPR)</li>
+      <li>Right to withdraw consent (Art. 7(3) GDPR)</li>
+    </ul>
+    <p>You also have the right to lodge a complaint with a supervisory authority. Our competent authority is:</p>
+    <p><em>Die Landesbeauftragte für Datenschutz und Informationsfreiheit der Freien Hansestadt Bremen<br />Arndtstraße 1, 27570 Bremerhaven, Germany<br /><a href="https://www.datenschutz.bremen.de" target="_blank" rel="noopener">datenschutz.bremen.de</a></em></p>
+  </section>
+
+  <section>
+    <h2>6. Security</h2>
+    <p>We implement technical and organisational measures under Art. 32 GDPR: TLS encryption (HTTPS) via Let's Encrypt · WireGuard VPN tunnel to the internal reference node · bcrypt hashing (rounds 12) for API keys (plaintext never persisted) · role-separated systems (public vs internal ops) · encrypted backups at rest.</p>
+  </section>
+
+  <section class="stand">Version: 2026-07-06 · Joachim Richter-Steidl · PreBlock · Süderwürden 10 · 27570 Bremerhaven · Germany</section>
+</main>
+</body>
+</html>

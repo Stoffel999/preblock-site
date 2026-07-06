@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index,follow" />
+  <title>Allgemeine Geschäftsbedingungen · PreBlock</title>
+  <meta name="description" content="Allgemeine Geschäftsbedingungen (AGB) von PreBlock — Predictive Block-Template Engine, Joachim Richter-Steidl, Bremerhaven." />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-32.png" />
+
+  <style>
+    :root { --bg: #0a0a0c; --fg: #d4d4d8; --muted: #6b7280; --accent: #fb923c; --border: #27272a; --strong: #f4f4f5; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 15px; line-height: 1.65; }
+    header { border-bottom: 1px solid var(--border); background: rgba(15,15,18,0.6); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 10; }
+    header .container { max-width: 860px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .back-link { color: var(--muted); text-decoration: none; font-size: 0.9em; }
+    .back-link:hover { color: var(--fg); }
+    .meta-tag { font-family: ui-monospace, monospace; font-size: 0.8em; color: var(--muted); }
+    .lang-switch { font-family: ui-monospace, monospace; font-size: 0.85em; color: var(--muted); }
+    .lang-switch a { color: var(--muted); text-decoration: none; }
+    .lang-switch a.active { color: var(--accent); font-weight: 600; }
+    main { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+    h1 { font-size: 1.9em; font-weight: 600; color: var(--strong); margin: 0 0 8px; }
+    h2 { font-size: 1.1em; font-weight: 600; color: var(--strong); margin: 32px 0 8px; }
+    h3 { font-size: 1em; font-weight: 600; color: var(--strong); margin: 20px 0 6px; }
+    section { margin-bottom: 20px; }
+    p { margin: 0 0 8px; }
+    ul, ol { margin: 4px 0 8px; padding-left: 24px; }
+    li { margin-bottom: 4px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .small { font-size: 0.88em; color: var(--muted); }
+    .stand { padding-top: 24px; border-top: 1px solid var(--border); font-family: ui-monospace, monospace; font-size: 0.8em; color: var(--muted); margin-top: 40px; }
+    .callout { background: rgba(251, 146, 60, 0.08); border-left: 3px solid var(--accent); padding: 12px 16px; margin: 12px 0; border-radius: 4px; font-size: 0.95em; }
+    code { font-family: ui-monospace, monospace; color: #a1a1aa; background: #18181b; padding: 1px 5px; border-radius: 3px; }
+    strong { color: var(--strong); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="back-link" data-testid="agb-back">← preblock.io</a>
+    <span class="meta-tag">AGB · § 305 BGB</span>
+    <span class="lang-switch">
+      <a href="/agb.html" class="active">DE</a> · <a href="/terms.html">EN</a>
+    </span>
+  </div>
+</header>
+
+<main data-testid="agb-content">
+  <h1>Allgemeine Geschäftsbedingungen (AGB)</h1>
+  <p class="small">für den Verkauf digitaler Dienstleistungen von PreBlock · Stand 2026-07-06</p>
+
+  <div class="callout">
+    <strong>Kurzfassung:</strong> Diese AGB regeln den Kauf von PreBlock-Lizenzen und API-Zugängen an Verbraucher (B2C). Es gilt deutsches Recht. Preise sind Bruttopreise inkl. 19% USt. Bei sofortiger digitaler Bereitstellung erlischt dein Widerrufsrecht sobald du der Bereitstellung ausdrücklich zustimmst (§356 Abs. 5 BGB).
+  </div>
+
+  <section>
+    <h2>§ 1 Geltungsbereich und Anbieter</h2>
+    <p>(1) Diese Allgemeinen Geschäftsbedingungen (nachfolgend „AGB") gelten für alle Verträge zwischen</p>
+    <p><strong>Joachim Richter-Steidl</strong><br />
+    Süderwürden 10<br />
+    27570 Bremerhaven<br />
+    Deutschland<br />
+    E-Mail: <a href="mailto:sales@preblock.io">sales@preblock.io</a></p>
+    <p>(nachfolgend „Anbieter" oder „PreBlock") und dem Kunden über die Nutzung der PreBlock-Software und der zugehörigen Dienste, die über <a href="https://preblock.io">preblock.io</a> und <a href="https://sales.preblock.io">sales.preblock.io</a> angeboten werden.</p>
+    <p>(2) Diese AGB richten sich sowohl an Verbraucher im Sinne des § 13 BGB als auch an Unternehmer im Sinne des § 14 BGB. Sofern Regelungen ausschließlich für eine der beiden Gruppen gelten, ist dies gesondert gekennzeichnet.</p>
+    <p>(3) Abweichende Geschäftsbedingungen des Kunden werden nur wirksam, wenn der Anbieter ihnen ausdrücklich schriftlich zustimmt.</p>
+  </section>
+
+  <section>
+    <h2>§ 2 Vertragsgegenstand</h2>
+    <p>(1) PreBlock ist eine sogenannte <em>Predictive Block-Template Engine</em> — eine Software, die auf Basis öffentlicher Bitcoin-Blockchain-Daten Vorhersage-Signale für Mining-Betreiber erzeugt. Die Software wird in mehreren Ausbaustufen („Tiers") angeboten:</p>
+    <ul>
+      <li><strong>Community</strong> — kostenloser Zugang zu Wochenberichten und einem öffentlichen Discord-Signal-Channel</li>
+      <li><strong>Starter · Success-Fee</strong> — API-Zugang mit einmaliger Grundgebühr plus erfolgsabhängiger Anteil an Transaktionsgebühren gefundener Blöcke (siehe § 7)</li>
+      <li><strong>Starter · Fix</strong> — API-Zugang zum Fixpreis ohne Erfolgsbeteiligung</li>
+      <li><strong>Pro</strong> — Jahres-Lizenz mit Support-SLA und Adapter-Optionen (individuelles Angebot)</li>
+      <li><strong>Enterprise</strong> — vollständiger IP-Transfer bzw. Betriebsübergang nach § 16 EStG (individuelles Angebot)</li>
+    </ul>
+    <p>(2) Der jeweils genaue Leistungsumfang ergibt sich aus der Produktbeschreibung auf <a href="https://sales.preblock.io/#pricing">sales.preblock.io</a> zum Zeitpunkt der Bestellung.</p>
+    <p>(3) PreBlock ist <strong>keine Anlageberatung, keine Finanzdienstleistung und keine Custody-Dienstleistung</strong>. Der Anbieter verwahrt keine Bitcoin oder sonstige Krypto-Assets des Kunden. Der Kunde ist selbst verantwortlich für die Absicherung seiner Wallets und Schlüssel.</p>
+  </section>
+
+  <section>
+    <h2>§ 3 Vertragsschluss</h2>
+    <p>(1) Die Darstellung der Tiers und Preise auf <a href="https://sales.preblock.io">sales.preblock.io</a> stellt kein rechtlich bindendes Angebot dar, sondern eine <em>Aufforderung zur Abgabe eines Angebots</em> (invitatio ad offerendum).</p>
+    <p>(2) Durch Absenden des Anfrageformulars auf <a href="https://preblock.io/sales/inquiry">preblock.io/sales/inquiry</a> gibt der Kunde ein verbindliches Angebot zum Vertragsschluss ab.</p>
+    <p>(3) Der Vertrag kommt zustande, sobald der Anbieter dem Kunden per E-Mail die Annahme des Angebots bestätigt (Auftragsbestätigung) oder die bestellte Leistung erbringt (z.B. Zusendung eines API-Schlüssels oder Rechnung).</p>
+    <p>(4) Bei der Community-Tier entsteht kein entgeltlicher Vertrag; die Nutzung ist unentgeltlich und jederzeit widerruflich.</p>
+  </section>
+
+  <section>
+    <h2>§ 4 Preise und Zahlungsbedingungen</h2>
+    <p>(1) Alle Preise auf <a href="https://sales.preblock.io">sales.preblock.io</a> und <a href="https://preblock.io">preblock.io</a> verstehen sich als <strong>Bruttopreise inklusive der jeweils gültigen Umsatzsteuer</strong> (aktuell 19 % gemäß § 12 Abs. 1 UStG).</p>
+    <p>(2) Zahlungsmethoden:</p>
+    <ul>
+      <li><strong>Bitcoin (BTCPay Server)</strong> — Rechnung über <a href="https://pay.preblock.io">pay.preblock.io</a>, Kurs-Snapshot zum Zeitpunkt der Rechnungserstellung</li>
+      <li><strong>SEPA-Überweisung</strong> — Bankverbindung wird auf der Rechnung mitgeteilt</li>
+      <li><strong>SEPA-Lastschrift</strong> — nur nach ausdrücklichem Mandat</li>
+    </ul>
+    <p>(3) Der Kaufpreis ist mit Zugang der Rechnung fällig und innerhalb von <strong>14 Kalendertagen</strong> zu entrichten, sofern nicht anders vereinbart. Die Leistungserbringung erfolgt nach Zahlungseingang.</p>
+    <p>(4) Bei internationalen Käufern außerhalb der EU wird gemäß § 3a Abs. 4 UStG keine deutsche Umsatzsteuer berechnet, sofern es sich um eine elektronische Dienstleistung an einen Nichtunternehmer im Drittland handelt. Der Käufer ist selbst verantwortlich für die etwaige Anmeldung und Abführung lokaler Verbrauchssteuern (z.B. Sales Tax, GST, VAT) in seinem Wohnsitzland.</p>
+    <p>(5) Etwaige Einführungsangebote oder Rabatte sind zeitlich befristet und werden auf der Produktseite mit Enddatum ausgewiesen.</p>
+  </section>
+
+  <section>
+    <h2>§ 5 Leistungserbringung und Verfügbarkeit</h2>
+    <p>(1) Die Leistung wird ausschließlich in <strong>digitaler Form</strong> erbracht — insbesondere durch Freischaltung eines API-Schlüssels, Zugang zu einem Endpunkt oder Zusendung von Konfigurationsdaten per E-Mail.</p>
+    <p>(2) Die Bereitstellung erfolgt in der Regel <strong>innerhalb von 24 Stunden</strong> nach vollständigem Zahlungseingang.</p>
+    <p>(3) Der Anbieter bemüht sich um eine hohe Verfügbarkeit der Dienste, garantiert jedoch keine ununterbrochene Erreichbarkeit. Wartungsfenster, technische Störungen sowie Ausfälle des öffentlichen Bitcoin-Netzwerks können die Verfügbarkeit beeinträchtigen.</p>
+    <p>(4) Die dem Kunden zugesandten Zugangsdaten (API-Key, Passwörter) sind vertraulich zu behandeln. Bei Verlust oder Verdacht auf Kompromittierung ist der Anbieter unverzüglich zu benachrichtigen.</p>
+  </section>
+
+  <section>
+    <h2>§ 6 Widerrufsrecht und Widerrufsverzicht</h2>
+
+    <h3>6.1 Widerrufsrecht für Verbraucher</h3>
+    <p>Verbraucher im Sinne des § 13 BGB haben grundsätzlich ein <strong>14-tägiges Widerrufsrecht</strong> gemäß §§ 312g, 355 BGB. Die vollständige Widerrufsbelehrung ist auf der Seite <a href="/widerruf.html">Widerrufsbelehrung</a> abrufbar.</p>
+
+    <h3>6.2 Erlöschen des Widerrufsrechts bei sofortiger Bereitstellung (§ 356 Abs. 5 BGB)</h3>
+    <div class="callout">
+      <strong>Wichtig:</strong> Das Widerrufsrecht erlischt bei einem Vertrag über die Lieferung von <em>nicht auf einem körperlichen Datenträger befindlichen digitalen Inhalten</em>, wenn:
+      <ul style="margin-top: 8px;">
+        <li>der Anbieter mit der Ausführung des Vertrags <strong>vor Ende der Widerrufsfrist</strong> begonnen hat, <em>und</em></li>
+        <li>der Kunde <strong>ausdrücklich zugestimmt</strong> hat, dass der Anbieter vor Ablauf der Widerrufsfrist beginnt, <em>und</em></li>
+        <li>der Kunde seine <strong>Kenntnis davon bestätigt</strong> hat, dass er durch seine Zustimmung mit Beginn der Vertragsausführung sein Widerrufsrecht verliert.</li>
+      </ul>
+    </div>
+    <p>Der Kunde erklärt diese Zustimmung durch aktives Anhaken der entsprechenden Checkbox im Anfrageformular und/oder durch schriftliche Bestätigung per E-Mail.</p>
+
+    <h3>6.3 Community-Tier</h3>
+    <p>Für die kostenlose Community-Tier besteht kein Widerrufsrecht, da kein Entgelt anfällt und kein Vertrag im Sinne des § 312 BGB zustande kommt.</p>
+  </section>
+
+  <section>
+    <h2>§ 7 Success-Fee-Modell (nur Starter · Success-Fee-Tier)</h2>
+    <p>(1) Beim Tier „Starter · Success-Fee" akzeptiert der Kunde neben der einmaligen Grundgebühr eine <strong>erfolgsabhängige Vergütung</strong> in Form eines Anteils an den Transaktionsgebühren aller Bitcoin-Blöcke, die unter Nutzung von PreBlock-Templates gefunden wurden.</p>
+    <p>(2) Die Aufteilung erfolgt <strong>kryptografisch enforced</strong> über den Coinbase-Output-Split gemäß der ausgestellten License-v2. Die Block-Subsidy (aktuell 3,125 BTC) verbleibt zu 100 % beim Kunden. Alle Transaktionsgebühren des jeweiligen Blocks fließen an eine vom Anbieter kontrollierte Bitcoin-Adresse.</p>
+    <p>(3) Der Kunde erhält monatlich eine detaillierte Abrechnung mit Auflistung aller relevanten Coinbase-Transaktionen inkl. Blockhöhen und Beträgen.</p>
+    <p>(4) Falls der Kunde die Nutzung von PreBlock-Templates einstellt, endet auch die Success-Fee-Verpflichtung ab dem Zeitpunkt der Beendigung.</p>
+  </section>
+
+  <section>
+    <h2>§ 8 Nutzungsrechte, geistiges Eigentum</h2>
+    <p>(1) Der Kunde erhält mit Vertragsschluss ein <strong>nicht ausschließliches, nicht übertragbares Nutzungsrecht</strong> an der PreBlock-Software im Umfang der jeweiligen Tier. Ohne ausdrückliche schriftliche Genehmigung ist es untersagt:</p>
+    <ul>
+      <li>die Software zu dekompilieren, disassemblieren oder anderweitig zu reverse-engineeren (soweit nicht gesetzlich gestattet)</li>
+      <li>API-Schlüssel weiterzugeben, weiterzuverkaufen oder mehreren Nutzern zugänglich zu machen</li>
+      <li>die Signal-Daten in eigenen kommerziellen Produkten weiterzuvertreiben (Whitelabeling nur unter Enterprise-Tier zulässig)</li>
+    </ul>
+    <p>(2) Die Rechte am PreBlock-Algorithmus und der zugehörigen Codebasis stehen ausschließlich dem Anbieter zu (siehe auch Impressum). Der Enterprise-Tier beinhaltet einen separaten Vertrag über den vollständigen IP-Transfer.</p>
+  </section>
+
+  <section>
+    <h2>§ 9 Gewährleistung</h2>
+    <p>(1) Die PreBlock-Software wird nach dem <strong>Stand der Technik</strong> bereitgestellt. Der Anbieter gewährleistet die im Vertrag beschriebenen Kernfunktionen.</p>
+    <p>(2) Der Anbieter gibt <strong>keine Zusicherung über bestimmte Hit-Rates, Erträge, Coinbase-Attribution oder Mining-Erfolge</strong>. Die tatsächliche Performance hängt von zahlreichen externen Faktoren ab (Mempool-Zustand, Netzwerk-Hashrate, Pool-Routing, Hardware-Verfügbarkeit).</p>
+    <p>(3) Für Verbraucher gelten die gesetzlichen Gewährleistungsrechte gemäß §§ 434 ff. BGB, für digitale Produkte insbesondere §§ 327 ff. BGB.</p>
+    <p>(4) Für Unternehmer ist die Gewährleistung auf <strong>12 Monate</strong> ab Bereitstellung beschränkt.</p>
+  </section>
+
+  <section>
+    <h2>§ 10 Haftungsbeschränkung</h2>
+    <p>(1) Der Anbieter haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit, bei Verletzung von Leben, Körper oder Gesundheit sowie in Fällen zwingender gesetzlicher Haftung (z.B. Produkthaftungsgesetz).</p>
+    <p>(2) Bei einfacher Fahrlässigkeit haftet der Anbieter nur bei Verletzung <em>wesentlicher Vertragspflichten</em> (Kardinalpflichten). Die Haftung ist in diesen Fällen auf den <strong>vertragstypischen, vorhersehbaren Schaden</strong> begrenzt.</p>
+    <p>(3) Der Anbieter haftet insbesondere <strong>nicht</strong> für:</p>
+    <ul>
+      <li>entgangenen Gewinn oder ausbleibende Mining-Erträge des Kunden</li>
+      <li>Kosten für Ersatz-Hardware oder Ausfallzeiten der Kunden-Infrastruktur</li>
+      <li>Schäden durch Wallet-Kompromittierung, Verlust von Private-Keys oder API-Schlüsseln beim Kunden</li>
+      <li>Schäden durch Handlungen Dritter (z.B. Hacks bei BTCPay, DDoS, Pool-Ausfälle)</li>
+      <li>indirekte Folgeschäden, Datenverlust oder Reputationsschäden</li>
+    </ul>
+    <p>(4) Die Haftung des Anbieters ist in jedem Fall auf den <strong>Wert des jeweiligen Einzelvertrags</strong> begrenzt, bei Success-Fee-Tier auf die vergangenen zwölf Monate.</p>
+  </section>
+
+  <section>
+    <h2>§ 11 Datenschutz</h2>
+    <p>Die Verarbeitung personenbezogener Daten des Kunden erfolgt ausschließlich im Rahmen der geltenden Datenschutzgesetze (insbesondere DSGVO und BDSG). Details finden sich in der <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
+  </section>
+
+  <section>
+    <h2>§ 12 Änderung dieser AGB</h2>
+    <p>(1) Der Anbieter behält sich vor, diese AGB mit Wirkung für die Zukunft zu ändern, sofern hierdurch wesentliche Regelungen des Vertragsverhältnisses nicht berührt werden.</p>
+    <p>(2) Änderungen werden dem Kunden mindestens sechs Wochen vor ihrem Inkrafttreten in Textform mitgeteilt. Widerspricht der Kunde nicht innerhalb dieser Frist, gelten die Änderungen als angenommen. Der Anbieter wird den Kunden bei Ankündigung der Änderungen auf diese Rechtsfolge besonders hinweisen.</p>
+  </section>
+
+  <section>
+    <h2>§ 13 Verbraucherstreitbeilegung</h2>
+    <p>(1) Die EU-Kommission stellt eine Plattform zur Online-Streitbeilegung bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">ec.europa.eu/consumers/odr</a></p>
+    <p>(2) Der Anbieter ist <strong>nicht bereit und nicht verpflichtet</strong>, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle im Sinne des Verbraucherstreitbeilegungsgesetzes (VSBG) teilzunehmen.</p>
+  </section>
+
+  <section>
+    <h2>§ 14 Schlussbestimmungen</h2>
+    <p>(1) Es gilt ausschließlich das <strong>Recht der Bundesrepublik Deutschland</strong> unter Ausschluss des UN-Kaufrechts (CISG). Bei Verbrauchern mit gewöhnlichem Aufenthalt in einem anderen Staat bleiben zwingende Verbraucherschutzbestimmungen dieses Staates unberührt.</p>
+    <p>(2) Ausschließlicher Gerichtsstand für alle Streitigkeiten aus diesem Vertragsverhältnis ist — sofern der Kunde Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen ist — <strong>Bremerhaven</strong>. Der Anbieter ist berechtigt, den Kunden auch an dessen allgemeinem Gerichtsstand zu verklagen.</p>
+    <p>(3) Sollte eine Bestimmung dieser AGB ganz oder teilweise unwirksam sein oder werden, so wird die Wirksamkeit der übrigen Bestimmungen hiervon nicht berührt. Anstelle der unwirksamen Bestimmung gilt die gesetzliche Regelung.</p>
+    <p>(4) Änderungen und Ergänzungen dieser AGB sowie individueller Nebenabreden bedürfen der Textform.</p>
+  </section>
+
+  <section class="stand">
+    Stand: 2026-07-06 · Joachim Richter-Steidl · PreBlock · Süderwürden 10 · 27570 Bremerhaven
+  </section>
+</main>
+
+</body>
+</html>

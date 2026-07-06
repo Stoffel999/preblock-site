@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index,follow" />
+  <title>Datenschutzerklärung · PreBlock</title>
+  <meta name="description" content="Datenschutzerklärung nach DSGVO für preblock.io und sales.preblock.io." />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+
+  <style>
+    :root { --bg: #0a0a0c; --fg: #d4d4d8; --muted: #6b7280; --accent: #fb923c; --border: #27272a; --strong: #f4f4f5; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 15px; line-height: 1.65; }
+    header { border-bottom: 1px solid var(--border); background: rgba(15,15,18,0.6); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 10; }
+    header .container { max-width: 860px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .back-link { color: var(--muted); text-decoration: none; font-size: 0.9em; }
+    .back-link:hover { color: var(--fg); }
+    .meta-tag { font-family: ui-monospace, monospace; font-size: 0.8em; color: var(--muted); }
+    .lang-switch { font-family: ui-monospace, monospace; font-size: 0.85em; color: var(--muted); }
+    .lang-switch a { color: var(--muted); text-decoration: none; }
+    .lang-switch a.active { color: var(--accent); font-weight: 600; }
+    main { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+    h1 { font-size: 1.9em; font-weight: 600; color: var(--strong); margin: 0 0 8px; }
+    h2 { font-size: 1.1em; font-weight: 600; color: var(--strong); margin: 32px 0 8px; }
+    h3 { font-size: 1em; font-weight: 600; color: var(--strong); margin: 20px 0 6px; }
+    section { margin-bottom: 20px; }
+    p { margin: 0 0 8px; }
+    ul { margin: 4px 0 8px; padding-left: 24px; }
+    li { margin-bottom: 4px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .small { font-size: 0.88em; color: var(--muted); }
+    .stand { padding-top: 24px; border-top: 1px solid var(--border); font-family: ui-monospace, monospace; font-size: 0.8em; color: var(--muted); margin-top: 40px; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 0.92em; }
+    th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #18181b; color: var(--strong); font-weight: 600; }
+    code { font-family: ui-monospace, monospace; color: #a1a1aa; background: #18181b; padding: 1px 5px; border-radius: 3px; }
+    strong { color: var(--strong); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="back-link" data-testid="datenschutz-back">← preblock.io</a>
+    <span class="meta-tag">Datenschutz · Art. 13 DSGVO</span>
+    <span class="lang-switch">
+      <a href="/datenschutz.html" class="active">DE</a> · <a href="/privacy.html">EN</a>
+    </span>
+  </div>
+</header>
+
+<main data-testid="datenschutz-content">
+  <h1>Datenschutzerklärung</h1>
+  <p class="small">Informationen nach Art. 13, 14 DSGVO · Stand 2026-07-06</p>
+
+  <section>
+    <h2>1. Verantwortlicher</h2>
+    <p><strong>Joachim Richter-Steidl</strong><br />
+    Süderwürden 10<br />
+    27570 Bremerhaven<br />
+    Deutschland<br />
+    E-Mail: <a href="mailto:sales@preblock.io">sales@preblock.io</a></p>
+    <p>Ein Datenschutzbeauftragter ist nach § 38 BDSG nicht zu bestellen, da die Anzahl der personenbezogen mit Datenverarbeitung befassten Personen die gesetzliche Schwelle nicht erreicht.</p>
+  </section>
+
+  <section>
+    <h2>2. Erhebung und Verarbeitung personenbezogener Daten</h2>
+
+    <h3>2.1 Server-Logs (Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO — berechtigtes Interesse)</h3>
+    <p>Beim Aufruf unserer Websites werden folgende Daten automatisch verarbeitet und in Server-Logfiles gespeichert:</p>
+    <ul>
+      <li>IP-Adresse (gehasht mit rotierendem Salt, nicht rückkonvertibel)</li>
+      <li>User-Agent (Browser-Typ und -Version, gekürzt auf 200 Zeichen)</li>
+      <li>Referrer-URL (optional)</li>
+      <li>Zeitpunkt des Aufrufs (UTC)</li>
+      <li>abgerufene Ressource (URL-Pfad)</li>
+      <li>ISO-Ländercode (aus IP-Geolokalisierung, ohne exakte Position)</li>
+    </ul>
+    <p>Zweck: Sicherstellung des stabilen Betriebs, Angriffs-Erkennung, aggregierte Nutzungsstatistik der öffentlichen Reports und Newsletter-Signups. <strong>Speicherfrist: 90 Tage</strong>, danach automatische Löschung.</p>
+
+    <h3>2.2 Newsletter (Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO — Einwilligung)</h3>
+    <p>Bei Anmeldung zum PreBlock-Newsletter erheben wir deine E-Mail-Adresse. Die Anmeldung erfolgt im <strong>Double-Opt-In-Verfahren</strong>: Nach Eintragung erhältst du eine Bestätigungs-E-Mail mit einem Link, den du zur Aktivierung anklicken musst.</p>
+    <p>Du kannst deine Einwilligung jederzeit widerrufen — entweder per Klick auf den Abmelde-Link in jeder Newsletter-E-Mail oder per formloser E-Mail an <a href="mailto:sales@preblock.io">sales@preblock.io</a>. Nach Abmeldung werden deine Daten unverzüglich gelöscht.</p>
+
+    <h3>2.3 Anfrage-Formular / Kaufabwicklung (Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO — Vertragsanbahnung/-erfüllung)</h3>
+    <p>Beim Ausfüllen des Anfrage-Formulars auf <code>/sales/inquiry</code> erheben wir:</p>
+    <ul>
+      <li>Name, E-Mail-Adresse (Pflichtfelder)</li>
+      <li>Firmenname, Land, gewünschter Tier (freiwillig)</li>
+      <li>Hashrate-Bereich, Pool-Setup, Nachricht (freiwillig)</li>
+      <li>Bei kostenpflichtigen Käufen: vollständige Rechnungsanschrift (Straße, PLZ, Ort, Land) — <strong>gesetzlich erforderlich nach § 14 UStG</strong></li>
+    </ul>
+    <p>Zweck: Vertragsanbahnung und -abwicklung, Erstellung der Rechnung, Kommunikation zum Kaufvorgang. <strong>Speicherfrist</strong>: für vertragsrelevante Daten (Rechnungsanschrift, Zahlungshistorie) <strong>10 Jahre</strong> nach § 147 AO / § 257 HGB; ansonsten bis 12 Monate nach Vertragsende, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+
+    <h3>2.4 Zahlungsabwicklung via BTCPay Server (Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO)</h3>
+    <p>Für Bitcoin-Zahlungen nutzen wir unseren <strong>selbst gehosteten BTCPay Server</strong> auf <a href="https://pay.preblock.io">pay.preblock.io</a>. Es findet keine Übermittlung an externe Zahlungsdienstleister statt. Auf der Rechnung werden gespeichert: Rechnungsnummer, Betrag, Zeitstempel, Blockchain-Adresse für die Zahlung. IP-Adresse des Zahlenden wird während des Zahlungsvorgangs kurzzeitig verarbeitet und danach anonymisiert.</p>
+
+    <h3>2.5 Discord-Community (Rechtsgrundlage: Art. 6 Abs. 1 lit. a und f DSGVO)</h3>
+    <p>Wir betreiben einen öffentlichen Discord-Server mit einem Signal-Channel. Die Nutzung ist optional. Discord ist ein Dienst der <strong>Discord Inc., USA</strong>. Beim Beitritt gelten die Datenschutz-Bestimmungen von Discord. Wir verarbeiten selbst nur Signal-Nachrichten und deren Zustellstatus.</p>
+  </section>
+
+  <section>
+    <h2>3. Auftragsverarbeiter und externe Dienstleister</h2>
+    <p>Wir setzen folgende Dienstleister mit Auftragsverarbeitungsverträgen (AVV) oder gleichwertigem Rechtsrahmen ein:</p>
+    <table>
+      <thead>
+        <tr><th>Dienst</th><th>Zweck</th><th>Sitz</th><th>Rechtsgrundlage</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Strato AG</td><td>E-Mail-Versand (SMTP) für Newsletter, NDA-Zustellung, Rechnungen</td><td>Deutschland</td><td>Art. 6 Abs. 1 lit. b, f DSGVO</td></tr>
+        <tr><td>IONOS SE</td><td>Reverse-Proxy-VPS für pay.preblock.io und api.preblock.io</td><td>Deutschland</td><td>Art. 6 Abs. 1 lit. f DSGVO</td></tr>
+        <tr><td>Emergent Labs</td><td>Hosting des Demo-Pods preblock.io</td><td>USA (EU-US Data Privacy Framework)</td><td>Art. 6 Abs. 1 lit. f DSGVO, Art. 45 DSGVO</td></tr>
+        <tr><td>GitHub Inc.</td><td>Hosting sales.preblock.io über GitHub Pages</td><td>USA (EU-US Data Privacy Framework)</td><td>Art. 6 Abs. 1 lit. f DSGVO, Art. 45 DSGVO</td></tr>
+        <tr><td>Cloudflare, Inc.</td><td>DNS-Auflösung, DDoS-Schutz (optional, wenn eingesetzt)</td><td>USA (EU-US Data Privacy Framework)</td><td>Art. 6 Abs. 1 lit. f DSGVO</td></tr>
+        <tr><td>Discord Inc.</td><td>Community-Signal-Channel (Nutzung freiwillig)</td><td>USA (EU-US Data Privacy Framework)</td><td>Art. 6 Abs. 1 lit. a, f DSGVO</td></tr>
+      </tbody>
+    </table>
+    <p class="small">Übermittlungen in Drittländer erfolgen ausschließlich in Staaten mit Angemessenheitsbeschluss nach Art. 45 DSGVO (aktuell USA im Rahmen des EU-US Data Privacy Framework für zertifizierte Unternehmen) oder mit ergänzenden Garantien nach Art. 46 DSGVO (Standardvertragsklauseln).</p>
+  </section>
+
+  <section>
+    <h2>4. Cookies und lokale Speicherung</h2>
+    <p>Unsere Websites verwenden <strong>keine Tracking-Cookies</strong> und keine Analytics-Dienste wie Google Analytics.</p>
+    <p>Zur Speicherung der Sprachauswahl (DE/EN) und für den Newsletter-Double-Opt-In wird die Browser-eigene <code>localStorage</code>-Funktion genutzt. Diese Daten verbleiben auf deinem Endgerät und werden nicht an uns übertragen.</p>
+  </section>
+
+  <section>
+    <h2>5. Deine Rechte als betroffene Person</h2>
+    <p>Nach der DSGVO stehen dir folgende Rechte zu, die du jederzeit formlos per E-Mail an <a href="mailto:sales@preblock.io">sales@preblock.io</a> geltend machen kannst:</p>
+    <ul>
+      <li><strong>Auskunft</strong> über die zu deiner Person gespeicherten Daten (Art. 15 DSGVO)</li>
+      <li><strong>Berichtigung</strong> unrichtiger Daten (Art. 16 DSGVO)</li>
+      <li><strong>Löschung</strong> („Recht auf Vergessen", Art. 17 DSGVO)</li>
+      <li><strong>Einschränkung</strong> der Verarbeitung (Art. 18 DSGVO)</li>
+      <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
+      <li><strong>Widerspruch</strong> gegen die Verarbeitung (Art. 21 DSGVO)</li>
+      <li><strong>Widerruf</strong> einer erteilten Einwilligung (Art. 7 Abs. 3 DSGVO)</li>
+    </ul>
+    <p>Zudem hast du das Recht, dich bei einer <strong>Aufsichtsbehörde</strong> zu beschweren. Zuständig ist für uns:</p>
+    <p><em>Die Landesbeauftragte für Datenschutz und Informationsfreiheit der Freien Hansestadt Bremen<br />
+    Arndtstraße 1, 27570 Bremerhaven<br />
+    <a href="https://www.datenschutz.bremen.de" target="_blank" rel="noopener">datenschutz.bremen.de</a></em></p>
+  </section>
+
+  <section>
+    <h2>6. Sicherheit der Datenverarbeitung</h2>
+    <p>Wir setzen technische und organisatorische Maßnahmen nach Art. 32 DSGVO ein:</p>
+    <ul>
+      <li>TLS-Verschlüsselung (HTTPS) für alle Web-Verbindungen (Let's Encrypt)</li>
+      <li>WireGuard-VPN-Tunnel für die Anbindung des internen Reference-Nodes</li>
+      <li>Bcrypt-Hashing (Rounds 12) für API-Keys — Plaintext niemals persistiert</li>
+      <li>Rollen-getrennte Systeme: Public-Facing-Daten und interne Operations-Daten leben in getrennten Datenbanken</li>
+      <li>Regelmäßige Backups mit Verschlüsselung at-rest</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>7. Änderung dieser Datenschutzerklärung</h2>
+    <p>Wir behalten uns vor, diese Erklärung an geänderte Rechtslage oder bei Änderungen unseres Dienstes anzupassen. Die jeweils aktuelle Version steht unter <a href="https://sales.preblock.io/datenschutz.html">sales.preblock.io/datenschutz.html</a> bereit.</p>
+  </section>
+
+  <section class="stand">
+    Stand: 2026-07-06 · Joachim Richter-Steidl · PreBlock · Süderwürden 10 · 27570 Bremerhaven
+  </section>
+</main>
+
+</body>
+</html>
