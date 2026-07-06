@@ -319,6 +319,23 @@
         margin-bottom: 36px;
       }
       .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
+      .hero-value-badge {
+        border-left: 3px solid var(--accent);
+        background: linear-gradient(90deg, rgba(255,138,52,.08), rgba(255,138,52,0));
+        padding: 14px 18px;
+        border-radius: 4px;
+        color: var(--text-muted);
+        font-size: 15px;
+        line-height: 1.55;
+        margin: 4px 0 24px;
+        max-width: 620px;
+      }
+      .hero-value-badge strong {
+        color: var(--text);
+        display: block;
+        margin-bottom: 4px;
+        font-weight: 600;
+      }
       .hero-tags {
         display: flex; gap: 12px; flex-wrap: wrap;
       }
@@ -2079,6 +2096,10 @@
         <p class="lead reveal in delay-2">
           PreBlock is the pool-agnostic predictive block-template engine for Bitcoin mining. Runs read-only against your existing Bitcoin Knots or Core node — zero touch on your mining pipeline. Delivers signals via API, then integrates deeper via DATUM (OCEAN), SV2 Job-Declarator (Braiins & modern pools), Braiins BOSminer, or plain Getblocktemplate — your choice, your timing.
         </p>
+        <div class="hero-value-badge reveal in delay-2" data-testid="hero-value-badge">
+          <strong>Never mine an empty block again.</strong>
+          Sub-100ms optimized template ready the instant the prev-header lands — no fee-loss to slow mempool sync, no SPY-mining, no half-empty blocks.
+        </div>
         <div class="hero-cta reveal in delay-3">
           <a href="#demo" class="btn btn-primary btn-lg" data-testid="hero-cta-demo">
             See it live
