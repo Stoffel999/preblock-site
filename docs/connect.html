@@ -76,9 +76,10 @@
     <a href="/" class="back">← sales.preblock.io</a>
     <div class="tag">Connect · Setup Guide</div>
     <h1>How to use your PreBlock API-Key</h1>
-    <div class="banner">
-      <strong>Full detailed guide is on the way.</strong> This page gets you productive in 60 seconds — everything you need to test your key against the live endpoint.
-    </div>
+    <p style="color:var(--muted);font-size:14px;margin-top:-4px;margin-bottom:32px;">
+      Everything you need to go from welcome-email to first productive template call, in your language of choice.
+      Jump to your tier: <a href="#community">Community</a> · <a href="#starter">Starter</a> · <a href="#deep">Deep integration</a>.
+    </p>
 
     <h2>1 · Base URL</h2>
     <p>All requests go to:</p>
@@ -86,45 +87,194 @@
     <p>You authenticate by sending your API-key as the <code>api_key</code> query-parameter. There is no OAuth / bearer-token flow — a single long-lived key per license.</p>
 
     <h2>2 · Health check (no key needed)</h2>
-    <p>Confirm the endpoint is reachable from your side:</p>
     <pre><code>curl https://api.preblock.io/api/health</code></pre>
-    <p>Expected: <code>{"status":"ok",...}</code></p>
+    <p>Expected response:</p>
+<pre><code>{
+  "status": "ok",
+  "version": "1.0.0",
+  "timestamp": "2026-02-07T14:23:11Z"
+}</code></pre>
+    <p>If the health check fails, check your firewall / outbound HTTPS on port 443. There is no IP whitelist on our side — any client with a valid key can connect.</p>
 
-    <h2>3 · Your first call</h2>
-
+    <h2 id="community">3 · Community tier — free key, 30 calls / day</h2>
     <div class="tier-box community">
-      <div class="tier-title emer">🎁 Community tier</div>
-      <p>You can call <code>/api/templates/preview</code> to see how PreBlock would score a hypothetical block reward. Read-only, 30 requests / day.</p>
-      <pre><code>curl "https://api.preblock.io/api/templates/preview?api_key=YOUR_KEY&amp;fees_sats=15000000"</code></pre>
-      <p>The full scored template endpoint (<code>/scored/next</code>) is <em>Starter-only</em> — this is where you upgrade from testing to real mining.</p>
+      <div class="tier-title emer">🎁 Community</div>
+      <p>You have one endpoint: <code>/api/templates/preview</code>. It shows how PreBlock <em>would</em> score a template with a given fee assumption. Read-only, no live template returned.</p>
     </div>
 
-    <div class="tier-box starter">
-      <div class="tier-title acc">₿ Starter tier</div>
-      <p>You get both endpoints. <code>/scored/next</code> returns a fully optimized template ready to hand to your mining pipeline.</p>
-      <pre><code>curl "https://api.preblock.io/api/templates/scored/next?api_key=YOUR_KEY"</code></pre>
-      <p>Rate limit: 100 requests / minute. That is enough to refresh templates once per second and still leave headroom for retries.</p>
-    </div>
+    <h3>Call it</h3>
+<pre><code>curl "https://api.preblock.io/api/templates/preview?api_key=YOUR_KEY&amp;fees_sats=15000000"</code></pre>
 
-    <h2>4 · Rate-limit response</h2>
-    <p>If you exceed your tier's limit, the response is HTTP <code>429</code> with a <code>Retry-After</code> header in seconds. Client libraries should respect this — don't hammer.</p>
-
-    <h2>5 · Store your key safely</h2>
-    <p>Your key is delivered <strong>once</strong>, in the welcome email. On our side we only store the bcrypt hash — if you lose the plaintext key, we <strong>cannot</strong> recover it and have to issue a new one (which invalidates the old).</p>
-    <p>Best practice: paste the key straight from the welcome email into a password manager (1Password, Bitwarden, KeePassXC).</p>
-
-    <h2>6 · Deeper integration paths</h2>
-    <p>The API-key gives you the fastest path. Once you are comfortable, we support three deeper integration patterns:</p>
+    <h3>Query parameters</h3>
     <ul>
-      <li><strong>Getblocktemplate override:</strong> drop-in replacement for your Bitcoin Core / Knots node's <code>getblocktemplate</code> RPC — no code changes on your mining side, just a config-file edit.</li>
-      <li><strong>DATUM adapter (OCEAN Pool):</strong> feed the optimized templates directly into the DATUM protocol.</li>
-      <li><strong>SV2 Job-Declarator:</strong> for Braiins Pool and modern Stratum-v2 pools.</li>
+      <li><code>api_key</code> · required · your PreBlock key (from the welcome email)</li>
+      <li><code>fees_sats</code> · optional · block fees to simulate in satoshis · default 15_000_000 (≈ 0.15 BTC) · min 0 · max 100_000_000_000</li>
     </ul>
-    <p>Full integration guides + code examples will be published here. For now, reach out via <a href="mailto:sales@preblock.io">sales@preblock.io</a> and we'll walk you through your specific setup.</p>
+
+    <h3>Response schema</h3>
+<pre><code>{
+  "license_id":      "preblock-community-caedfc41",
+  "tier":            "community",
+  "block_subsidy_sats":  312500000,
+  "fees_sats":           15000000,
+  "total_reward_sats":  327500000,
+  "coinbase_split": {
+    "miner_sats":       327500000,
+    "vendor_sats":              0,
+    "vendor_fraction":       0.00
+  },
+  "timestamp": "2026-02-07T14:23:11Z"
+}</code></pre>
+    <p>Community licenses have no coinbase-split — you keep 100%. This response is essentially a fee-projection calculator.</p>
+
+    <h3>Python example</h3>
+<pre><code>import requests
+r = requests.get(
+    "https://api.preblock.io/api/templates/preview",
+    params={"api_key": "pb_...", "fees_sats": 20_000_000},
+    timeout=10,
+)
+r.raise_for_status()
+print(r.json())</code></pre>
+
+    <h3>Node.js example</h3>
+<pre><code>const r = await fetch(
+  "https://api.preblock.io/api/templates/preview?" +
+  new URLSearchParams({ api_key: "pb_...", fees_sats: 20_000_000 })
+);
+if (!r.ok) throw new Error(`preblock: ${r.status} ${await r.text()}`);
+console.log(await r.json());</code></pre>
+
+    <h3>Rate limit</h3>
+    <p><strong>30 requests / rolling 24 hours.</strong> Enough for hourly monitoring or a periodic fee-forecast job. Exceed it and you get HTTP 429 with a <code>Retry-After</code> header in seconds.</p>
+
+    <h3>Upgrade path</h3>
+    <p>Ready for the real thing? <a href="/">Order Starter-Fix or Starter-Share</a> — Community key stays valid forever, Starter key layers on top.</p>
+
+
+    <h2 id="starter">4 · Starter tier — full templates, 100 calls / minute</h2>
+    <div class="tier-box starter">
+      <div class="tier-title acc">₿ Starter (Fix or Share)</div>
+      <p>You get both endpoints. <code>/scored/next</code> returns a fully optimized template ready to hand to your mining pipeline. <code>/preview</code> stays available for lightweight fee-projection.</p>
+    </div>
+
+    <h3>The main call</h3>
+<pre><code>curl "https://api.preblock.io/api/templates/scored/next?api_key=YOUR_KEY&amp;adapter=gbt"</code></pre>
+
+    <h3>Query parameters</h3>
+    <ul>
+      <li><code>api_key</code> · required</li>
+      <li><code>adapter</code> · optional · output format · one of <code>gbt</code> (default), <code>sv2</code>, <code>braiins</code></li>
+      <li><code>expected_fees_sats</code> · optional · hint for pre-calculation · default 15_000_000</li>
+      <li><code>block_height_hint</code> · optional · integer &gt; 0 · lets our engine pre-select transaction candidates for the height you are targeting</li>
+    </ul>
+
+    <h3>Response schema</h3>
+<pre><code>{
+  "license_id":     "preblock-starter-fix-a7b3...",
+  "tier":           "starter_fix",
+  "template": {
+    "version":         536870912,
+    "previousblockhash": "00000000000000000000...",
+    "target":          "0000000000000000000004...",
+    "min_time":        1739020000,
+    "curtime":         1739020123,
+    "bits":            "17034dc7",
+    "height":          878543,
+    "coinbase_value":  325123456,
+    "coinbasevalue":   325123456,
+    "coinbase_split": {
+      "miner_sats":    325123456,
+      "vendor_sats":            0,
+      "vendor_fraction":     0.00
+    },
+    "transactions": []
+  },
+  "scoring": {
+    "predicted_fees_sats": 12876543,
+    "confidence":          0.87,
+    "generated_ms":         42
+  }
+}</code></pre>
+    <p>For <code>starter_share</code> licenses the <code>coinbase_split</code> object shows the vendor cut per your contract; the split is enforced server-side.</p>
+
+    <h3>Rate limit</h3>
+    <p><strong>100 requests / minute.</strong> Enough for one refresh per 600 ms with headroom for retries. If you poll faster we throttle you to 429 — respect the <code>Retry-After</code> header and back off.</p>
+
+    <h3>Error handling — what to do</h3>
+    <ul>
+      <li><code>200 OK</code> — happy path, use the template</li>
+      <li><code>401 Unauthorized</code> — bad or missing key → double-check the value from your welcome email, no extra whitespace</li>
+      <li><code>403 Forbidden</code> — key is revoked or expired → email <a href="mailto:sales@preblock.io">sales@preblock.io</a></li>
+      <li><code>429 Too Many Requests</code> — you hit the tier ceiling → sleep for the seconds in <code>Retry-After</code>, then continue</li>
+      <li><code>5xx</code> — server-side hiccup → exponential backoff (1s → 2s → 4s, cap at 30s), don't hammer</li>
+    </ul>
+
+    <h3>Production polling loop (Python)</h3>
+<pre><code>import time, requests
+
+def next_template(key: str, adapter: str = "gbt") -> dict:
+    r = requests.get(
+        "https://api.preblock.io/api/templates/scored/next",
+        params={"api_key": key, "adapter": adapter},
+        timeout=5,
+    )
+    if r.status_code == 429:
+        wait = int(r.headers.get("Retry-After", "1"))
+        time.sleep(wait)
+        return next_template(key, adapter)
+    r.raise_for_status()
+    return r.json()
+
+while True:
+    tpl = next_template("pb_...")
+    hand_off_to_miner(tpl["template"])
+    time.sleep(0.6)   # 100/min ceiling, comfortable margin</code></pre>
+
+    <h2>5 · Rate-limit response format</h2>
+    <p>All 429 responses follow this shape so a single client can be shared across tiers:</p>
+<pre><code>HTTP/1.1 429 Too Many Requests
+Retry-After: 12
+Content-Type: application/json
+
+{
+  "detail": "Rate limit exceeded for tier=starter_fix (100/minute)"
+}</code></pre>
+    <p>Client-side rule: never retry without honoring <code>Retry-After</code>. It's in whole seconds; treat missing header as 60s.</p>
+
+    <h2>6 · Store your key safely</h2>
+    <p>Your key is delivered <strong>once</strong>, in the welcome email. On our side we only store the bcrypt hash — if you lose the plaintext key, we <strong>cannot</strong> recover it and have to issue a new one (which invalidates the old).</p>
+    <p>Best practice:</p>
+    <ul>
+      <li>Paste the key straight from the welcome email into a password manager (1Password, Bitwarden, KeePassXC)</li>
+      <li>On your server, read it from an environment variable — never commit it to git</li>
+      <li>If you suspect a leak, email <a href="mailto:sales@preblock.io">sales@preblock.io</a> immediately for a rotation — old key is invalidated within seconds</li>
+    </ul>
+
+    <h2 id="deep">7 · Deeper integration paths</h2>
+    <p>The direct API-key call is the fastest path. Once you're comfortable, we support three deeper patterns:</p>
+
+    <h3>Getblocktemplate override (Bitcoin Core / Knots)</h3>
+    <p>Drop-in replacement for your node's <code>getblocktemplate</code> RPC — <strong>no code changes on your mining side</strong>, just a config-file edit. Your miner still thinks it's talking to bitcoind; PreBlock intercepts and returns the scored template instead.</p>
+    <p>Best for: solo miners on standard bitcoind + cgminer / bfgminer / ASICSeer stacks.</p>
+
+    <h3>DATUM adapter (OCEAN Pool)</h3>
+    <p>Feed the optimized templates directly into the DATUM protocol used by OCEAN Pool. PreBlock runs as a sidecar; DATUM sees an ordinary block-template source.</p>
+    <p>Best for: OCEAN Pool participants who want the predictive boost while staying inside DATUM's censorship-resistance guarantees.</p>
+
+    <h3>SV2 Job-Declarator (Stratum v2)</h3>
+    <p>PreBlock exposes a Job-Declaration channel over SV2 for Braiins Pool, F2Pool-SV2, and other modern SV2 pools. Templates flow encrypted end-to-end; the Job-Declarator role stays with you.</p>
+    <p>Best for: pool operators and large solo farms on SV2 infrastructure.</p>
+
+    <p style="margin-top:24px;color:var(--muted);font-size:14px;">
+      Each of these is a Pro-tier feature (contact-based pricing). Reach out via
+      <a href="mailto:sales@preblock.io">sales@preblock.io</a> with your setup details and we'll ship a per-customer integration guide with concrete config files.
+    </p>
 
     <div class="foot">
       Questions? Reply to your welcome email or write to <a href="mailto:sales@preblock.io">sales@preblock.io</a> · <a href="/">back to sales.preblock.io</a>
     </div>
   </div>
+<script src="/assets/analytics.js" defer></script>
 </body>
 </html>
