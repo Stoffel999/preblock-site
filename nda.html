@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index,follow" />
+  <title>Mutual NDA · PreBlock</title>
+  <meta name="description" content="Mutual Non-Disclosure Agreement (NDA) for PreBlock — Predictive Block-Template Engine. Canonical version v1.0.0, cryptographically anchored." />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-32.png" />
+
+  <style>
+    :root { --bg: #0a0a0c; --fg: #d4d4d8; --muted: #6b7280; --accent: #fb923c; --border: #27272a; --strong: #f4f4f5; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 15px; line-height: 1.65; }
+    header { border-bottom: 1px solid var(--border); background: rgba(15,15,18,0.6); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 10; }
+    header .container { max-width: 860px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .back-link { color: var(--muted); text-decoration: none; font-size: 0.9em; }
+    .back-link:hover { color: var(--fg); }
+    .meta-tag { font-family: ui-monospace, monospace; font-size: 0.8em; color: var(--muted); }
+    main { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+    h1 { font-size: 1.9em; font-weight: 600; color: var(--strong); margin: 0 0 8px; }
+    h2 { font-size: 1.1em; font-weight: 600; color: var(--strong); margin: 32px 0 8px; letter-spacing: 0.02em; }
+    p { margin: 0 0 12px; }
+    ul, ol { margin: 4px 0 12px; padding-left: 24px; }
+    li { margin-bottom: 6px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .small { font-size: 0.88em; color: var(--muted); }
+    .stand { padding-top: 24px; border-top: 1px solid var(--border); font-family: ui-monospace, monospace; font-size: 0.8em; color: var(--muted); margin-top: 40px; }
+    .callout { background: rgba(251, 146, 60, 0.08); border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; border-radius: 4px; font-size: 0.95em; }
+    code { font-family: ui-monospace, monospace; color: #a1a1aa; background: #18181b; padding: 1px 5px; border-radius: 3px; word-break: break-all; }
+    strong { color: var(--strong); }
+    .hash { font-family: ui-monospace, monospace; font-size: 0.85em; color: var(--muted); word-break: break-all; }
+    .badge { display: inline-block; font-family: ui-monospace, monospace; font-size: 0.75em; color: var(--accent); background: rgba(251,146,60,0.1); padding: 2px 8px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+    @media print {
+      header, .no-print { display: none; }
+      body { background: white; color: black; }
+      a { color: black; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="back-link" data-testid="nda-back">← preblock.io</a>
+    <span class="meta-tag">Mutual NDA</span>
+    <span class="meta-tag">v1.0.0</span>
+  </div>
+</header>
+
+<main>
+  <h1>Mutual Non-Disclosure &amp; Pre-Sale Confidentiality<span class="badge">v1.0.0</span></h1>
+  <p class="small">Canonical text · issued 2026-02 · duration 24 months from acceptance</p>
+
+  <div class="callout">
+    <strong>What this document is.</strong> When you submit an inquiry or purchase a Starter, Pro, or Enterprise tier on PreBlock, you accept this Mutual NDA. In return we share commercial, technical, and hit-rate information beyond what is publicly on sales.preblock.io. A cryptographically signed receipt (RSA-4096, PSS-SHA256) is issued at acceptance so both sides have an independent, offline-verifiable record.
+  </div>
+
+  <h2>Parties</h2>
+  <p>This agreement is between <strong>PreBlock</strong> (the "Vendor"), operating the software product <em>PreBlock — Predictive Mining Node</em>, and the individual or legal entity identified by the contact details on the inquiry submission (the "Interested Party").</p>
+
+  <h2>Purpose</h2>
+  <p>The Vendor intends to share with the Interested Party non-public information regarding the PreBlock product, including (but not limited to) commercial pricing, system architecture, observed hit-rate data, benchmark figures, customer references, and the technical roadmap, for the sole purpose of allowing the Interested Party to evaluate a potential purchase, license, or commercial engagement.</p>
+
+  <h2>Confidential Information</h2>
+  <p>"Confidential Information" means any information disclosed by either party to the other, whether orally, in writing, electronically or by any other means, that is marked or reasonably understood to be confidential. Without limitation, the following are deemed Confidential Information:</p>
+  <ul>
+    <li>Pricing, discount structure, commercial terms, license model details, and any offer made by either party.</li>
+    <li>Real and observed predictive hit-rate samples, audit reports, backtest results, and per-customer performance figures.</li>
+    <li>Source code excerpts, system architecture documents, technical specifications, integration interfaces, and DATUM gateway internals.</li>
+    <li>Customer identities, customer-specific deployment details, and any data labelled as "NDA-restricted" within the PreBlock application.</li>
+  </ul>
+
+  <h2>Obligations</h2>
+  <p>The Interested Party shall:</p>
+  <ol>
+    <li>Use the Confidential Information solely for the purpose of evaluating a potential commercial engagement with the Vendor.</li>
+    <li>Not disclose the Confidential Information to any third party without prior written consent of the Vendor.</li>
+    <li>Restrict access to the Confidential Information to those employees, contractors, and advisors who have a need to know for the stated purpose, and who are bound by equivalent confidentiality terms.</li>
+    <li>Not reverse-engineer, decompile, disassemble, attempt to derive, or replicate the PreBlock predictive engine, including its fee-prediction algorithms, template-optimisation logic, and Knots-filter integration, by any means, whether automated or manual.</li>
+    <li>Not publish, blog about, post on social media, or otherwise publicly attribute commercial or technical details disclosed under this agreement, except for information that has been placed by the Vendor on <a href="https://preblock.io">preblock.io</a>, <a href="https://sales.preblock.io">sales.preblock.io</a>, or any other public Vendor channel.</li>
+  </ol>
+
+  <h2>No License, No Assignment</h2>
+  <p>Nothing in this agreement grants the Interested Party any license, right, title, or interest in the PreBlock software, its source code, its compiled binaries, its branding, or any related intellectual property. All rights are reserved by the Vendor.</p>
+
+  <h2>Term</h2>
+  <p>The obligations of confidentiality under this agreement remain in force for <strong>twenty-four (24) months</strong> from the issuance date recorded in the digital receipt accompanying this agreement, regardless of whether a commercial engagement is ultimately concluded.</p>
+
+  <h2>Exceptions</h2>
+  <p>The obligations of confidentiality do not apply to information that:</p>
+  <ul>
+    <li>is or becomes publicly known through no breach of this agreement,</li>
+    <li>was lawfully in the receiving party's possession before disclosure,</li>
+    <li>is independently developed without reference to the Confidential Information,</li>
+    <li>must be disclosed to comply with a court order, regulatory authority, or similar legal obligation (the receiving party shall, where lawfully permitted, notify the disclosing party promptly so that protective measures may be sought).</li>
+  </ul>
+
+  <h2>Remedies</h2>
+  <p>The parties acknowledge that monetary damages may be inadequate for a breach of this agreement and that the disclosing party may seek injunctive or equitable relief in addition to monetary remedies.</p>
+
+  <h2>Electronic Agreement</h2>
+  <p>This agreement is accepted electronically by the Interested Party at the time of submitting an inquiry on the PreBlock sales channels. The Vendor issues a cryptographically signed digital receipt (the "NDA Receipt") which records:</p>
+  <ul>
+    <li>the Interested Party's contact details as submitted,</li>
+    <li>the issuance timestamp in UTC,</li>
+    <li>the SHA-256 hash of this canonical agreement text,</li>
+    <li>the model and commercial context of the inquiry,</li>
+    <li>the Vendor's RSA-4096 PSS-SHA256 signature.</li>
+  </ul>
+  <p>The signature can be independently verified against the Vendor's public key, available at the path <code>backend/vendor_public_key.pem</code> in the PreBlock distribution and bundled with every customer license.</p>
+
+  <h2>Governing Law</h2>
+  <p>This agreement is governed by international commercial confidentiality principles. Disputes shall be resolved in good faith through direct discussion between the parties. Where a competent jurisdiction is required, the parties may mutually elect a neutral arbitration venue.</p>
+
+  <p class="small">This agreement is provided for clarity and good-faith dealing; for formal contractual coverage, the parties may enter into a separately executed written NDA referencing this digital receipt.</p>
+
+  <div class="stand">
+    <p><strong>Canonical text hash (SHA-256):</strong></p>
+    <p class="hash">9e70aa1a038d8b3d3ef01ef424772e301521afe9f238e0aec2baa83d9f30e30a</p>
+    <p style="margin-top:12px;">Machine-readable version (JSON, signed):
+      <a href="https://preblock.io/api/nda/terms">https://preblock.io/api/nda/terms</a>
+    </p>
+    <p style="margin-top:12px;">
+      Vendor: <strong>Joachim Richter-Steidl</strong> · Süderwürden 10 · 27570 Bremerhaven · Germany<br />
+      Contact: <a href="mailto:sales@preblock.io">sales@preblock.io</a>
+    </p>
+  </div>
+</main>
+
+<script src="/assets/analytics.js" defer></script>
+</body>
+</html>
