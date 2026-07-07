@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PreBlock · Connect Guide</title>
+  <meta name="description" content="How to connect your Bitcoin mining pipeline to the PreBlock predictive block-template engine." />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <style>
+    :root {
+      --bg:     #0e0e10;
+      --panel:  #15151a;
+      --border: #2a2a30;
+      --text:   #e6e6ea;
+      --muted:  #9c9ca8;
+      --accent: #ff8a34;
+      --emer:   #22c55e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 60px 24px 80px; }
+    a { color: var(--accent); }
+    a:hover { color: #ffa062; }
+    .back { display: inline-block; color: var(--muted); text-decoration: none; font-size: 13px; margin-bottom: 40px; }
+    .back:hover { color: var(--text); }
+    h1 { font-size: 32px; margin: 0 0 8px; font-weight: 700; letter-spacing: -0.02em; }
+    .tag { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+    h2 { font-size: 20px; margin: 40px 0 12px; font-weight: 600; }
+    h3 { font-size: 15px; margin: 24px 0 8px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    p, li { color: #c4c4d0; }
+    code, pre {
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 13px;
+    }
+    code { background: rgba(255,138,52,.1); color: #ffb27a; padding: 2px 6px; border-radius: 4px; }
+    pre {
+      background: #0a0a0c;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      color: #d0d0d8;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    .banner {
+      background: linear-gradient(90deg, rgba(255,138,52,.08), rgba(255,138,52,0));
+      border-left: 3px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 4px;
+      margin: 20px 0 32px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .tier-box {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 12px 0;
+      background: var(--panel);
+    }
+    .tier-box.community { border-left: 3px solid var(--emer); }
+    .tier-box.starter   { border-left: 3px solid var(--accent); }
+    .tier-title { font-weight: 700; margin-bottom: 6px; font-size: 15px; }
+    .tier-title.emer { color: var(--emer); }
+    .tier-title.acc  { color: var(--accent); }
+    .foot { color: var(--muted); font-size: 13px; margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="/" class="back">← sales.preblock.io</a>
+    <div class="tag">Connect · Setup Guide</div>
+    <h1>How to use your PreBlock API-Key</h1>
+    <div class="banner">
+      <strong>Full detailed guide is on the way.</strong> This page gets you productive in 60 seconds — everything you need to test your key against the live endpoint.
+    </div>
+
+    <h2>1 · Base URL</h2>
+    <p>All requests go to:</p>
+    <pre><code>https://api.preblock.io</code></pre>
+    <p>You authenticate by sending your API-key as the <code>api_key</code> query-parameter. There is no OAuth / bearer-token flow — a single long-lived key per license.</p>
+
+    <h2>2 · Health check (no key needed)</h2>
+    <p>Confirm the endpoint is reachable from your side:</p>
+    <pre><code>curl https://api.preblock.io/api/health</code></pre>
+    <p>Expected: <code>{"status":"ok",...}</code></p>
+
+    <h2>3 · Your first call</h2>
+
+    <div class="tier-box community">
+      <div class="tier-title emer">🎁 Community tier</div>
+      <p>You can call <code>/api/templates/preview</code> to see how PreBlock would score a hypothetical block reward. Read-only, 30 requests / day.</p>
+      <pre><code>curl "https://api.preblock.io/api/templates/preview?api_key=YOUR_KEY&amp;fees_sats=15000000"</code></pre>
+      <p>The full scored template endpoint (<code>/scored/next</code>) is <em>Starter-only</em> — this is where you upgrade from testing to real mining.</p>
+    </div>
+
+    <div class="tier-box starter">
+      <div class="tier-title acc">₿ Starter tier</div>
+      <p>You get both endpoints. <code>/scored/next</code> returns a fully optimized template ready to hand to your mining pipeline.</p>
+      <pre><code>curl "https://api.preblock.io/api/templates/scored/next?api_key=YOUR_KEY"</code></pre>
+      <p>Rate limit: 100 requests / minute. That is enough to refresh templates once per second and still leave headroom for retries.</p>
+    </div>
+
+    <h2>4 · Rate-limit response</h2>
+    <p>If you exceed your tier's limit, the response is HTTP <code>429</code> with a <code>Retry-After</code> header in seconds. Client libraries should respect this — don't hammer.</p>
+
+    <h2>5 · Store your key safely</h2>
+    <p>Your key is delivered <strong>once</strong>, in the welcome email. On our side we only store the bcrypt hash — if you lose the plaintext key, we <strong>cannot</strong> recover it and have to issue a new one (which invalidates the old).</p>
+    <p>Best practice: paste the key straight from the welcome email into a password manager (1Password, Bitwarden, KeePassXC).</p>
+
+    <h2>6 · Deeper integration paths</h2>
+    <p>The API-key gives you the fastest path. Once you are comfortable, we support three deeper integration patterns:</p>
+    <ul>
+      <li><strong>Getblocktemplate override:</strong> drop-in replacement for your Bitcoin Core / Knots node's <code>getblocktemplate</code> RPC — no code changes on your mining side, just a config-file edit.</li>
+      <li><strong>DATUM adapter (OCEAN Pool):</strong> feed the optimized templates directly into the DATUM protocol.</li>
+      <li><strong>SV2 Job-Declarator:</strong> for Braiins Pool and modern Stratum-v2 pools.</li>
+    </ul>
+    <p>Full integration guides + code examples will be published here. For now, reach out via <a href="mailto:sales@preblock.io">sales@preblock.io</a> and we'll walk you through your specific setup.</p>
+
+    <div class="foot">
+      Questions? Reply to your welcome email or write to <a href="mailto:sales@preblock.io">sales@preblock.io</a> · <a href="/">back to sales.preblock.io</a>
+    </div>
+  </div>
+</body>
+</html>
