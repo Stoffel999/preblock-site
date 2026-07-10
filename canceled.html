@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Payment canceled · PreBlock</title>
+  <meta name="description" content="Your PreBlock checkout was canceled — no charge occurred. You can restart the order or contact sales." />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <style>
+    :root { --bg: #0a0a0c; --fg: #d4d4d8; --muted: #6b7280; --accent: #fb923c; --border: #27272a; --strong: #f4f4f5; --danger: #ef4444; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 15px; line-height: 1.65; }
+    header { border-bottom: 1px solid var(--border); background: rgba(15,15,18,0.6); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 10; }
+    header .container { max-width: 720px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .back-link { color: var(--muted); text-decoration: none; font-size: 0.9em; }
+    .back-link:hover { color: var(--accent); }
+    .brand { font-weight: 600; letter-spacing: 0.02em; color: var(--strong); }
+    .brand span { color: var(--accent); }
+    main { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
+    .icon-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+    .icon-x { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--accent); display: inline-flex; align-items: center; justify-content: center; color: var(--accent); font-size: 22px; font-weight: 600; }
+    h1 { font-size: 28px; margin: 0; color: var(--strong); }
+    h2 { font-size: 17px; color: var(--strong); margin: 32px 0 10px; }
+    .lead { color: var(--muted); font-size: 16px; margin: 4px 0 32px; }
+    .card { border: 1px solid var(--border); border-radius: 8px; padding: 22px 24px; background: #0f0f12; margin-bottom: 20px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.15s; }
+    .btn-primary { background: var(--accent); color: #0a0a0c; }
+    .btn-primary:hover { background: #fdba74; }
+    .btn-secondary { border: 1px solid var(--border); color: var(--fg); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    ul { padding-left: 20px; margin: 8px 0; }
+    li { margin: 6px 0; }
+    a { color: var(--accent); }
+    a:hover { color: #fdba74; }
+    .footer-note { color: var(--muted); font-size: 13px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a class="brand" href="/">Pre<span>Block</span></a>
+      <a class="back-link" href="/">← back to site</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="icon-row">
+      <div class="icon-x">✕</div>
+      <h1>Payment canceled</h1>
+    </div>
+    <p class="lead">
+      Your Bitcoin invoice was closed before the payment was confirmed —
+      <strong style="color:var(--strong);">no charge occurred</strong> and nothing was debited from your wallet.
+    </p>
+
+    <div class="card">
+      <h2 style="margin-top:0">What happens with your inquiry?</h2>
+      <p>
+        The form data you submitted (name, address, VAT-ID, consent timestamps)
+        is still stored on our side as an <strong>open lead</strong>.
+        No API-key has been issued, no invoice has been generated.
+      </p>
+      <ul>
+        <li>You will receive <strong>no follow-up mail</strong> unless you ask for one.</li>
+        <li>If you want to resume: just submit the form again with the same email — we will pick up where you left off.</li>
+        <li>If you'd rather have the lead removed entirely: write to <a href="mailto:sales@preblock.io?subject=Please%20delete%20my%20canceled%20inquiry">sales@preblock.io</a> — GDPR-deletion is done within 48h.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-top:0">Something wrong with the checkout?</h2>
+      <p>Common reasons buyers cancel — and what to do about it:</p>
+      <ul>
+        <li><strong>Wrong amount displayed?</strong> The BTC amount is auto-converted from the EUR price at the moment the invoice is generated. If BTC moved during your checkout, close and re-submit to get a fresh conversion rate.</li>
+        <li><strong>No Bitcoin wallet available?</strong> We're rolling out card &amp; SEPA checkout via Stripe soon. Drop us a mail and we'll ping you when it goes live.</li>
+        <li><strong>Question about the product?</strong> <a href="mailto:sales@preblock.io?subject=PreBlock%20—%20pre-purchase%20question">sales@preblock.io</a> — we usually reply within a business day.</li>
+      </ul>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="/#tiers">Restart order</a>
+      <a class="btn btn-secondary" href="mailto:sales@preblock.io?subject=PreBlock%20—%20canceled%20checkout">Contact sales</a>
+    </div>
+
+    <p class="footer-note">
+      This page is served by <a href="https://sales.preblock.io/impressum.html">PreBlock (Impressum)</a>.
+      No cookies, no tracking, no charge occurred.
+    </p>
+  </main>
+</body>
+</html>

@@ -99,6 +99,9 @@
     <h3>2.4 Zahlungsabwicklung via BTCPay Server (Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO)</h3>
     <p>Für Bitcoin-Zahlungen nutzen wir unseren <strong>selbst gehosteten BTCPay Server</strong> auf <a href="https://pay.preblock.io">pay.preblock.io</a>. Es findet keine Übermittlung an externe Zahlungsdienstleister statt. Auf der Rechnung werden gespeichert: Rechnungsnummer, Betrag, Zeitstempel, Blockchain-Adresse für die Zahlung. IP-Adresse des Zahlenden wird während des Zahlungsvorgangs kurzzeitig verarbeitet und danach anonymisiert.</p>
 
+    <h3>2.4a Zahlungsabwicklung via Stripe (Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO)</h3>
+    <p>Für Kartenzahlungen, Apple Pay, Google Pay, Link und PayPal nutzen wir <strong>Stripe Payments Europe, Ltd.</strong> (Irland). Beim Anklicken der Zahlungsoption „Karte / Wallet" wirst du auf die Checkout-Seite von Stripe weitergeleitet. Übermittelt werden: Name, E-Mail-Adresse, Rechnungsadresse, Betrag, Rechnungsnummer, Land, ggf. USt-IdNr. Stripe verarbeitet zusätzlich Zahlungsdaten (Kartennummer, PayPal-Konto) — diese sehen wir <strong>nicht</strong>; wir erhalten nur eine Zahlungsbestätigung (Session-ID + Status). Rechtsgrundlage: Vertragsdurchführung (Art. 6 Abs. 1 lit. b DSGVO). Stripe-Datenschutzerklärung: <a href="https://stripe.com/de/privacy">stripe.com/de/privacy</a>. Stripe kann Daten an seine US-Muttergesellschaft übermitteln (EU-US Data Privacy Framework zertifiziert).</p>
+
     <h3>2.5 Discord-Community (Rechtsgrundlage: Art. 6 Abs. 1 lit. a und f DSGVO)</h3>
     <p>Wir betreiben einen öffentlichen Discord-Server mit einem Signal-Channel. Die Nutzung ist optional. Discord ist ein Dienst der <strong>Discord Inc., USA</strong>. Beim Beitritt gelten die Datenschutz-Bestimmungen von Discord. Wir verarbeiten selbst nur Signal-Nachrichten und deren Zustellstatus.</p>
   </section>
@@ -112,6 +115,7 @@
       </thead>
       <tbody>
         <tr><td>Strato AG</td><td>E-Mail-Versand (SMTP) für Newsletter, NDA-Zustellung, Rechnungen</td><td>Deutschland</td><td>Art. 6 Abs. 1 lit. b, f DSGVO</td></tr>
+        <tr><td>Stripe Payments Europe, Ltd.</td><td>Zahlungsabwicklung Kartenzahlung, Apple Pay, Google Pay, Link, PayPal (via Stripe Checkout)</td><td>Irland (Konzernmutter USA, EU-US Data Privacy Framework)</td><td>Art. 6 Abs. 1 lit. b DSGVO</td></tr>
         <tr><td>IONOS SE</td><td>Reverse-Proxy-VPS für pay.preblock.io und api.preblock.io</td><td>Deutschland</td><td>Art. 6 Abs. 1 lit. f DSGVO</td></tr>
         <tr><td>Emergent Labs</td><td>Hosting des Demo-Pods preblock.io</td><td>USA (EU-US Data Privacy Framework)</td><td>Art. 6 Abs. 1 lit. f DSGVO, Art. 45 DSGVO</td></tr>
         <tr><td>GitHub Inc.</td><td>Hosting sales.preblock.io über GitHub Pages</td><td>USA (EU-US Data Privacy Framework)</td><td>Art. 6 Abs. 1 lit. f DSGVO, Art. 45 DSGVO</td></tr>
