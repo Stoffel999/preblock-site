@@ -3207,6 +3207,24 @@
       </div>
     </div>
 
+    <!-- Trust banner: 30-day money-back + Founding 20 scarcity -->
+    <div class="trust-banner" data-testid="trust-banner" style="max-width: 1200px; margin: 32px auto 24px; padding: 20px 24px; background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(251, 146, 60, 0.08) 100%); border: 1px solid rgba(34, 197, 94, 0.25); border-radius: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+      <div style="display: flex; align-items: flex-start; gap: 14px;">
+        <span style="font-size: 28px; line-height: 1;">🛡️</span>
+        <div>
+          <div style="color: #22c55e; font-weight: 700; font-size: 15px; margin-bottom: 4px;">30-day money-back guarantee</div>
+          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.55;">Full refund on any paid tier, no questions asked. Applies within 30 days of purchase — same channel you paid (Stripe or Bitcoin). A short email to <a href="mailto:sales@preblock.io" style="color: #22c55e;">sales@preblock.io</a> is enough.</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 14px;">
+        <span style="font-size: 28px; line-height: 1;">🏆</span>
+        <div>
+          <div style="color: #fb923c; font-weight: 700; font-size: 15px; margin-bottom: 4px;">Founding 20 — <span data-founding-seats-left>20</span> seats left</div>
+          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.55;">The first 20 paying customers get a permanent <em>Founding Miner #N</em> badge on the public <a href="/proof" style="color: #fb923c;">/proof dashboard</a>, a signed founder-cohort certificate, and lifetime -20% on any future upgrade.</div>
+        </div>
+      </div>
+    </div>
+
     <div class="pricing-grid">
       <div class="price-card featured" data-testid="price-card-starter-share">
         <span class="price-badge">Popular · 🔥 -40% Intro</span>
@@ -4531,6 +4549,23 @@ async function submitNewsletter(event) {
         });
       })
       .catch(() => {});
+  })();
+
+  /* Hydrate the Founding-20 seats-left indicator (silent-fail). */
+  (function hydrateFoundingStatus() {
+    fetch('https://preblock.io/api/public/founding/status', { credentials: 'omit' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d) return;
+        var seatsEl = document.querySelectorAll('[data-founding-seats-left]');
+        seatsEl.forEach(function (el) { el.textContent = String(d.seats_left); });
+        // If cohort closed, dim the banner
+        if (!d.is_open) {
+          var banner = document.querySelector('[data-testid="trust-banner"]');
+          if (banner) banner.style.opacity = '0.72';
+        }
+      })
+      .catch(function () {});
   })();
 </script>
 
