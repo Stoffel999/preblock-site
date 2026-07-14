@@ -2235,7 +2235,11 @@
         </div>
 
         <div class="hero-cta reveal in delay-3">
-          <a href="#demo" class="btn btn-primary btn-lg" data-testid="hero-cta-demo">
+          <button type="button" class="btn btn-primary btn-lg" data-testid="hero-cta-trial" onclick="PreBlockTrial.open()">
+            Try 7 days free
+            <i data-lucide="zap"></i>
+          </button>
+          <a href="#demo" class="btn btn-ghost btn-lg" data-testid="hero-cta-demo">
             See it live
             <i data-lucide="arrow-right"></i>
           </a>
@@ -4640,6 +4644,7 @@ async function submitNewsletter(event) {
 </script>
 
 <!-- Anonymous page-view tracker (DSGVO-safe, no cookies). See analytics.js. -->
+<script src="/assets/trial-modal.js" defer></script>
 <script src="/assets/analytics.js" defer></script>
 
 </body>
