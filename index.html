@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PreBlock — Predictive Block-Template Engine for Bitcoin Pools</title>
-    <meta name="description" content="PreBlock is the Pool-Agnostic Predictive Block-Template Engine for Bitcoin Mining. Runs read-only on any Bitcoin Knots/Core node. Outputs to DATUM/OCEAN, SV2 Job-Declarator, Braiins, or plain Getblocktemplate. 87-100% observed hit-rate on the next 3 blocks." />
+    <meta name="description" content="PreBlock is the Pool-Agnostic Predictive Block-Template Engine for Bitcoin Mining. Runs read-only on any Bitcoin Knots/Core node. Outputs via Getblocktemplate (production) and DATUM Feeder (beta). SV2 Job-Declarator and Braiins BOSminer adapters on the roadmap." />
     <meta name="keywords" content="Bitcoin, Mining, Predictive, Block Template Engine, Bitcoin Knots, Spam Filter, Mempool, DATUM, OCEAN, Pool, PreBlock Node" />
     <meta name="author" content="Stoffel999" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="PreBlock — Predictive Block-Template Engine for Bitcoin Pools" />
-    <meta property="og:description" content="Pool-agnostic predictive block-template engine. Read-only on your existing Bitcoin node. Adapters for DATUM, SV2 Job-Declarator, Braiins BOSminer, Getblocktemplate. 87-100% observed hit-rate." />
+    <meta property="og:description" content="Pool-agnostic predictive block-template engine. Read-only on your existing Bitcoin node. Ships Getblocktemplate (production) and DATUM Feeder (beta). SV2/Braiins adapters on roadmap." />
     <meta property="og:url" content="https://sales.preblock.io" />
     <meta property="og:site_name" content="PreBlock" />
     <meta property="og:image" content="https://sales.preblock.io/assets/og-image.png" />
@@ -22,7 +22,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PreBlock — Predictive Mining" />
-    <meta name="twitter:description" content="Predict the next 3 Bitcoin block templates. Pool-agnostic — runs on any Bitcoin node, outputs to DATUM/SV2/Braiins/GBT. Read-only-first." />
+    <meta name="twitter:description" content="Predict the next 3 Bitcoin block templates. Pool-agnostic — runs on any Bitcoin node. Getblocktemplate + DATUM ready. SV2/Braiins on roadmap." />
     <meta name="twitter:image" content="https://sales.preblock.io/assets/og-image.png" />
 
     <!-- Favicons (Hexagon, Bitcoin-orange on charcoal) -->
@@ -2158,12 +2158,12 @@
   <div class="container">
     <div class="hero-grid">
       <div>
-        <span class="eyebrow reveal in" data-testid="hero-eyebrow">Pool-Agnostic · Read-Only-First · DATUM · SV2 · Braiins · Getblocktemplate</span>
+        <span class="eyebrow reveal in" data-testid="hero-eyebrow">Pool-Agnostic · Read-Only-First · Getblocktemplate · DATUM · SV2 &amp; Braiins on roadmap</span>
         <h1 class="reveal in delay-1">
           Predict the <span class="accent-text">next three</span> Bitcoin block templates.
         </h1>
         <p class="lead reveal in delay-2">
-          PreBlock is the pool-agnostic predictive block-template engine for Bitcoin mining. Runs read-only against your existing Bitcoin Knots or Core node — zero touch on your mining pipeline. Delivers signals via API, then integrates deeper via DATUM (OCEAN), SV2 Job-Declarator (Braiins & modern pools), Braiins BOSminer, or plain Getblocktemplate — your choice, your timing.
+          PreBlock is the pool-agnostic predictive block-template engine for Bitcoin mining. Runs read-only against your existing Bitcoin Knots or Core node — zero touch on your mining pipeline. Delivers signals via Getblocktemplate (production) or DATUM Feeder (beta) into OCEAN. SV2 Job-Declarator and Braiins BOSminer integration are on the roadmap.
         </p>
         <div class="hero-value-badge reveal in delay-2" data-testid="hero-value-badge">
           <strong>Never mine an empty block again.</strong>
@@ -3322,7 +3322,7 @@
         </div>
         <ul>
           <li>5 mining nodes (multi-site redundancy)</li>
-          <li>1 adapter module included (DATUM / SV2-JD / Braiins / GBT)</li>
+          <li>Getblocktemplate + DATUM Feeder ready · SV2-JD / Braiins on roadmap</li>
           <li>48h onboarding SLA · owner sets up your deployment</li>
           <li>8 weekly sync-calls (30 min, owner direct)</li>
           <li>Priority bug-fix path · 48h response guaranteed</li>
@@ -3340,7 +3340,7 @@
         <div class="price-tier-sub">Annual license · Fiat (SEPA) only · Contract available</div>
         <ul>
           <li>Up to 5 nodes</li>
-          <li>1 adapter included (DATUM · SV2 · Braiins · GBT)</li>
+          <li>Getblocktemplate (production) + DATUM Feeder (beta) — SV2, Braiins on roadmap</li>
           <li>Additional adapters: +€5,000/year</li>
           <li>Priority support · monthly sync calls</li>
           <li>License ping (30-day grace)</li>
@@ -3941,7 +3941,7 @@ async function submitNewsletter(event) {
     </div>
     <div class="footer-bottom">
       <span>© 2026 Stoffel999 · PreBlock — Pool-Agnostic Predictive Block-Template Engine</span>
-      <span>Built for Bitcoin · DATUM · SV2 · Braiins · GBT · Read-only-first</span>
+      <span>Built for Bitcoin · Getblocktemplate · DATUM · SV2 &amp; Braiins on roadmap · Read-only-first</span>
     </div>
   </div>
 </footer>
