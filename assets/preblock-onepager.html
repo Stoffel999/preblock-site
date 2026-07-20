@@ -84,12 +84,12 @@ recovering lost keys — the transaction tends to carry higher value than fee/vB
 alone suggests.</p>
 <p>Our engine surfaces these dormancy events <span class="highlight">30 to 60 seconds
 before mempool consensus</span> — using peer-observation of raw transaction
-propagation on a Bitcoin Knots full node.</p>
+propagation on a Bitcoin Core full node.</p>
 
 <h2>System Architecture</h2>
 <ul>
   <li><strong>Single-machine deploy</strong> — one rack server, no cloud, no Kubernetes</li>
-  <li><strong>Bitcoin Knots full node</strong> — spam-filtered mempool</li>
+  <li><strong>Bitcoin Core full node</strong> — full public mempool, adaptive selection at app-level</li>
   <li><strong>Predictive Engine</strong> — proprietary UTXO-age scoring (IP-protected)</li>
   <li><strong>DATUM Feeder</strong> — direct pool-communication into OCEAN (beta)</li>
   <li><strong>Multipool Comparison</strong> — AntPool, Foundry USA, ViaBTC, F2Pool references</li>
