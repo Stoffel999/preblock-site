@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PreBlock — Predictive Block-Template Engine for Bitcoin Pools</title>
-    <meta name="description" content="PreBlock is the Pool-Agnostic Predictive Block-Template Engine for Bitcoin Mining. Runs read-only on any Bitcoin Knots/Core node. Outputs via Getblocktemplate (production) and DATUM Feeder (beta). SV2 Job-Declarator and Braiins BOSminer adapters on the roadmap." />
-    <meta name="keywords" content="Bitcoin, Mining, Predictive, Block Template Engine, Bitcoin Knots, Spam Filter, Mempool, DATUM, OCEAN, Pool, PreBlock Node" />
+    <meta name="description" content="PreBlock is the Pool-Agnostic Predictive Block-Template Engine for Bitcoin Mining. Runs read-only on a standard Bitcoin Core node. Adaptive per-block selection driven by live mempool, real-block post-mortem, and pool-dominance signals. Outputs via Getblocktemplate (production) and DATUM Feeder (beta)." />
+    <meta name="keywords" content="Bitcoin, Mining, Predictive, Block Template Engine, Bitcoin Core, Adaptive Selection, Mempool, DATUM, OCEAN, Pool, PreBlock Node" />
     <meta name="author" content="Stoffel999" />
 
     <!-- Open Graph -->
@@ -2121,7 +2121,7 @@
       <span>PreBlock</span>
     </a>
     <nav class="primary-nav">
-      <a href="#knots" data-testid="nav-knots">Knots Filter</a>
+      <a href="#knots" data-testid="nav-knots">Approach</a>
       <a href="#features" data-testid="nav-features">Features</a>
       <a href="#modules" data-testid="nav-modules">Modules</a>
       <a href="#roi" data-testid="nav-roi">ROI</a>
@@ -2181,7 +2181,7 @@
           Predict the <span class="accent-text">next three</span> Bitcoin block templates.
         </h1>
         <p class="lead reveal in delay-2">
-          PreBlock is the pool-agnostic predictive block-template engine for Bitcoin mining. Runs read-only against your existing Bitcoin Knots or Core node — zero touch on your mining pipeline. Delivers signals via Getblocktemplate (production) or DATUM Feeder (beta) into OCEAN. SV2 Job-Declarator and Braiins BOSminer integration are on the roadmap.
+          PreBlock is the pool-agnostic predictive block-template engine for Bitcoin mining. Runs read-only against a standard Bitcoin Core node — zero touch on your mining pipeline. Delivers signals via Getblocktemplate (production) or DATUM Feeder (beta) into OCEAN. SV2 Job-Declarator and Braiins BOSminer integration are on the roadmap.
         </p>
         <div class="hero-value-badge reveal in delay-2" data-testid="hero-value-badge">
           <strong>Never mine an empty block again.</strong>
@@ -2266,7 +2266,7 @@
           </a>
         </div>
         <div class="hero-tags">
-          <span class="hero-tag">Bitcoin Knots</span>
+          <span class="hero-tag">Bitcoin Core</span>
           <span class="hero-tag">DATUM Gateway</span>
           <span class="hero-tag">OCEAN Pool</span>
           <span class="hero-tag">Mempool ZMQ</span>
@@ -2344,51 +2344,51 @@
 <section id="knots">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Garbage out, signal in</span>
-      <h2>Clean blocks. Real fees. <span class="accent-text">No spam.</span></h2>
-      <p>We don't run Bitcoin Core — we run <strong>Bitcoin Knots</strong>. It filters Ordinals, Inscriptions and other non-financial payload <em>before</em> our predictor ever sees the mempool. The result: pool operators mine the transactions that actually pay, not data scribbles disguised as transfers.</p>
+      <span class="eyebrow">Selection, not filtering</span>
+      <h2>Decide per block. <span class="accent-text">Not per config.</span></h2>
+      <p>A statically configured node answers the same question every time — even when the mempool, the pool landscape, or the fee regime has changed. That's exactly where an operator who reacts faster wins. PreBlock runs on a <strong>standard Bitcoin Core node</strong> and re-decides what belongs in a block <em>on every single block</em> — driven by live mempool state, the last real blocks, and the behaviour patterns of the pools that are currently dominating.</p>
     </div>
 
     <div class="knots-grid">
-      <div class="knots-card" data-testid="knots-core">
-        <div class="knots-label">Bitcoin Core view — "everything counts"</div>
-        <h3>~255 MB</h3>
-        <div class="knots-sub">Full mempool, snapshot Feb 2026</div>
+      <div class="knots-card" data-testid="knots-static">
+        <div class="knots-label">Static configuration — "set once and hope"</div>
+        <h3>1</h3>
+        <div class="knots-sub">Rule set, tuned some months ago</div>
         <div class="knots-stat">
-          <span class="num" style="color:#888">5</span>
-          <span class="unit">competing block templates</span>
+          <span class="num" style="color:#888">∞</span>
+          <span class="unit">unchanged decisions per block</span>
         </div>
         <div class="knots-bar"><div style="width: 100%"></div></div>
-        <div class="knots-meta">≈ 80–95% of weight is Ordinals/Inscriptions noise</div>
+        <div class="knots-meta">Same answer regardless of market conditions</div>
         <ul>
-          <li>Inscriptions inflate weight, not fees</li>
-          <li>Predictor wastes cycles on data-only payload</li>
-          <li>Pool template includes spam that pays sub-1 sat/vB</li>
-          <li>Fee-cliff visibility ≈ zero</li>
+          <li>Missed fee spikes because filters were too aggressive</li>
+          <li>Included low-value TX because filters were too permissive</li>
+          <li>Zero adaptation when a new pool starts dominating</li>
+          <li>No feedback loop from actually mined blocks</li>
         </ul>
       </div>
 
       <div class="knots-card preblock" data-testid="knots-preblock">
-        <div class="knots-label">PreBlock view — "money only, please"</div>
-        <h3>~12 MB</h3>
-        <div class="knots-sub">Knots-filtered, snapshot Feb 2026</div>
+        <div class="knots-label">PreBlock — "decide fresh, every block"</div>
+        <h3>~10 min</h3>
+        <div class="knots-sub">Re-evaluation interval, per block</div>
         <div class="knots-stat">
-          <span class="num">1</span>
-          <span class="unit">clean template, every TX is real money</span>
+          <span class="num">4</span>
+          <span class="unit">live signal streams into every decision</span>
         </div>
-        <div class="knots-bar"><div style="width: 18%"></div></div>
-        <div class="knots-meta">≈ 95% spam removed before scoring</div>
+        <div class="knots-bar"><div style="width: 88%"></div></div>
+        <div class="knots-meta">Full mempool visibility + adaptive selection</div>
         <ul>
-          <li>Only financial transactions — Lightning opens, sweeps, transfers</li>
-          <li>Predictor sees the true fee market, not the noise</li>
-          <li>Template fee-density is real, not inflated</li>
-          <li>Fee-cliff detection is sharp & actionable</li>
+          <li>Live mempool state — high fee spike? act on it now</li>
+          <li>Post-mortem from the last 5 mined blocks — learn where we lost</li>
+          <li>Pool dominance last 24h — mimic the winning behaviour</li>
+          <li>Bucket hit-rate last hour — calibrate confidence</li>
         </ul>
       </div>
     </div>
 
     <div class="knots-footnote">
-      Snapshot Feb 2026 · Mainnet · Bitcoin Knots v28 vs Bitcoin Core v28 · ratio varies with network conditions
+      Bitcoin Core 29.1 node · Full public mempool · Selection layer is application-level, not node-level · Adaptive per block
     </div>
   </div>
 </section>
@@ -3957,7 +3957,7 @@ async function submitNewsletter(event) {
       </div>
       <div>
         <h4>Product</h4>
-        <a href="#knots">Knots Spam-Filter</a>
+        <a href="#knots">Adaptive Selection</a>
         <a href="#features">Features</a>
         <a href="#modules">Modules</a>
         <a href="#roi">ROI Calculator</a>
