@@ -2362,60 +2362,44 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- MODULES & ADD-ONS                                                   -->
+<!-- FEATURES                                                            -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- MODULE DETAIL PAGES (M1–M7)                                       -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- Anchor for #features navbar/footer links -->
+<span id="features" style="display:block; position:relative; top:-80px;" aria-hidden="true"></span>
 
-<!-- Sticky vertical side-nav, fades in on first detail section -->
-<nav class="m-side-nav" id="mSideNav" data-testid="m-side-nav" aria-label="Module quick navigation">
-  <a href="#m1" data-target="m1"><span class="m-dot"></span><span class="m-label">M1 Optimizer</span></a>
-  <a href="#m2" data-target="m2"><span class="m-dot"></span><span class="m-label">M2 Multi-Pool</span></a>
-  <a href="#m3" data-target="m3"><span class="m-dot"></span><span class="m-label">M3 Audit</span></a>
-  <a href="#m4" data-target="m4"><span class="m-dot"></span><span class="m-label">M4 Backtest</span></a>
-  <a href="#m5" data-target="m5"><span class="m-dot"></span><span class="m-label">M5 Alerts</span></a>
-  <a href="#m6" data-target="m6"><span class="m-dot"></span><span class="m-label">M6 White-Label</span></a>
-  <a href="#m7" data-target="m7"><span class="m-dot"></span><span class="m-label">M7 Support</span></a>
+<!-- Sticky vertical side-nav, fades in on first feature section -->
+<nav class="m-side-nav" id="mSideNav" data-testid="m-side-nav" aria-label="Feature quick navigation">
+  <a href="#feature-optimizer" data-target="feature-optimizer"><span class="m-dot"></span><span class="m-label">Optimizer</span></a>
+  <a href="#feature-audit" data-target="feature-audit"><span class="m-dot"></span><span class="m-label">Audit</span></a>
+  <a href="#feature-backtest" data-target="feature-backtest"><span class="m-dot"></span><span class="m-label">Backtest</span></a>
+  <a href="#feature-alerts" data-target="feature-alerts"><span class="m-dot"></span><span class="m-label">Alerts</span></a>
 </nav>
 
-<!-- ─── M1 ────────────────────────────────────────────────────────── -->
-<section id="m1" class="m-detail" data-testid="m-detail-m1">
+<!-- ─── Feature: Predictive Template Optimizer ─────────────────────── -->
+<section id="feature-optimizer" class="m-detail" data-testid="feature-optimizer">
   <div class="container">
     <div class="m-detail-grid">
       <div>
-        <div class="m-id">Module M1 · Crown jewel</div>
+        <div class="m-id">Feature · Standard equipment</div>
         <h3>Predictive Template Optimizer</h3>
         <div class="m-block">
-          <div class="m-block-label">What it does</div>
-          <p>Runs PreBlock's optimised block template side-by-side with the
-          Core template each round. Scores both against the actual fees of
-          the next mined block, exposes the delta via a live A/B endpoint
-          and surfaces an aggregated 24h / 7d / 30d uplift. Observed uplift
-          on our reference PreBlock node (4 miners, OCEAN pool, Knots-filtered mempool) over
-          Feb 2026: <strong>+0.3% to +1.0%</strong> against the Core
-          template, in line with the conservative published figure.</p>
-        </div>
-        <div class="m-block">
-          <div class="m-block-label">Who needs it</div>
-          <p>Mid-to-large mining pools optimising their own DATUM pipelines.
-          The uplift compounds on every block — at 100 PH/s pool hashrate
-          a sustained +0.5% fee uplift translates to a 5-to-7-figure
-          additional yearly revenue at current fee market levels.</p>
+          <div class="m-block-label">What it does · Was es macht</div>
+          <p><strong>EN:</strong> Delivers an optimised block template alongside the standard one at every round, with a transparent A/B comparison against the block that actually gets mined. Live delta plus 24 h and 7 d aggregates on the private dashboard.</p>
+          <p><strong>DE:</strong> Liefert bei jedem Zyklus zusätzlich zum Standard-Template ein optimiertes Template — mit transparentem A/B-Vergleich gegen den tatsächlich geschürften Block. Live-Delta sowie 24-h- und 7-Tage-Kennzahlen im privaten Dashboard.</p>
         </div>
         <div class="m-price-row">
-          <span class="m-price">On request</span>
-          <span class="m-price-sub">one-time · per license</span>
-          <a href="#contact" class="btn btn-primary m-cta" data-testid="m1-cta" onclick="openBidModal('enterprise', 'M1'); return false;">Inquire about M1</a>
+          <span class="m-price">Included</span>
+          <span class="m-price-sub">in every annual licence</span>
+          <a href="#contact" class="btn btn-primary m-cta" data-testid="feature-optimizer-cta">Contact Sales</a>
         </div>
       </div>
-      <div class="m-mock" data-testid="m1-mock">
+      <div class="m-mock" data-testid="feature-optimizer-mock">
         <div class="m-mock-title"><span class="m-mock-live">A/B template uplift · last block</span></div>
         <div class="m1-bars">
           <div class="m1-bar muted">
             <div class="bar-fill" style="height: 78%;"><span class="bar-val">100.0%</span></div>
-            <div class="bar-label">Core</div>
+            <div class="bar-label">Standard</div>
           </div>
           <div class="m1-bar">
             <div class="bar-fill" style="height: 100%;"><span class="bar-val">103.4%</span></div>
@@ -2428,106 +2412,36 @@
 
     <div class="m-prev-next">
       <span class="placeholder"></span>
-      <a href="#m2" class="next" data-testid="m1-next">
+      <a href="#feature-audit" class="next" data-testid="feature-optimizer-next">
         <div class="pn-label">Next →</div>
-        <div class="pn-title">M2 · Multi-Pool / Multi-Worker</div>
+        <div class="pn-title">Audit &amp; Compliance</div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ─── M2 ────────────────────────────────────────────────────────── -->
-<section id="m2" class="m-detail" data-testid="m-detail-m2">
+<!-- ─── M2 removed (v2.01 cleanup) ─────────────────────────────────── -->
+
+<!-- ─── Feature: Audit & Compliance ─────────────────────────────────── -->
+<section id="feature-audit" class="m-detail" data-testid="feature-audit">
   <div class="container">
     <div class="m-detail-grid">
       <div>
-        <div class="m-id">Module M2</div>
-        <h3>Multi-Pool / Multi-Worker</h3>
+        <div class="m-id">Feature · Standard equipment</div>
+        <h3>Audit &amp; Compliance</h3>
         <div class="m-block">
-          <div class="m-block-label">What it does</div>
-          <p>Runs multiple DATUM gateways and worker streams in parallel
-          against the same predicted template, and ranks them by uplift in
-          real time. Lets you benchmark PreBlock against any other
-          DATUM-compatible pool (Ocean's own gateway, ViaBTC, Foundry,
-          AntPool — whichever you connect). Deterministic 6.5–8.5% uplift
-          for PreBlock-DATUM in the demo dataset; competitors fluctuate
-          within ±3% jitter.</p>
-        </div>
-        <div class="m-block">
-          <div class="m-block-label">Who needs it</div>
-          <p>Operators running mixed-pool strategies, hashrate brokers
-          and any commercial buyer who wants <em>numerical</em> proof
-          that PreBlock beats the alternative they're already paying
-          for. Also the natural pre-purchase POC vehicle.</p>
+          <div class="m-block-label">What it does · Was es macht</div>
+          <p><strong>EN:</strong> Independent audit trail for every served template. Cryptographic hashes, timestamps and per-block reconciliation against on-chain reality. Exportable evidence set for internal review and buyer due-diligence.</p>
+          <p><strong>DE:</strong> Unabhängige Nachweiskette für jedes ausgelieferte Template. Kryptografische Hashes, Zeitstempel und blockweiser Abgleich gegen die On-Chain-Realität. Exportierbares Beweispaket für interne Prüfung und Käufer-Due-Diligence.</p>
         </div>
         <div class="m-price-row">
-          <span class="m-price">On request</span>
-          <span class="m-price-sub">one-time</span>
-          <a href="#contact" class="btn btn-primary m-cta" data-testid="m2-cta" onclick="openBidModal('enterprise', 'M2'); return false;">Inquire about M2</a>
+          <span class="m-price">Included</span>
+          <span class="m-price-sub">in every annual licence</span>
+          <a href="#contact" class="btn btn-primary m-cta" data-testid="feature-audit-cta">Contact Sales</a>
         </div>
       </div>
-      <div class="m-mock" data-testid="m2-mock">
-        <div class="m-mock-title"><span class="m-mock-live">Pool uplift leaderboard · 24h</span></div>
-        <div class="m2-row first">
-          <span class="rank">#1</span><span class="pool">PreBlock · OCEAN-DATUM</span><span class="delta">+7.42%</span>
-        </div>
-        <div class="m2-row">
-          <span class="rank">#2</span><span class="pool">ViaBTC</span><span class="delta">+1.85%</span>
-        </div>
-        <div class="m2-row">
-          <span class="rank">#3</span><span class="pool">Foundry USA</span><span class="delta">+0.94%</span>
-        </div>
-        <div class="m2-row">
-          <span class="rank">#4</span><span class="pool">AntPool</span><span class="delta">−0.21%</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="m-prev-next">
-      <a href="#m1" class="prev" data-testid="m2-prev">
-        <div class="pn-label">← Previous</div>
-        <div class="pn-title">M1 · Predictive Template Optimizer</div>
-      </a>
-      <a href="#m3" class="next" data-testid="m2-next">
-        <div class="pn-label">Next →</div>
-        <div class="pn-title">M3 · Audit &amp; Compliance Pack</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ─── M3 ────────────────────────────────────────────────────────── -->
-<section id="m3" class="m-detail" data-testid="m-detail-m3">
-  <div class="container">
-    <div class="m-detail-grid">
-      <div>
-        <div class="m-id">Module M3</div>
-        <h3>Audit &amp; Compliance Pack</h3>
-        <div class="m-block">
-          <div class="m-block-label">What it does</div>
-          <p>Every block prediction is committed to a SHA-256 Merkle log
-          before the actual block lands. The audit log is reorg-aware
-          (re-evaluates on chain reorganisation), produces signed,
-          time-stamped PDF reports and exposes a verification endpoint
-          for third-party auditors. Each report ships with the Merkle
-          root and per-block leaves so any external party can
-          independently verify hit-rate claims.</p>
-        </div>
-        <div class="m-block">
-          <div class="m-block-label">Who needs it</div>
-          <p>Pools with institutional LPs, mining co-operatives running
-          investor reports, and any buyer about to put €380k+ on the table
-          who needs cryptographic — not vendor-claim — proof of the
-          published hit-rate.</p>
-        </div>
-        <div class="m-price-row">
-          <span class="m-price">On request</span>
-          <span class="m-price-sub">one-time · smallest scope, biggest trust hook</span>
-          <a href="#contact" class="btn btn-primary m-cta" data-testid="m3-cta" onclick="openBidModal('enterprise', 'M3'); return false;">Inquire about M3</a>
-        </div>
-      </div>
-      <div class="m-mock" data-testid="m3-mock">
-        <div class="m-mock-title"><span class="m-mock-live">Merkle root · block 898600</span></div>
+      <div class="m-mock" data-testid="feature-audit-mock">
+        <div class="m-mock-title"><span class="m-mock-live">Cryptographic proof · latest block</span></div>
         <div class="m3-tree">
           <div class="layer"><span class="m3-node root">root</span></div>
           <div class="layer"><span class="m3-node">h0</span><span class="m3-node">h1</span></div>
@@ -2538,49 +2452,38 @@
     </div>
 
     <div class="m-prev-next">
-      <a href="#m2" class="prev" data-testid="m3-prev">
+      <a href="#feature-optimizer" class="prev" data-testid="feature-audit-prev">
         <div class="pn-label">← Previous</div>
-        <div class="pn-title">M2 · Multi-Pool / Multi-Worker</div>
+        <div class="pn-title">Predictive Template Optimizer</div>
       </a>
-      <a href="#m4" class="next" data-testid="m3-next">
+      <a href="#feature-backtest" class="next" data-testid="feature-audit-next">
         <div class="pn-label">Next →</div>
-        <div class="pn-title">M4 · 30 / 90-Day Backtest Engine</div>
+        <div class="pn-title">Backtest</div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ─── M4 ────────────────────────────────────────────────────────── -->
-<section id="m4" class="m-detail" data-testid="m-detail-m4">
+<!-- ─── Feature: Backtest ───────────────────────────────────────────── -->
+<section id="feature-backtest" class="m-detail" data-testid="feature-backtest">
   <div class="container">
     <div class="m-detail-grid">
       <div>
-        <div class="m-id">Module M4</div>
-        <h3>30 / 90-Day Backtest Engine</h3>
+        <div class="m-id">Feature · Standard equipment</div>
+        <h3>Backtest</h3>
         <div class="m-block">
-          <div class="m-block-label">What it does</div>
-          <p>Replays historical mempool snapshots block-by-block and
-          simulates how the PreBlock optimised template would have
-          performed against the actual mined block. Outputs cumulative
-          fee uplift for 7 / 30 / 90 / 365-day windows, with a
-          counterfactual ROI estimate priced at your hashrate and fee
-          curve. Lets you de-risk the buy decision with empirical past
-          data before committing capital.</p>
-        </div>
-        <div class="m-block">
-          <div class="m-block-label">Who needs it</div>
-          <p>Capital-conservative buyers, miners who want a verifiable
-          pre-purchase business case, and analytics teams running due
-          diligence on the Bitcoin fee market.</p>
+          <div class="m-block-label">What it does · Was es macht</div>
+          <p><strong>EN:</strong> Replays past mempool conditions against your current configuration to show how the engine would have performed. Time range and depth are configurable — the answer is a number, not a promise.</p>
+          <p><strong>DE:</strong> Rekonstruktion vergangener Mempool-Zustände gegen Ihre aktuelle Konfiguration — sichtbar wird, wie die Engine damals gearbeitet hätte. Zeitraum und Tiefe frei wählbar. Antwort ist eine Zahl, kein Versprechen.</p>
         </div>
         <div class="m-price-row">
-          <span class="m-price">On request</span>
-          <span class="m-price-sub">one-time</span>
-          <a href="#contact" class="btn btn-primary m-cta" data-testid="m4-cta" onclick="openBidModal('enterprise', 'M4'); return false;">Inquire about M4</a>
+          <span class="m-price">Included</span>
+          <span class="m-price-sub">in every annual licence</span>
+          <a href="#contact" class="btn btn-primary m-cta" data-testid="feature-backtest-cta">Contact Sales</a>
         </div>
       </div>
-      <div class="m-mock" data-testid="m4-mock">
-        <div class="m-mock-title"><span class="m-mock-live">90-day cumulative uplift · backtest</span></div>
+      <div class="m-mock" data-testid="feature-backtest-mock">
+        <div class="m-mock-title"><span class="m-mock-live">Cumulative uplift · replay</span></div>
         <div class="m4-chart">
           <svg viewBox="0 0 300 140" preserveAspectRatio="none">
             <defs>
@@ -2595,220 +2498,81 @@
                   fill="none" stroke="#ff8a34" stroke-width="2.2"/>
           </svg>
         </div>
-        <div class="m4-axis-x"><span>day 1</span><span>day 30</span><span>day 60</span><span>day 90</span></div>
-        <div class="m4-stat"><span>Total uplift (90d)</span><strong>+6.82%</strong></div>
+        <div class="m4-axis-x"><span>start</span><span>mid</span><span>end</span></div>
+        <div class="m4-stat"><span>Range &amp; depth</span><strong>configurable</strong></div>
       </div>
     </div>
 
     <div class="m-prev-next">
-      <a href="#m3" class="prev" data-testid="m4-prev">
+      <a href="#feature-audit" class="prev" data-testid="feature-backtest-prev">
         <div class="pn-label">← Previous</div>
-        <div class="pn-title">M3 · Audit &amp; Compliance Pack</div>
+        <div class="pn-title">Audit &amp; Compliance</div>
       </a>
-      <a href="#m5" class="next" data-testid="m4-next">
+      <a href="#feature-alerts" class="next" data-testid="feature-backtest-next">
         <div class="pn-label">Next →</div>
-        <div class="pn-title">M5 · Alerts &amp; Reporting</div>
+        <div class="pn-title">Alerts &amp; Reporting</div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ─── M5 ────────────────────────────────────────────────────────── -->
-<section id="m5" class="m-detail" data-testid="m-detail-m5">
+<!-- ─── Feature: Alerts & Reporting ─────────────────────────────────── -->
+<section id="feature-alerts" class="m-detail" data-testid="feature-alerts">
   <div class="container">
     <div class="m-detail-grid">
       <div>
-        <div class="m-id">Module M5</div>
+        <div class="m-id">Feature · Standard equipment</div>
         <h3>Alerts &amp; Reporting</h3>
         <div class="m-block">
-          <div class="m-block-label">What it does</div>
-          <p>Routes anomaly events (DATUM gateway down, hit-rate cliff,
-          tip-switch latency spike, reorg) to Telegram, Slack and generic
-          webhooks. Auto-generates a daily PDF digest at 08:00 local time
-          and a weekly executive summary on Mondays. Severity filtering
-          (critical / warning / info / success) ensures pagers only fire
-          on the events that matter.</p>
-        </div>
-        <div class="m-block">
-          <div class="m-block-label">Who needs it</div>
-          <p>Operators who don't want to babysit a dashboard 24/7. Pool
-          NOC teams running multi-shift coverage. Investors who want a
-          weekly board-grade KPI report without a phone call.</p>
+          <div class="m-block-label">What it does · Was es macht</div>
+          <p><strong>EN:</strong> Automatic notifications for block wins, engine health and configuration drift — over Telegram, Discord or email. Weekly aggregated report per licence.</p>
+          <p><strong>DE:</strong> Automatische Benachrichtigungen für Block-Erfolge, Engine-Gesundheit und Konfigurations-Abweichungen — per Telegram, Discord oder E-Mail. Wöchentlicher, aggregierter Report je Lizenz.</p>
         </div>
         <div class="m-price-row">
-          <span class="m-price">On request</span>
-          <span class="m-price-sub">one-time</span>
-          <a href="#contact" class="btn btn-primary m-cta" data-testid="m5-cta" onclick="openBidModal('enterprise', 'M5'); return false;">Inquire about M5</a>
+          <span class="m-price">Included</span>
+          <span class="m-price-sub">in every annual licence</span>
+          <a href="#contact" class="btn btn-primary m-cta" data-testid="feature-alerts-cta">Contact Sales</a>
         </div>
       </div>
-      <div class="m-mock" data-testid="m5-mock">
+      <div class="m-mock" data-testid="feature-alerts-mock">
         <div class="m-mock-title"><span class="m-mock-live">Live notification feed</span></div>
         <div class="m5-notif">
           <div class="channel">TG</div>
           <div class="body">
             <div class="head"><span class="name">PreBlock</span><span>2 min ago</span></div>
-            <div class="msg">DATUM uptime restored · 99.4% (24h)</div>
+            <div class="msg">Engine health restored · 99.4% uptime (24h)</div>
           </div>
         </div>
         <div class="m5-notif">
-          <div class="channel">SL</div>
+          <div class="channel">DC</div>
           <div class="body">
             <div class="head"><span class="name">#mining-ops</span><span>17 min ago</span></div>
-            <div class="msg">Hit-rate +1 block: <strong style="color:var(--accent);">96.2%</strong> (rolling 1h)</div>
+            <div class="msg">Block win · rolling hit-rate <strong style="color:var(--accent);">high</strong></div>
           </div>
         </div>
         <div class="m5-notif">
-          <div class="channel">WH</div>
+          <div class="channel">✉</div>
           <div class="body">
-            <div class="head"><span class="name">webhook · pagerduty</span><span>1h ago</span></div>
-            <div class="msg">Weekly PDF digest delivered to ops@example.com</div>
+            <div class="head"><span class="name">weekly report</span><span>1h ago</span></div>
+            <div class="msg">Weekly digest delivered to ops@example.com</div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="m-prev-next">
-      <a href="#m4" class="prev" data-testid="m5-prev">
+      <a href="#feature-backtest" class="prev" data-testid="feature-alerts-prev">
         <div class="pn-label">← Previous</div>
-        <div class="pn-title">M4 · 30 / 90-Day Backtest Engine</div>
-      </a>
-      <a href="#m6" class="next" data-testid="m5-next">
-        <div class="pn-label">Next →</div>
-        <div class="pn-title">M6 · White-Label / Multi-Tenant</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ─── M6 ────────────────────────────────────────────────────────── -->
-<section id="m6" class="m-detail" data-testid="m-detail-m6">
-  <div class="container">
-    <div class="m-detail-grid">
-      <div>
-        <div class="m-id">Module M6</div>
-        <h3>White-Label / Multi-Tenant</h3>
-        <div class="m-block">
-          <div class="m-block-label">What it does</div>
-          <p>Rebrands the entire frontend (colours, logos, domain, custom
-          legal pages) and isolates per-tenant data in MongoDB. Each
-          customer gets their own login-scoped dashboard while you keep
-          a single PreBlock install to maintain. Includes a tenant
-          provisioning admin endpoint and a per-tenant license seal.</p>
-        </div>
-        <div class="m-block">
-          <div class="m-block-label">Who needs it</div>
-          <p>Mining-as-a-Service providers, pool resellers, hosting
-          operators who want to sell PreBlock as part of their stack
-          without exposing the upstream vendor. Recurring tenants =
-          recurring margin.</p>
-        </div>
-        <div class="m-price-row">
-          <span class="m-price">On request</span>
-          <span class="m-price-sub">one-time</span>
-          <a href="#contact" class="btn btn-primary m-cta" data-testid="m6-cta" onclick="openBidModal('enterprise', 'M6'); return false;">Inquire about M6</a>
-        </div>
-      </div>
-      <div class="m-mock" data-testid="m6-mock">
-        <div class="m-mock-title"><span class="m-mock-live">Active tenants · 3 of 12 shown</span></div>
-        <div class="m6-tenants">
-          <div class="m6-tenant preblock">
-            <div class="dot"></div>
-            <div class="name">PreBlock</div>
-            <div class="sub">core · vendor</div>
-          </div>
-          <div class="m6-tenant acme">
-            <div class="dot"></div>
-            <div class="name">Acme Pool</div>
-            <div class="sub">reseller</div>
-          </div>
-          <div class="m6-tenant xpool">
-            <div class="dot"></div>
-            <div class="name">Pool-X</div>
-            <div class="sub">MaaS</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="m-prev-next">
-      <a href="#m5" class="prev" data-testid="m6-prev">
-        <div class="pn-label">← Previous</div>
-        <div class="pn-title">M5 · Alerts &amp; Reporting</div>
-      </a>
-      <a href="#m7" class="next" data-testid="m6-next">
-        <div class="pn-label">Next →</div>
-        <div class="pn-title">M7 · Extended Update &amp; Support Plan</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ─── M7 ────────────────────────────────────────────────────────── -->
-<section id="m7" class="m-detail" data-testid="m-detail-m7">
-  <div class="container">
-    <div class="m-detail-grid">
-      <div>
-        <div class="m-id">Module M7</div>
-        <h3>Extended Update &amp; Support Plan</h3>
-        <div class="m-block">
-          <div class="m-block-label">What it does</div>
-          <p>Stacks an additional year of vendor updates and priority
-          support on top of the included Year-1 window. No auto-renewal,
-          no subscription lock-in — purchased on-demand, year by year,
-          at your discretion. Includes minor / patch releases for every
-          licensed module, a priority response SLA on critical incidents,
-          and quarterly architecture review calls.</p>
-        </div>
-        <div class="m-block">
-          <div class="m-block-label">Who needs it</div>
-          <p>Anyone running PreBlock past the first year who wants
-          guaranteed continued maintenance from the vendor rather than
-          taking the codebase fully in-house. Aligns vendor and
-          customer incentives without forcing a SaaS billing model.</p>
-        </div>
-        <div class="m-price-row">
-          <span class="m-price">On request</span>
-          <span class="m-price-sub">per additional year</span>
-          <a href="#contact" class="btn btn-primary m-cta" data-testid="m7-cta" onclick="openBidModal('enterprise', 'M7'); return false;">Inquire about M7</a>
-        </div>
-      </div>
-      <div class="m-mock" data-testid="m7-mock">
-        <div class="m-mock-title"><span class="m-mock-live">Update entitlement timeline</span></div>
-        <div class="m7-timeline">
-          <div class="m7-year included">
-            <div class="yr">Year 1</div>
-            <div class="status">included</div>
-          </div>
-          <div class="m7-year renewal">
-            <div class="yr">Year 2</div>
-            <div class="status">+ M7</div>
-          </div>
-          <div class="m7-year renewal">
-            <div class="yr">Year 3</div>
-            <div class="status">+ M7</div>
-          </div>
-          <div class="m7-year renewal" style="opacity:.65;">
-            <div class="yr">Year 4</div>
-            <div class="status">optional</div>
-          </div>
-          <div class="m7-year renewal" style="opacity:.45;">
-            <div class="yr">Year 5</div>
-            <div class="status">optional</div>
-          </div>
-        </div>
-        <div class="m7-foot">Buy each year on demand · no auto-renewal · no subscription lock-in</div>
-      </div>
-    </div>
-
-    <div class="m-prev-next">
-      <a href="#m6" class="prev" data-testid="m7-prev">
-        <div class="pn-label">← Previous</div>
-        <div class="pn-title">M6 · White-Label / Multi-Tenant</div>
+        <div class="pn-title">Backtest</div>
       </a>
       <span class="placeholder"></span>
     </div>
   </div>
 </section>
+
+<!-- ─── M6 removed (v2.01 cleanup) ─────────────────────────────────── -->
+
+<!-- ─── M7 removed (v2.01 cleanup) ─────────────────────────────────── -->
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- ROI CALCULATOR                                                      -->
@@ -2902,45 +2666,38 @@
 <section id="architecture">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">How it works</span>
+      <span class="eyebrow">How it works · Wie es funktioniert</span>
       <h2>The path from mempool to pool, in milliseconds.</h2>
-      <p>Bitcoin Core streams transactions via ZMQ. PreBlock's Mempool Streamer buckets them into three forward block templates. On every tip change, the predictive template is delivered to your OCEAN pool through DATUM Gateway — typically in under 50 ms.</p>
+      <p><strong>EN:</strong> PreBlock runs next to your Bitcoin node, prepares an optimised block template ahead of time and hands it to your pool at every tip change — with sub-second delivery under normal conditions.</p>
+      <p><strong>DE:</strong> PreBlock läuft neben Ihrem Bitcoin-Node, bereitet vor jedem Blockwechsel ein optimiertes Template vor und liefert es an Ihren Pool aus — unter normalen Bedingungen im Sub-Sekunden-Bereich.</p>
     </div>
 
     <div class="arch-card mono" data-testid="architecture-diagram">
                     ┌──────────────────┐
-                    │  Bitcoin Knots   │
-                    │  (Mainnet node)  │
+                    │  Bitcoin Node    │
+                    │    (mainnet)     │
                     └────────┬─────────┘
-                             │ ZMQ (rawtx, hashblock)
+                             │  live block & tx feed
                              ▼
-              ┌──────────────────────────┐
-              │   Mempool Streamer       │
-              │   ─ lookahead bucketing  │
-              │   ─ address analysis     │
-              │   ─ hit-rate tracking    │
-              └────────┬─────────────────┘
-                       │ MongoDB
-                       ▼
-        ┌─────────────────────────────────┐
-        │  PreBlock Backend (FastAPI)     │
-        │  ─ /api/datum/live              │
-        │  ─ /api/mempool/snapshot        │
-        │  ─ /api/thesis/ai-interpretation│
-        │  ─ /api/roi/market-data         │
-        │  ─ /api/health                  │
-        └────────┬────────────────┬───────┘
-                 │                │
-                 ▼                ▼
-         ┌──────────────┐   ┌──────────────┐
-         │   DATUM      │   │   React UI   │
-         │   Gateway    │   │ (sales-edition)
-         └──────┬───────┘   └──────────────┘
-                │
-                ▼
-         ┌──────────────┐
-         │  OCEAN Pool  │
-         └──────────────┘
+                    ┌──────────────────┐
+                    │  PreBlock Engine │
+                    └────────┬─────────┘
+                             │
+                             ▼
+                    ┌──────────────────┐
+                    │    Data Layer    │
+                    └────────┬─────────┘
+                             │
+                ┌────────────┴────────────┐
+                ▼                         ▼
+        ┌──────────────┐           ┌──────────────┐
+        │  Public API  │           │  Client UI   │
+        └──────┬───────┘           └──────────────┘
+               │
+               ▼
+        ┌──────────────┐
+        │ Pool Adapter │
+        └──────────────┘
     </div>
   </div>
 </section>
@@ -2994,7 +2751,7 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Commercial structure</span>
-      <h2>Four tiers — from free community access to full IP buyout.</h2>
+      <h2>Three annual licences — plus a free community edition.</h2>
       <p>Community edition is free forever. Commercial tiers add API-Keys, Adapter-Mode and Support. Each commercial deployment carries a unique, cryptographically signed Authenticity Key. NDA template provided on first contact.</p>
     </div>
 
@@ -3133,45 +2890,10 @@
         </ul>
         <a href="https://preblock.io/sales/inquiry?tier=enterprise_pool" class="btn btn-ghost" data-testid="price-cta-enterprise-pool" style="border-color: #06b6d4; color: #06b6d4;">Enterprise-Anfrage <i data-lucide="arrow-right"></i></a>
       </div>
-
-      <div class="price-card" data-testid="price-card-pro">
-        <h3>Pro</h3>
-        <p class="price-subtitle">Institutional-tier operators · Adapter + SLA</p>
-        <div class="price-hashrate" data-testid="hashrate-hint-pro"><span class="bolt">⚡</span> Recommended: <span data-pricing-key="pro.hashrate">50 – 500 PH/s</span> <span style="opacity:0.6;">· <span data-pricing-key="pro.hashrate_context">Institutional / large farm</span></span></div>
-        <div class="price-tier">On request</div>
-        <div class="price-tier-sub">Annual license · Fiat (SEPA) only · Contract available</div>
-        <ul>
-          <li>Up to 5 nodes</li>
-          <li>Getblocktemplate (production) + DATUM Feeder (beta) — SV2, Braiins on roadmap</li>
-          <li>Additional adapters: +€5,000/year</li>
-          <li>Priority support · monthly sync calls</li>
-          <li>License ping (30-day grace)</li>
-          <li>Modules can be added optionally</li>
-        </ul>
-        <a href="https://preblock.io/sales/inquiry?tier=pro" class="btn btn-ghost" data-testid="price-cta-pro">Request quote <i data-lucide="arrow-right"></i></a>
-      </div>
-
-      <div class="price-card" data-testid="price-card-enterprise">
-        <h3>Enterprise · Full IP Buyout</h3>
-        <p class="price-subtitle">Full IP transfer · §16 EStG-compatible business succession (DE tax code)</p>
-        <div class="price-hashrate" data-testid="hashrate-hint-enterprise"><span class="bolt">⚡</span> Recommended: <span data-pricing-key="enterprise.hashrate">500 PH/s+</span> <span style="opacity:0.6;">· <span data-pricing-key="enterprise.hashrate_context">Regional operator / white-label</span></span></div>
-        <div class="price-tier">from €380,000<span style="font-size: 14px; color: var(--text-muted); margin-left: 8px;">+ Best Offer</span></div>
-        <div class="price-tier-sub">one-time · Fiat only · IP transfer included</div>
-        <ul>
-          <li>Full IP transfer (Core + all modules M1–M7)</li>
-          <li>Unlimited node connections</li>
-          <li>All adapters included</li>
-          <li>White-label &amp; on-premise</li>
-          <li>Optional: air-gap license (no ping-back)</li>
-          <li>Optional: source-code escrow · on-site integration</li>
-          <li><strong>Auction / best offer above €380k welcome</strong></li>
-        </ul>
-        <a href="#" class="btn btn-ghost" data-testid="price-cta-enterprise" onclick="openBidModal('enterprise'); return false;">Submit offer <i data-lucide="arrow-right"></i></a>
-      </div>
     </div>
 
     <p style="margin-top: 32px; font-size: 13px; color: var(--text-dim); text-align: center; font-family: 'JetBrains Mono', monospace;">
-      Prices are gross (incl. 19% German VAT) unless stated otherwise · Modules are quoted separately (see Modules section) · <strong>Under Enterprise-Buyout all modules transfer with full IP</strong><br>
+      Prices are gross (incl. 19% German VAT) unless stated otherwise.<br>
       Full pricing document: <a href="mailto:sales@preblock.io?subject=Pricing%20Tiers%20FAQ">sales@preblock.io</a>
     </p>
   </div>
@@ -3971,9 +3693,9 @@ async function submitNewsletter(event) {
     // notes textarea so the inquiry lands with full context.
     const notes = document.getElementById('bid-notes');
     if (notes && moduleId) {
-      const tag = `[Module of interest: ${moduleId}${source ? ` · referred from ${source}` : ''}]`;
+      const tag = `[Feature of interest: ${moduleId}${source ? ` · referred from ${source}` : ''}]`;
       // Don't overwrite if the user already typed something below the tag
-      if (!notes.value.startsWith('[Module of interest:')) {
+      if (!notes.value.startsWith('[Feature of interest:')) {
         notes.value = tag + (notes.value ? '\n\n' + notes.value : '');
       }
     }
@@ -4223,12 +3945,10 @@ async function submitNewsletter(event) {
         <div class="bid-row">
           <label for="bid-model">Tier *</label>
           <select id="bid-model" name="license_model" required data-testid="bid-model" onchange="toggleAuctionOptIn()">
-            <option value="starter_share">Starter · Success-Fee — €300 intro (was €500) + Fee-Share</option>
-            <option value="starter_fix">Starter · Fix — €500 intro (was €800) one-time</option>
-            <option value="pilot">Pilot — €5,000 intro (was €8,000) · 5 nodes · guided 8-week deployment</option>
-            <option value="pro">Pro — annual license (on request)</option>
-            <option value="enterprise">Enterprise · Full IP Buyout — from €380k+ (auction)</option>
-            <option value="module">Module add-on (M1–M7)</option>
+            <option value="basic_node">Basic Node — €490 / year (SUMMER26: €392)</option>
+            <option value="pro_cluster">Pro Cluster — €1,990 / year (SUMMER26: €1,592)</option>
+            <option value="enterprise_pool">Enterprise Pool — €8,990 / year (SUMMER26: €7,192)</option>
+            <option value="feature">Allgemeine Feature-Frage</option>
             <option value="other">Other / not sure yet</option>
           </select>
         </div>
@@ -4245,7 +3965,7 @@ async function submitNewsletter(event) {
 
       <div class="bid-row">
         <label for="bid-notes">Notes</label>
-        <textarea id="bid-notes" name="notes" maxlength="2000" placeholder="Hashrate, modules of interest, integration constraints, anything we should know up front." data-testid="bid-notes"></textarea>
+        <textarea id="bid-notes" name="notes" maxlength="2000" placeholder="Hashrate, features of interest, integration constraints, anything we should know up front." data-testid="bid-notes"></textarea>
       </div>
 
       <!-- Auction opt-in — only shown when Enterprise-Tier + offer is set -->
@@ -4365,7 +4085,7 @@ async function submitNewsletter(event) {
 
       <div class="bid-row">
         <label for="bid-notes">Notes</label>
-        <textarea id="bid-notes" name="notes" maxlength="2000" placeholder="Hashrate, modules of interest, integration constraints, anything we should know up front." data-testid="bid-notes"></textarea>
+        <textarea id="bid-notes" name="notes" maxlength="2000" placeholder="Hashrate, features of interest, integration constraints, anything we should know up front." data-testid="bid-notes"></textarea>
       </div>
 
       <!-- Auction opt-in — only shown when Enterprise-Tier + offer is set -->
