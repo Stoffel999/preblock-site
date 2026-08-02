@@ -2104,7 +2104,6 @@
     <nav class="primary-nav">
       <a href="#knots" data-testid="nav-knots">Approach</a>
       <a href="#features" data-testid="nav-features">Features</a>
-      <a href="#modules" data-testid="nav-modules">Modules</a>
       <a href="#roi" data-testid="nav-roi">ROI</a>
       <a href="#license" data-testid="nav-license">Pricing</a>
       <a href="#founder" data-testid="nav-founder">Story</a>
@@ -2363,171 +2362,8 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- FEATURES                                                            -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<section id="features">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">What it does</span>
-      <h2>One platform. Eight modules. Zero noise.</h2>
-      <p>Every component is purpose-built for predictive mining on a single PreBlock node — no GPU clusters, no obscure dependencies, no external SaaS.</p>
-    </div>
-
-    <div class="features-grid">
-      <div class="feature-card" data-testid="feature-mempool-radar">
-        <div class="feature-icon"><i data-lucide="radar"></i></div>
-        <h3>Mempool Radar</h3>
-        <p>Live ZMQ stream sorted by effective fee-rate. Three lookahead buckets (h+1, h+2, h+3) at every tick. Legacy-input + dormancy detection as second-order signals.</p>
-        <div class="feature-meta">
-          <span>ZMQ rawtx</span><span>3-block buckets</span>
-        </div>
-      </div>
-
-      <div class="feature-card" data-testid="feature-datum">
-        <div class="feature-icon"><i data-lucide="link-2"></i></div>
-        <h3>DATUM Gateway Monitor</h3>
-        <p>Real-time view of pool connection, stratum status and worker hashrates. Connected workers, last-seen timestamps, kumulated TXs delivered to OCEAN.</p>
-        <div class="feature-meta">
-          <span>OCEAN-native</span><span>Digest-auth</span>
-        </div>
-      </div>
-
-      <div class="feature-card" data-testid="feature-hashrate-race">
-        <div class="feature-icon"><i data-lucide="trophy"></i></div>
-        <h3>Hashrate Race</h3>
-        <p>Live worker comparison, hour-champion award, 24h history. Devices ≥ 1 TH/s individual; smaller ASICs (Bitaxe, LuckyMiner, Nerdminer) aggregated.</p>
-        <div class="feature-meta">
-          <span>Per-worker</span><span>24h history</span>
-        </div>
-      </div>
-
-      <div class="feature-card" data-testid="feature-perf-analytics">
-        <div class="feature-icon"><i data-lucide="bar-chart-3"></i></div>
-        <h3>Performance Analytics</h3>
-        <p>Hit-rate per block, outlier filter for empty blocks & reorgs, multi-block comparison (+1/+2/+3). CSV & PDF export for full audit trails.</p>
-        <div class="feature-meta">
-          <span>CSV export</span><span>PDF audit</span>
-        </div>
-      </div>
-
-      <div class="feature-card" data-testid="feature-ai-interpretation">
-        <div class="feature-icon"><i data-lucide="sparkles"></i></div>
-        <h3>AI Interpretation</h3>
-        <p>Claude Sonnet 4.5 summarises performance data scientifically on demand — strict English output for international buyers, configurable language.</p>
-        <div class="feature-meta">
-          <span>Claude Sonnet 4.5</span><span>EN/DE</span>
-        </div>
-      </div>
-
-      <div class="feature-card" data-testid="feature-telegram">
-        <div class="feature-icon"><i data-lucide="bell"></i></div>
-        <h3>Telegram Notifications</h3>
-        <p>Real-time alerts on new blocks, hit-rate drops, RPC failures, DATUM disconnects. Sunday 23:00 (Berlin) auto-PDF weekly report.</p>
-        <div class="feature-meta">
-          <span>Real-time</span><span>Weekly PDF</span>
-        </div>
-      </div>
-
-      <div class="feature-card" data-testid="feature-multilang">
-        <div class="feature-icon"><i data-lucide="globe"></i></div>
-        <h3>Multilingual UI</h3>
-        <p>DE/EN ships native. Smart hybrid auto-translate for additional languages on demand. Translations cached permanently — generate once, always available.</p>
-        <div class="feature-meta">
-          <span>Native DE/EN</span><span>Cached</span>
-        </div>
-      </div>
-
-      <div class="feature-card" data-testid="feature-system-health">
-        <div class="feature-icon"><i data-lucide="activity"></i></div>
-        <h3>System & Health Dashboard</h3>
-        <p>Service-status for backend, worker, DATUM, Bitcoin Core, MongoDB. Disk, RAM, CPU and ZMQ heartbeat. Auto-refresh every 30 seconds.</p>
-        <div class="feature-meta">
-          <span>All services</span><span>30s refresh</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- MODULES & ADD-ONS                                                   -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<section id="modules">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Core + add-on modules</span>
-      <h2>Build your stack. Pay only for what you need.</h2>
-      <p>The PreBlock <strong>Core</strong> includes the Knots-filtered mempool radar, DATUM gateway monitor, hashrate race, ROI calculator and license system. Specialised capabilities are sold as <strong>optional add-on modules</strong> — buy the ones you need, skip the rest. Each module is normally an independent license entitlement keyed to your Authenticity Key. <strong>Under the Enterprise-Buyout tier (full IP transfer), any module purchased in the same deal is priced at the upper end of its published range and transfers to the buyer with full IP rights — no ongoing licensing.</strong></p>
-    </div>
-
-    <div class="modules-grid">
-      <a href="#m1" class="module-card crown" data-testid="module-m1">
-        <span class="module-tag">Crown jewel</span>
-        <div class="module-id">M1</div>
-        <h4>Predictive Template Optimizer</h4>
-        <p class="module-hook">"Compare PreBlock's optimised template against the default Core template in real time. +0.3–1% fee uplift, provable in A/B mode."</p>
-        <div class="module-price">On request <span class="small">Pro / Enterprise tier</span></div>
-      </a>
-
-      <a href="#m2" class="module-card" data-testid="module-m2">
-        <div class="module-id">M2</div>
-        <h4>Multi-Pool / Multi-Worker</h4>
-        <p class="module-hook">"Run multiple DATUM gateways in parallel. Compare PreBlock templates vs ViaBTC, Foundry, AntPool side-by-side."</p>
-        <div class="module-price">On request <span class="small">Pro / Enterprise tier</span></div>
-      </a>
-
-      <a href="#m3" class="module-card" data-testid="module-m3">
-        <div class="module-id">M3</div>
-        <h4>Audit &amp; Compliance Pack</h4>
-        <p class="module-hook">"SHA-256 audit logging, reorg-aware hit-rate, exportable PDF reports for your auditors and investors. Trust-anchor for institutional DD."</p>
-        <div class="module-price">On request <span class="small">Pro / Enterprise tier</span></div>
-      </a>
-
-      <a href="#m4" class="module-card" data-testid="module-m4">
-        <div class="module-id">M4</div>
-        <h4>30/90-Day Backtest Engine</h4>
-        <p class="module-hook">"Historical mempool replay. Simulate ROI on 30 or 90 days of past data before you spend a single satoshi."</p>
-        <div class="module-price">On request <span class="small">Pro / Enterprise tier</span></div>
-      </a>
-
-      <a href="#m5" class="module-card" data-testid="module-m5">
-        <div class="module-id">M5</div>
-        <h4>Alerts &amp; Reporting</h4>
-        <p class="module-hook">"Telegram, Slack and webhook alerts. Daily / weekly auto-PDF. We wake you only on anomalies — sleep through the routine."</p>
-        <div class="module-price">On request <span class="small">Pro / Enterprise tier</span></div>
-      </a>
-
-      <a href="#m6" class="module-card" data-testid="module-m6">
-        <div class="module-id">M6</div>
-        <h4>White-Label / Multi-Tenant</h4>
-        <p class="module-hook">"Brand it your way. Run customer portals. For resellers and Mining-as-a-Service providers."</p>
-        <div class="module-price">On request <span class="small">Pro / Enterprise tier</span></div>
-      </a>
-
-      <a href="#m7" class="module-card" data-testid="module-m7">
-        <div class="module-id">M7</div>
-        <h4>Extended Update &amp; Support Plan</h4>
-        <p class="module-hook">"Stack additional years of vendor updates + priority support. Buy on demand — no auto-renewal, no subscription lock-in."</p>
-        <div class="module-price">On request <span class="small">Pro / Enterprise tier</span></div>
-      </a>
-    </div>
-
-    <p style="margin-top: 32px; font-size: 13px; color: var(--text-dim); text-align: center; font-family: 'JetBrains Mono', monospace;">
-      Modules are quoted on request for Pro and Enterprise-Buyout customers &mdash; each engagement is priced after a short qualification call. <strong>Under Enterprise-Buyout, all purchased modules transfer with full IP.</strong> Cross-module discounts and bundles negotiated per deal.
-    </p>
-
-    <!-- Anchor strip: jump to any module detail page -->
-    <div class="m-jump-strip" data-testid="module-jump-strip">
-      <a href="#m1" class="m-jump-pill">M1 Optimizer</a>
-      <a href="#m2" class="m-jump-pill">M2 Multi-Pool</a>
-      <a href="#m3" class="m-jump-pill">M3 Audit</a>
-      <a href="#m4" class="m-jump-pill">M4 Backtest</a>
-      <a href="#m5" class="m-jump-pill">M5 Alerts</a>
-      <a href="#m6" class="m-jump-pill">M6 White-Label</a>
-      <a href="#m7" class="m-jump-pill">M7 Support</a>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- MODULE DETAIL PAGES (M1–M7)                                       -->
@@ -3876,7 +3712,6 @@ async function submitNewsletter(event) {
         <h4>Product</h4>
         <a href="#knots">Adaptive Selection</a>
         <a href="#features">Features</a>
-        <a href="#modules">Modules</a>
         <a href="#roi">ROI Calculator</a>
         <a href="#license">License Models</a>
         <a href="#updates">Updates</a>
