@@ -2167,64 +2167,41 @@
              values below match the current config/pricing.json snapshot so the
              page renders sensibly even before the fetch resolves. -->
         <div class="tier-strip reveal in delay-2" data-testid="hero-tier-strip">
-          <a href="https://preblock.io/sales/inquiry?tier=community" class="tier-tile tier-tile--community" data-testid="tier-tile-community">
-            <span class="tier-tile__icon">🎁</span>
-            <span class="tier-tile__body">
-              <span class="tier-tile__title">Community <span class="tier-tile__badge tier-tile__badge--free" data-pricing-key="community.price">FREE</span></span>
-              <span class="tier-tile__cta">Try it free →</span>
-            </span>
-          </a>
-          <a href="https://preblock.io/sales/inquiry?tier=starter_fix" class="tier-tile tier-tile--fix" data-testid="tier-tile-fix">
+          <a href="https://preblock.io/sales/inquiry?tier=basic_node" class="tier-tile tier-tile--fix" data-testid="tier-tile-basic-node">
             <span class="tier-tile__icon">₿</span>
             <span class="tier-tile__body">
-              <span class="tier-tile__title">Starter · Fix
-                <span class="tier-tile__badge tier-tile__badge--paid" data-pricing-key="starter_fix.price">€500</span>
-                <span class="tier-tile__strike" data-pricing-key="starter_fix.original">€800</span>
+              <span class="tier-tile__title">Basic Node
+                <span class="tier-tile__badge tier-tile__badge--paid">€490</span>
+                <span class="tier-tile__strike">pro Jahr</span>
               </span>
-              <span class="tier-tile__cta">Buy now →</span>
+              <span class="tier-tile__cta">Try 14 days free →</span>
             </span>
           </a>
-          <a href="https://preblock.io/sales/inquiry?tier=starter_share" class="tier-tile tier-tile--share" data-testid="tier-tile-share">
-            <span class="tier-tile__icon">🤝</span>
-            <span class="tier-tile__body">
-              <span class="tier-tile__title">Starter · Share
-                <span class="tier-tile__badge tier-tile__badge--share" data-pricing-key="starter_share.price">€300</span>
-                <span class="tier-tile__strike" data-pricing-key="starter_share.original">€500</span>
-              </span>
-              <span class="tier-tile__cta">Success-fee →</span>
-            </span>
-          </a>
-          <a href="https://preblock.io/sales/inquiry?tier=home_fix" class="tier-tile tier-tile--home-fix" data-testid="tier-tile-home-fix">
+          <a href="https://preblock.io/sales/inquiry?tier=pro_cluster" class="tier-tile tier-tile--home-fix" data-testid="tier-tile-pro-cluster">
             <span class="tier-tile__icon">✨</span>
             <span class="tier-tile__body">
-              <span class="tier-tile__title">Home · Fix
-                <span class="tier-tile__badge tier-tile__badge--home" data-pricing-key="home_fix.price">€1,200</span>
-                <span class="tier-tile__strike" data-pricing-key="home_fix.original">€2,000</span>
+              <span class="tier-tile__title">Pro Cluster
+                <span class="tier-tile__badge tier-tile__badge--home">€1,990</span>
+                <span class="tier-tile__strike">pro Jahr</span>
               </span>
               <span class="tier-tile__cta">AI templates →</span>
             </span>
           </a>
-          <a href="https://preblock.io/sales/inquiry?tier=home_share" class="tier-tile tier-tile--home-share" data-testid="tier-tile-home-share">
-            <span class="tier-tile__icon">🔥</span>
-            <span class="tier-tile__body">
-              <span class="tier-tile__title">Home · Share
-                <span class="tier-tile__badge tier-tile__badge--home-share" data-pricing-key="home_share.price">€800</span>
-                <span class="tier-tile__strike" data-pricing-key="home_share.original">€1,500</span>
-              </span>
-              <span class="tier-tile__cta">AI + success-fee →</span>
-            </span>
-          </a>
-          <a href="https://preblock.io/sales/inquiry?tier=pilot" class="tier-tile tier-tile--pilot" data-testid="tier-tile-pilot">
+          <a href="https://preblock.io/sales/inquiry?tier=enterprise_pool" class="tier-tile tier-tile--pilot" data-testid="tier-tile-enterprise-pool">
             <span class="tier-tile__icon">🚀</span>
             <span class="tier-tile__body">
-              <span class="tier-tile__title">Pilot
-                <span class="tier-tile__badge tier-tile__badge--pilot" data-pricing-key="pilot.price">€5,000</span>
-                <span class="tier-tile__strike" data-pricing-key="pilot.original">€8,000</span>
+              <span class="tier-tile__title">Enterprise Pool
+                <span class="tier-tile__badge tier-tile__badge--pilot">€8,990</span>
+                <span class="tier-tile__strike">pro Jahr · SLA</span>
               </span>
-              <span class="tier-tile__cta">Book pilot →</span>
+              <span class="tier-tile__cta">Book enterprise →</span>
             </span>
           </a>
         </div>
+        <p class="tier-note" style="font-size:12px;color:var(--text-muted);margin-top:8px;">
+          Jährliche Lizenz · läuft nach 12 Monaten automatisch ab · keine Verlängerung.
+          Fee-Share (−20 %) für Basic Node und Pro Cluster verfügbar; Enterprise Pool nur Fixpreis.
+        </p>
 
         <div class="hero-cta reveal in delay-3">
           <button type="button" class="btn btn-primary btn-lg" data-testid="hero-cta-trial" onclick="PreBlockTrial.open()">
@@ -3225,134 +3202,70 @@
     </div>
 
     <div class="pricing-grid">
-      <div class="price-card featured" data-testid="price-card-starter-share">
-        <span class="price-badge">Popular · 🔥 -40% Intro</span>
-        <h3>Starter · Success-Fee</h3>
-        <p class="price-subtitle">Fair entry model · Coinbase-Split enforced</p>
-        <div class="price-hashrate" data-testid="hashrate-hint-starter-share"><span class="bolt">⚡</span> Recommended: <span data-pricing-key="starter_share.hashrate">1 – 100 TH/s</span> <span style="opacity:0.6;">· <span data-pricing-key="starter_share.hashrate_context">Solo home miner (S9 / S19)</span></span></div>
+      <div class="price-card" data-testid="price-card-basic-node">
+        <span class="price-badge" style="background: rgba(251, 146, 60, 0.15); color: #fb923c; border-color: rgba(251, 146, 60, 0.35);">Einstieg</span>
+        <h3>Basic Node</h3>
+        <p class="price-subtitle">Solo miner · 1 – 100 TH/s</p>
         <div class="price-tier">
-          <span style="text-decoration: line-through; color: var(--text-muted); font-size: 22px; font-weight: 400; margin-right: 12px;">€500</span>
-          <span style="color: #fb923c;">€300</span>
+          <span style="color: #fb923c;">€490</span>
+          <span style="font-size: 14px; color: var(--text-muted); margin-left: 8px;">pro Jahr</span>
         </div>
-        <div class="price-tier-sub">one-time · incl. 19% VAT · + Success-Fee</div>
-        <div style="margin-top: 8px; padding: 6px 10px; background: rgba(251, 146, 60, 0.12); border: 1px solid rgba(251, 146, 60, 0.35); border-radius: 6px; font-size: 12px; color: #fb923c; font-family: 'JetBrains Mono', monospace; text-align: center;">
-          🎉 Introductory offer · valid until 30 Sep 2026
+        <div class="price-tier-sub">Jahres-Lizenz · inkl. 19 % USt.</div>
+        <div style="margin-top: 8px; padding: 6px 10px; background: rgba(148, 163, 184, 0.10); border: 1px solid rgba(148, 163, 184, 0.30); border-radius: 6px; font-size: 11px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; text-align: center;">
+          Fee-Share optional: €390 pro Jahr (-20 % Coinbase-Splitting)
         </div>
         <ul>
-          <li>You keep the block subsidy (3.125 BTC)</li>
-          <li>PreBlock only receives TX fees (coinbase output)</li>
-          <li>1 node · API key included</li>
-          <li>Advisory + sidecar mode</li>
-          <li>Bitcoin, Lightning or SEPA</li>
-          <li>Community support (Discord)</li>
+          <li>1 Node · API-Key inklusive</li>
+          <li>Advisory- und Sidecar-Modus</li>
+          <li>Bitcoin, Lightning oder SEPA</li>
+          <li>E-Mail-Support (Werktage)</li>
+          <li>Läuft nach 12 Monaten automatisch ab · keine Verlängerung</li>
         </ul>
-        <a href="https://preblock.io/sales/inquiry?tier=starter_share" class="btn btn-primary" data-testid="price-cta-starter-share">Buy now <i data-lucide="arrow-right"></i></a>
+        <a href="https://preblock.io/sales/inquiry?tier=basic_node" class="btn btn-primary" data-testid="price-cta-basic-node">Jetzt 14 Tage testen <i data-lucide="arrow-right"></i></a>
       </div>
 
-      <div class="price-card" data-testid="price-card-starter-fix">
-        <span class="price-badge" style="background: rgba(251, 146, 60, 0.15); color: #fb923c; border-color: rgba(251, 146, 60, 0.35);">🔥 -37% Intro</span>
-        <h3>Starter · Fix</h3>
-        <p class="price-subtitle">For solo miners · no coinbase share</p>
-        <div class="price-hashrate" data-testid="hashrate-hint-starter-fix"><span class="bolt">⚡</span> Recommended: <span data-pricing-key="starter_fix.hashrate">1 – 100 TH/s</span> <span style="opacity:0.6;">· <span data-pricing-key="starter_fix.hashrate_context">Solo home miner (S9 / S19)</span></span></div>
+      <div class="price-card featured" data-testid="price-card-pro-cluster">
+        <span class="price-badge">Am beliebtesten</span>
+        <h3>Pro Cluster</h3>
+        <p class="price-subtitle">QuaxeBox / Bitaxe-Farm · AI-Ranking</p>
         <div class="price-tier">
-          <span style="text-decoration: line-through; color: var(--text-muted); font-size: 22px; font-weight: 400; margin-right: 12px;">€800</span>
-          <span style="color: #fb923c;">€500</span>
+          <span style="color: #fb923c;">€1,990</span>
+          <span style="font-size: 14px; color: var(--text-muted); margin-left: 8px;">pro Jahr</span>
         </div>
-        <div class="price-tier-sub">one-time · incl. 19% VAT · no Success-Fee</div>
-        <div style="margin-top: 8px; padding: 6px 10px; background: rgba(251, 146, 60, 0.12); border: 1px solid rgba(251, 146, 60, 0.35); border-radius: 6px; font-size: 12px; color: #fb923c; font-family: 'JetBrains Mono', monospace; text-align: center;">
-          🎉 Introductory offer · valid until 30 Sep 2026
+        <div class="price-tier-sub">Jahres-Lizenz · inkl. 19 % USt.</div>
+        <div style="margin-top: 8px; padding: 6px 10px; background: rgba(148, 163, 184, 0.10); border: 1px solid rgba(148, 163, 184, 0.30); border-radius: 6px; font-size: 11px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; text-align: center;">
+          Fee-Share optional: €1,590 pro Jahr (-20 % Coinbase-Splitting)
         </div>
         <ul>
-          <li>Subsidy + fees stay entirely with you</li>
-          <li>No payout output in coinbase-TX</li>
-          <li>1 node · API key included</li>
-          <li>Advisory + sidecar mode</li>
-          <li>Bitcoin, Lightning or SEPA</li>
-          <li>3-year contract term + renewal</li>
+          <li>AI-Ranker (Dormancy-First) + Preheater-Cache · Sub-100 ms</li>
+          <li>Bis zu 5 Mining-Nodes · 100 Req/min</li>
+          <li>Block-Win-Alerts + privates Dashboard</li>
+          <li>Prioritäts-Support (Werktage &lt; 4 h Response)</li>
+          <li>Läuft nach 12 Monaten automatisch ab · keine Verlängerung</li>
         </ul>
-        <a href="https://preblock.io/sales/inquiry?tier=starter_fix" class="btn btn-ghost" data-testid="price-cta-starter-fix">Buy now <i data-lucide="arrow-right"></i></a>
+        <a href="https://preblock.io/sales/inquiry?tier=pro_cluster" class="btn btn-primary" data-testid="price-cta-pro-cluster">Jetzt 14 Tage testen <i data-lucide="arrow-right"></i></a>
       </div>
 
-      <div class="price-card" data-testid="price-card-home-share" style="border-color: rgba(244, 63, 94, 0.5);">
-        <span class="price-badge" style="background: rgba(244, 63, 94, 0.15); color: #f43f5e; border-color: rgba(244, 63, 94, 0.4);">🔥 AI · -47% Intro</span>
-        <h3>Home · Share</h3>
-        <p class="price-subtitle">AI-scored templates + Success-Fee · for QuaxeBox / Solar / Multi-Bitaxe</p>
-        <div class="price-hashrate" data-testid="hashrate-hint-home-share"><span class="bolt">⚡</span> Recommended: <span data-pricing-key="home_share.hashrate">100 TH/s – 5 PH/s</span> <span style="opacity:0.6;">· <span data-pricing-key="home_share.hashrate_context">Multi-Bitaxe / small farm</span></span></div>
+      <div class="price-card" data-testid="price-card-enterprise-pool">
+        <span class="price-badge" style="background: rgba(6, 182, 212, 0.15); color: #06b6d4; border-color: rgba(6, 182, 212, 0.35);">SLA · 24/7</span>
+        <h3>Enterprise Pool</h3>
+        <p class="price-subtitle">Multi-Site Farmen · SLA-gebunden</p>
         <div class="price-tier">
-          <span style="text-decoration: line-through; color: var(--text-muted); font-size: 22px; font-weight: 400; margin-right: 12px;">€1.500</span>
-          <span style="color: #f43f5e;">€800</span>
+          <span style="color: #06b6d4;">€8,990</span>
+          <span style="font-size: 14px; color: var(--text-muted); margin-left: 8px;">pro Jahr</span>
         </div>
-        <div class="price-tier-sub">one-time · incl. 19% VAT · + Success-Fee</div>
-        <div style="margin-top: 8px; padding: 6px 10px; background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.35); border-radius: 6px; font-size: 12px; color: #f43f5e; font-family: 'JetBrains Mono', monospace; text-align: center;">
-          🎉 Introductory offer · valid until 30 Sep 2026
+        <div class="price-tier-sub">Jahres-Lizenz · inkl. 19 % USt. · Nur Fixpreis</div>
+        <div style="margin-top: 8px; padding: 6px 10px; background: rgba(6, 182, 212, 0.08); border: 1px solid rgba(6, 182, 212, 0.30); border-radius: 6px; font-size: 11px; color: #06b6d4; font-family: 'JetBrains Mono', monospace; text-align: center;">
+          Individuelle Coinbase-Regelung vertraglich · kein Fee-Share
         </div>
         <ul>
-          <li>AI-scored contrarian templates (dormancy-first ranking)</li>
-          <li>Preheater cache — sub-100ms responses</li>
-          <li>Coinbase-Split: subsidy → you, fees → PreBlock</li>
-          <li>1 API-key, up to 5 mining nodes</li>
-          <li>100 requests / minute</li>
-          <li>Block-win alerts (Discord/Email)</li>
-          <li>Private customer dashboard (hit-rate trend)</li>
+          <li>Bis zu 50 Nodes · Multi-Region</li>
+          <li>24/7 On-Call · Priority-Support</li>
+          <li>DATUM- und SV2-JD-Adapter</li>
+          <li>Individuelle Coinbase-Regelung + monatliche Sync-Calls</li>
+          <li>Läuft nach 12 Monaten automatisch ab · keine Verlängerung</li>
         </ul>
-        <div style="margin-top: 8px; padding: 6px 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; font-size: 11px; color: var(--text-muted); text-align: center;">
-          Starter customer? Pay only 50% (€400 intro / €750 regular)
-        </div>
-        <a href="https://preblock.io/sales/inquiry?tier=home_share" class="btn btn-primary" style="background: #f43f5e; color: #0a0a0a; border-color: #f43f5e;" data-testid="price-cta-home-share">Buy now <i data-lucide="arrow-right"></i></a>
-      </div>
-
-      <div class="price-card" data-testid="price-card-home-fix" style="border-color: rgba(167, 139, 250, 0.5);">
-        <span class="price-badge" style="background: rgba(167, 139, 250, 0.15); color: #a78bfa; border-color: rgba(167, 139, 250, 0.4);">✨ AI · -40% Intro</span>
-        <h3>Home · Fix</h3>
-        <p class="price-subtitle">AI-scored templates · no coinbase share · for QuaxeBox / Solar / Multi-Bitaxe</p>
-        <div class="price-hashrate" data-testid="hashrate-hint-home-fix"><span class="bolt">⚡</span> Recommended: <span data-pricing-key="home_fix.hashrate">100 TH/s – 5 PH/s</span> <span style="opacity:0.6;">· <span data-pricing-key="home_fix.hashrate_context">Multi-Bitaxe / small farm</span></span></div>
-        <div class="price-tier">
-          <span style="text-decoration: line-through; color: var(--text-muted); font-size: 22px; font-weight: 400; margin-right: 12px;">€2.000</span>
-          <span style="color: #a78bfa;">€1.200</span>
-        </div>
-        <div class="price-tier-sub">one-time · incl. 19% VAT · no Success-Fee</div>
-        <div style="margin-top: 8px; padding: 6px 10px; background: rgba(167, 139, 250, 0.12); border: 1px solid rgba(167, 139, 250, 0.35); border-radius: 6px; font-size: 12px; color: #a78bfa; font-family: 'JetBrains Mono', monospace; text-align: center;">
-          🎉 Introductory offer · valid until 30 Sep 2026
-        </div>
-        <ul>
-          <li>AI-scored contrarian templates (dormancy-first ranking)</li>
-          <li>Preheater cache — sub-100ms responses</li>
-          <li>Subsidy + fees stay entirely with you</li>
-          <li>1 API-key, up to 5 mining nodes</li>
-          <li>100 requests / minute</li>
-          <li>Block-win alerts (Discord/Email)</li>
-          <li>Private customer dashboard (hit-rate trend)</li>
-        </ul>
-        <div style="margin-top: 8px; padding: 6px 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; font-size: 11px; color: var(--text-muted); text-align: center;">
-          Starter customer? Pay only 50% (€600 intro / €1,000 regular)
-        </div>
-        <a href="https://preblock.io/sales/inquiry?tier=home_fix" class="btn btn-primary" style="background: #a78bfa; color: #0a0a0a; border-color: #a78bfa;" data-testid="price-cta-home-fix">Buy now <i data-lucide="arrow-right"></i></a>
-      </div>
-
-      <div class="price-card" data-testid="price-card-pilot" style="border-color: rgba(6, 182, 212, 0.4);">
-        <span class="price-badge" style="background: rgba(6, 182, 212, 0.15); color: #06b6d4; border-color: rgba(6, 182, 212, 0.4);">🚀 Guided Deployment</span>
-        <h3>Pilot</h3>
-        <p class="price-subtitle">Mid-size operations · 5 nodes · full support</p>
-        <div class="price-hashrate" data-testid="hashrate-hint-pilot"><span class="bolt">⚡</span> Recommended: <span data-pricing-key="pilot.hashrate">5 – 50 PH/s</span> <span style="opacity:0.6;">· <span data-pricing-key="pilot.hashrate_context">Multi-site mid-size farm</span></span></div>
-        <div class="price-tier">
-          <span style="text-decoration: line-through; color: var(--text-muted); font-size: 22px; font-weight: 400; margin-right: 12px;">€8.000</span>
-          <span style="color: #06b6d4;">€5.000</span>
-        </div>
-        <div class="price-tier-sub">one-time · incl. 19% VAT · migration-credit to Pro</div>
-        <div style="margin-top: 8px; padding: 6px 10px; background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.35); border-radius: 6px; font-size: 12px; color: #06b6d4; font-family: 'JetBrains Mono', monospace; text-align: center;">
-          🎉 First 5 pilots · valid until 30 Sep 2026
-        </div>
-        <ul>
-          <li>5 mining nodes (multi-site redundancy)</li>
-          <li>Getblocktemplate + DATUM Feeder ready · SV2-JD / Braiins on roadmap</li>
-          <li>48h onboarding SLA · owner sets up your deployment</li>
-          <li>8 weekly sync-calls (30 min, owner direct)</li>
-          <li>Priority bug-fix path · 48h response guaranteed</li>
-          <li>Early-access to new features · 4 weeks before public</li>
-          <li>€5,000 migration-credit if you upgrade to Pro within 12 months</li>
-          <li>200 req/min · Life-of-product license</li>
-        </ul>
-        <a href="https://preblock.io/sales/inquiry?tier=pilot" class="btn btn-ghost" data-testid="price-cta-pilot" style="border-color: #06b6d4; color: #06b6d4;">Book pilot <i data-lucide="arrow-right"></i></a>
+        <a href="https://preblock.io/sales/inquiry?tier=enterprise_pool" class="btn btn-ghost" data-testid="price-cta-enterprise-pool" style="border-color: #06b6d4; color: #06b6d4;">Enterprise-Anfrage <i data-lucide="arrow-right"></i></a>
       </div>
 
       <div class="price-card" data-testid="price-card-pro">
