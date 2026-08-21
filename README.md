@@ -102,3 +102,14 @@ Or open `index.html` directly in a browser.
 ## 📝 License
 
 © 2026 Stoffel999. All rights reserved. PreBlock is a trademark in formation.
+
+---
+
+## Kontakt (Stand 2026-02-28)
+
+- E-Mail: sales@preblock.io
+- LinkedIn Company: https://www.linkedin.com/company/preblock/
+- LinkedIn Founder: https://www.linkedin.com/in/joachim-richter-steidl-2a191a3a0/
+- X (Twitter): https://x.com/PreBlockHQ
+- Live-Dashboard (NDA): https://live.preblock.io/proof
+- One-Pager PDF-Quelle: `/app/marketing-site/docs/PreBlock-One-Pager.md`
