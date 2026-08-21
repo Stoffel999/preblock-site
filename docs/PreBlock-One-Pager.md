@@ -5,49 +5,53 @@ _Live-measured precision · sealed-block evidence · Stratum-V1 compatible._
 
 ---
 
-## Was ist PreBlock?
+## What PreBlock does
 
-Große Pools bauen ihre Templates auf die immer gleiche Weise. **PreBlock nutzt eine andere Methode.** Für kleine und mittlere Pool-Betreiber ist unsere Methode das Optimum um beim Spiel überhaupt dabei zu sein — dort wo klassische Fee-Rate-Sortierung strukturell nicht mehr reicht.
+Large pools build their templates the same way everyone else does. **PreBlock uses a different method.** For small and mid-tier operators our method is the best available way to stay in the game at all — the point where classic fee-rate sorting no longer produces a competitive edge.
 
-Was PreBlock genau anders macht, ist Teil unserer Kern-IP und wird ausschließlich unter NDA offengelegt. Was messbar und öffentlich ist, sind die Ergebnisse.
+What exactly PreBlock does differently is our core IP and only disclosed under NDA. What is measurable and public are the results below.
 
-## Signature-Kennzahlen (Stand Februar 2026)
+## Benchmark numbers
 
-- **82.17 Prozent Hit-Rate** über 129 auditierte Blöcke im 24h-Fenster.
-- **Template-Precision im Durchschnitt 90 Prozent Plus** über dieselben 129 Blöcke.
-- **97 Prozent Chain-Rhythm-Confidence** aus drei unabhängigen Live-Signalen.
+Measured on **2026-08-21 at 09:30 CEST**, after the system had been running undisturbed for 16 hours.
 
-Aktuelle Live-Werte: **https://live.preblock.io/proof** (NDA-Login `PreBlock` / Passwort auf Anfrage).
+- **Hit Rate: 82.17 %** over 129 audited blocks.
+- **Template Precision: ~90 %** average across the same window.
+- **Chain Confidence: ~97 %** — rolling stability signal from three independent inputs.
 
-## Wer profitiert?
+These are single-window benchmark values. The current live snapshot on **https://live.preblock.io** shows what the same metrics are producing right now, at the current chain tip. Live values move — that is normal for a rolling 24-hour window and does not indicate a change in the underlying method. The benchmark above is our documented reference point; the /proof page shows the live continuation.
 
-- Small Pool Operators die zwischen 100 TH/s und 20 PH/s an Bitaxen, LuckyMinern und Nerdminern managen.
-- Farm-Betreiber die eigene ASIC-Kapazität mit gemieteter Zusatzleistung kombinieren wollen ohne den Overhead einer eigenen Pool-Software.
-- Marktplatz-Vermittler die MRR- oder NiceHash-Kapazität an ihre Endkunden verkaufen und ein technisches Alleinstellungsmerkmal jenseits reiner Fee-Rate-Sortierung brauchen.
+**Why the /proof display is intentionally delayed:** The public /proof page reads pre-computed snapshots that the system produces once per hour in the background. The public endpoint never runs live aggregations against the hot-path collections that drive the mining stack. That is a deliberate design choice — the mining core takes priority over UI freshness. Displayed numbers may lag by up to one hour; nobody notices, and the mining engine keeps every millisecond of Mongo capacity it needs.
 
-## Was wir NICHT sind
+## Who benefits
 
-Wir konkurrieren nicht mit Foundry oder Antpool auf reiner Hashrate-Skala. Ein PreBlock-Kunde mit 20 PH/s findet statistisch nicht mehr Blöcke als ein Foundry-Kunde mit 20 PH/s. Unsere Methode gibt kleinen und mittleren Betreibern das strukturelle Werkzeug an die Hand um mit deutlich weniger Hashrate am Spiel teilzunehmen — nicht mehr, nicht weniger.
+- Small pool operators running between 100 TH/s and 20 PH/s across Bitaxen, LuckyMiner and Nerdminer fleets.
+- Farm operators combining their own ASIC capacity with rented top-up hashpower.
+- Marketplace resellers of MRR / NiceHash capacity looking for a technical differentiator beyond raw fee-rate sorting.
 
-## Business Model
+## Who PreBlock is NOT for
 
-PreBlock ist ein **reiner Software-Anbieter, kein Pool-Betreiber**. Kunden behalten ihre eigene Hashrate, ihre eigene Pool-Beziehung und ihre eigenen Coinbase-Payouts. Wir verwahren keine Kundengelder und leiten keine weiter — damit bleibt PreBlock rechtlich sauber außerhalb jeder Zahlungsdienst- oder Banklizenz-Frage.
+We do not compete with Foundry or Antpool on raw hashrate scale. A PreBlock customer with 20 PH/s will not find statistically more blocks than a Foundry customer of the same size. What our method gives small and mid-tier operators is the structural tool to participate in the game with materially less hashrate than the incumbents — nothing more, nothing less. Hashrate deficits cannot be closed by software; they can only be closed by more hashrate.
 
-- **Jahreslizenz**, keine automatische Verlängerung, kein Dauerabo. Der Lizenzschlüssel verfällt nach 12 Monaten, Neukauf erforderlich.
-- Optional Consulting-Setup für Pool-Betreiber die die On-Premise-Installation wollen.
-- Whitelabel-Lizenzierung für Marktplatz-Betreiber.
-- Vollübernahme / Buyout auf Anfrage.
+## Business model
 
-Preise auf Anfrage — bewusst nicht öffentlich um Enterprise-Verhandlungen nicht zu präjudizieren.
+PreBlock is a **software vendor, not a mining pool**. Customers keep their own hashrate, their own pool relationship and their own coinbase payouts. We never hold, receive or forward customer funds — no pool operation, no custody, no payment processing, no banking-license attack surface.
 
-## Kontakt
+- **One-year subscription**, no auto-renewal, no rolling subscription trap. The license key expires after twelve months and the customer explicitly buys a new one if they want to continue.
+- Optional consulting-setup for pool operators requiring on-premise installation.
+- Whitelabel licensing for marketplace operators.
+- Full buyout on request.
 
-- **E-Mail**: sales@preblock.io
+Prices on request — deliberately not public, so enterprise negotiations are not pre-empted.
+
+## Contact
+
+- **Email**: sales@preblock.io
 - **LinkedIn Company**: https://www.linkedin.com/company/preblock/
 - **LinkedIn Founder**: https://www.linkedin.com/in/joachim-richter-steidl-2a191a3a0/
 - **X**: https://x.com/PreBlockHQ
-- **Live-Dashboard (NDA)**: https://live.preblock.io/proof
+- **Live dashboard**: https://live.preblock.io
 
 ---
 
-_Dieses Dokument ist ein öffentliches One-Pager-Handout. Methode, Interna und Scoring-Details sind ausschließlich unter NDA verfügbar._
+_This document is a public handout. Method, internals and scoring math are covered by NDA._
