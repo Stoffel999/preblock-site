@@ -2184,7 +2184,7 @@
              values below match the current config/pricing.json snapshot so the
              page renders sensibly even before the fetch resolves. -->
         <div class="tier-strip reveal in delay-2" data-testid="hero-tier-strip">
-          <a href="https://preblock.io/sales/inquiry?tier=community" class="tier-tile tier-tile--free" data-testid="tier-tile-community">
+          <a href="https://preblock.io/prices?tier=community" class="tier-tile tier-tile--free" data-testid="tier-tile-community">
             <span class="tier-tile__icon">◇</span>
             <span class="tier-tile__body">
               <span class="tier-tile__title">Community
@@ -2193,7 +2193,7 @@
               <span class="tier-tile__cta">Claim free key →</span>
             </span>
           </a>
-          <a href="https://preblock.io/sales/inquiry?tier=basic_node" class="tier-tile tier-tile--fix" data-testid="tier-tile-basic-node">
+          <a href="https://preblock.io/prices?tier=basic_node" class="tier-tile tier-tile--fix" data-testid="tier-tile-basic-node">
             <span class="tier-tile__icon">₿</span>
             <span class="tier-tile__body">
               <span class="tier-tile__title">Basic Node
@@ -2203,7 +2203,7 @@
               <span class="tier-tile__cta">Try 14 days free →</span>
             </span>
           </a>
-          <a href="https://preblock.io/sales/inquiry?tier=pro_cluster" class="tier-tile tier-tile--home-fix" data-testid="tier-tile-pro-cluster">
+          <a href="https://preblock.io/prices?tier=pro_cluster" class="tier-tile tier-tile--home-fix" data-testid="tier-tile-pro-cluster">
             <span class="tier-tile__icon">✨</span>
             <span class="tier-tile__body">
               <span class="tier-tile__title">Pro Cluster
@@ -2213,7 +2213,7 @@
               <span class="tier-tile__cta">AI templates →</span>
             </span>
           </a>
-          <a href="https://preblock.io/sales/inquiry?tier=enterprise_pool" class="tier-tile tier-tile--pilot" data-testid="tier-tile-enterprise-pool">
+          <a href="https://preblock.io/prices?tier=enterprise_pool" class="tier-tile tier-tile--pilot" data-testid="tier-tile-enterprise-pool">
             <span class="tier-tile__icon">🚀</span>
             <span class="tier-tile__body">
               <span class="tier-tile__title">Enterprise Pool
@@ -2230,16 +2230,16 @@
         </p>
 
         <div class="hero-cta reveal in delay-3">
-          <button type="button" class="btn btn-primary btn-lg" data-testid="hero-cta-trial" onclick="PreBlockTrial.open()">
-            Try 7 days free
+          <a href="https://preblock.io/prices" class="btn btn-primary btn-lg" data-testid="hero-cta-trial">
+            View pricing
             <i data-lucide="zap"></i>
-          </button>
+          </a>
           <a href="#demo" class="btn btn-ghost btn-lg" data-testid="hero-cta-demo">
             See it live
             <i data-lucide="arrow-right"></i>
           </a>
-          <a href="mailto:sales@preblock.io?subject=PreBlock%20sales%20inquiry" class="btn btn-ghost btn-lg" data-testid="hero-cta-contact">
-            <i data-lucide="mail"></i> sales@preblock.io
+          <a href="https://preblock.io/prices" class="btn btn-ghost btn-lg" data-testid="hero-cta-contact">
+            <i data-lucide="tag"></i> Pricing &amp; licences
           </a>
         </div>
         <div class="hero-tags">
@@ -2805,7 +2805,7 @@
         </div>
       </div>
       <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-        <a href="https://preblock.io/sales/inquiry?tier=community" class="btn btn-primary" data-testid="community-cta-claim" style="background: #22c55e; color: #0a0a0a; border-color: #22c55e;">Claim free API-Key <i data-lucide="arrow-right"></i></a>
+        <a href="https://preblock.io/prices?tier=community" class="btn btn-primary" data-testid="community-cta-claim" style="background: #22c55e; color: #0a0a0a; border-color: #22c55e;">Claim free API-Key <i data-lucide="arrow-right"></i></a>
         <a href="/report" target="_blank" rel="noopener" class="btn btn-ghost" data-testid="community-cta-report">View report <i data-lucide="arrow-right"></i></a>
         <a href="#newsletter" class="btn btn-ghost" data-testid="community-cta-newsletter">Newsletter <i data-lucide="mail"></i></a>
       </div>
@@ -2853,7 +2853,7 @@
           <li>E-Mail-Support (Werktage)</li>
           <li>Läuft nach 12 Monaten automatisch ab · keine Verlängerung</li>
         </ul>
-        <a href="https://preblock.io/sales/inquiry?tier=basic_node" class="btn btn-primary" data-testid="price-cta-basic-node">Jetzt 14 Tage testen <i data-lucide="arrow-right"></i></a>
+        <a href="https://preblock.io/prices?tier=basic_node" class="btn btn-primary" data-testid="price-cta-basic-node">Jetzt 14 Tage testen <i data-lucide="arrow-right"></i></a>
       </div>
 
       <div class="price-card featured" data-testid="price-card-pro-cluster">
@@ -2879,7 +2879,7 @@
           <li>Prioritäts-Support (Werktage &lt; 4 h Response)</li>
           <li>Läuft nach 12 Monaten automatisch ab · keine Verlängerung</li>
         </ul>
-        <a href="https://preblock.io/sales/inquiry?tier=pro_cluster" class="btn btn-primary" data-testid="price-cta-pro-cluster">Jetzt 14 Tage testen <i data-lucide="arrow-right"></i></a>
+        <a href="https://preblock.io/prices?tier=pro_cluster" class="btn btn-primary" data-testid="price-cta-pro-cluster">Jetzt 14 Tage testen <i data-lucide="arrow-right"></i></a>
       </div>
 
       <div class="price-card" data-testid="price-card-enterprise-pool">
@@ -2905,7 +2905,7 @@
           <li>Individuelle Coinbase-Regelung + monatliche Sync-Calls</li>
           <li>Läuft nach 12 Monaten automatisch ab · keine Verlängerung</li>
         </ul>
-        <a href="https://preblock.io/sales/inquiry?tier=enterprise_pool" class="btn btn-ghost" data-testid="price-cta-enterprise-pool" style="border-color: #06b6d4; color: #06b6d4;">Enterprise-Anfrage <i data-lucide="arrow-right"></i></a>
+        <a href="https://preblock.io/prices?tier=enterprise_pool" class="btn btn-ghost" data-testid="price-cta-enterprise-pool" style="border-color: #06b6d4; color: #06b6d4;">Enterprise-Anfrage <i data-lucide="arrow-right"></i></a>
       </div>
     </div>
 
