@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PreBlock — Crowdfunding &amp; Early Supporters</title>
+    <meta name="description" content="PreBlock is opening for external hashrate and community backing. Live campaign status, supporter wall, contribution rails (BTC via BTCPay, Fiat via Stripe, hashrate pledges via email). Transparent, honest, updated as it grows." />
+    <meta name="keywords" content="Bitcoin, Mining, Crowdfunding, PreBlock, Hashrate Pledge, Early Supporters, BTCPay, Stripe" />
+    <meta name="author" content="Stoffel999" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="PreBlock — Crowdfunding &amp; Early Supporters" />
+    <meta property="og:description" content="Real audit numbers, honest campaign status, open supporter wall. Back PreBlock ahead of open onboarding." />
+    <meta property="og:url" content="https://crowdfunding.preblock.io" />
+    <meta property="og:site_name" content="PreBlock" />
+    <meta property="og:image" content="https://sales.preblock.io/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PreBlock — Crowdfunding &amp; Early Supporters" />
+    <meta name="twitter:description" content="93% Hit Rate · 15.96x precision · p < 10⁻¹⁵. Back the campaign ahead of open onboarding." />
+    <meta name="twitter:image" content="https://sales.preblock.io/assets/og-image.png" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://sales.preblock.io/assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://sales.preblock.io/assets/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://sales.preblock.io/assets/apple-touch-icon.png" />
+    <link rel="mask-icon" href="https://sales.preblock.io/assets/favicon-32.png" color="#F7931A" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <style>
+      :root {
+        --bg:           #0a0a0c;
+        --bg-elevated:  #111114;
+        --surface:      #1a1a1f;
+        --surface-2:    #22222a;
+        --border:       rgba(255, 255, 255, 0.08);
+        --border-2:     rgba(255, 255, 255, 0.14);
+        --text:         #f5f5f7;
+        --text-muted:   #a0a0a8;
+        --text-dim:     #6b6b75;
+        --accent:       #F7931A;
+        --accent-soft:  rgba(247, 147, 26, 0.12);
+        --accent-glow:  rgba(247, 147, 26, 0.35);
+        --success:      #22c55e;
+        --danger:       #ef4444;
+        --max-w:        1180px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 400;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          radial-gradient(ellipse 60% 50% at 50% -10%, rgba(247, 147, 26, 0.12), transparent 60%),
+          radial-gradient(ellipse 40% 30% at 100% 20%, rgba(247, 147, 26, 0.06), transparent 70%);
+        z-index: -2;
+      }
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+        opacity: 0.04;
+        z-index: -1;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      h1, h2, h3, h4 {
+        font-family: 'Space Grotesk', sans-serif;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+      }
+      code, .mono { font-family: 'JetBrains Mono', monospace; }
+
+      .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+      /* ── Top nav ────────────────────────────────────────────────── */
+      .nav {
+        position: sticky; top: 0; z-index: 40;
+        backdrop-filter: blur(14px);
+        background: rgba(10, 10, 12, 0.75);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-inner {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 14px 24px; max-width: var(--max-w); margin: 0 auto;
+      }
+      .brand { display: flex; align-items: center; gap: 10px; font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: -0.01em; }
+      .brand-mark {
+        width: 22px; height: 22px; border-radius: 4px;
+        background: linear-gradient(135deg, #F7931A 0%, #d97706 100%);
+        display: inline-flex; align-items: center; justify-content: center;
+        color: #0a0a0c; font-weight: 700; font-size: 12px;
+      }
+      .nav-links { display: flex; gap: 20px; align-items: center; }
+      .nav-link { color: var(--text-muted); font-size: 14px; transition: color 0.15s; }
+      .nav-link:hover { color: var(--text); }
+
+      /* ── Hero ───────────────────────────────────────────────────── */
+      .hero {
+        padding: 90px 0 60px;
+        border-bottom: 1px solid var(--border);
+        position: relative;
+      }
+      .hero-badge {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 6px 14px;
+        border: 1px solid var(--accent);
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+      .hero h1 {
+        font-size: clamp(38px, 6vw, 62px);
+        font-weight: 600;
+        margin-bottom: 20px;
+        max-width: 820px;
+      }
+      .hero h1 span { color: var(--accent); }
+      .hero-sub {
+        font-size: 18px; color: var(--text-muted);
+        max-width: 700px; line-height: 1.65;
+      }
+      .hero-cta-row {
+        display: flex; flex-wrap: wrap; gap: 12px;
+        margin-top: 36px;
+      }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 12px 22px;
+        border-radius: 8px;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600; font-size: 15px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: transform 0.1s, background 0.15s, border-color 0.15s;
+      }
+      .btn:hover { transform: translateY(-1px); }
+      .btn-primary { background: var(--accent); color: #0a0a0c; }
+      .btn-primary:hover { background: #ffa73a; }
+      .btn-ghost {
+        background: transparent; color: var(--text);
+        border-color: var(--border-2);
+      }
+      .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+      .btn i { width: 16px; height: 16px; }
+
+      /* ── Section framing ────────────────────────────────────────── */
+      section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+      .section-eyebrow {
+        display: inline-block; color: var(--accent);
+        font-size: 12px; letter-spacing: 0.14em;
+        text-transform: uppercase; font-weight: 600;
+        margin-bottom: 14px;
+      }
+      .section-title {
+        font-size: clamp(28px, 3.8vw, 40px);
+        font-weight: 600; margin-bottom: 16px;
+      }
+      .section-sub {
+        font-size: 16px; color: var(--text-muted);
+        max-width: 720px; line-height: 1.6;
+        margin-bottom: 44px;
+      }
+
+      /* ── Metric tiles ───────────────────────────────────────────── */
+      .metric-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      @media (max-width: 720px) { .metric-grid { grid-template-columns: 1fr; } }
+      .metric-tile {
+        background: linear-gradient(135deg, rgba(247, 147, 26, 0.06) 0%, rgba(20, 20, 25, 0.7) 100%);
+        border: 1px solid var(--border-2);
+        border-radius: 14px;
+        padding: 28px 24px;
+      }
+      .metric-eyebrow {
+        font-size: 11px; color: var(--accent);
+        letter-spacing: 0.16em; text-transform: uppercase;
+        font-weight: 600; margin-bottom: 12px;
+      }
+      .metric-value {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 48px; font-weight: 500;
+        letter-spacing: -0.03em; line-height: 1;
+      }
+      .metric-value .unit { color: var(--accent); font-size: 22px; margin-left: 4px; }
+      .metric-sub {
+        margin-top: 12px; font-size: 13px; color: var(--text-muted);
+      }
+
+      /* ── Supporter wall ─────────────────────────────────────────── */
+      .supporter-wall {
+        display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+      }
+      @media (max-width: 720px) { .supporter-wall { grid-template-columns: 1fr; } }
+      .supporter-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 22px;
+        display: flex; gap: 16px;
+        transition: border-color 0.15s;
+      }
+      .supporter-card:hover { border-color: var(--accent); }
+      .supporter-icon {
+        width: 42px; height: 42px; border-radius: 8px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+      }
+      .supporter-icon i { width: 22px; height: 22px; }
+      .supporter-name {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600; font-size: 16px; margin-bottom: 4px;
+      }
+      .supporter-pledge {
+        font-family: 'JetBrains Mono', monospace;
+        color: var(--accent); font-size: 13px;
+        margin-bottom: 6px;
+      }
+      .supporter-note {
+        font-size: 13px; color: var(--text-muted); line-height: 1.55;
+      }
+      .supporter-open {
+        border: 1px dashed var(--border-2);
+        background: transparent;
+        color: var(--text-dim);
+        text-align: center;
+        padding: 32px 22px;
+        border-radius: 12px;
+        font-size: 14px;
+      }
+
+      /* ── Timeline ───────────────────────────────────────────────── */
+      .timeline { position: relative; padding-left: 32px; }
+      .timeline::before {
+        content: ''; position: absolute;
+        left: 12px; top: 6px; bottom: 6px;
+        width: 2px; background: var(--border-2);
+      }
+      .timeline-item {
+        position: relative;
+        padding-bottom: 32px;
+      }
+      .timeline-item:last-child { padding-bottom: 0; }
+      .timeline-dot {
+        position: absolute; left: -32px; top: 4px;
+        width: 26px; height: 26px; border-radius: 50%;
+        background: var(--surface);
+        border: 2px solid var(--border-2);
+        display: flex; align-items: center; justify-content: center;
+      }
+      .timeline-dot.active {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 4px var(--accent-soft);
+      }
+      .timeline-dot.done { background: var(--accent); border-color: var(--accent); }
+      .timeline-dot.done i { color: #0a0a0c; }
+      .timeline-dot i { width: 12px; height: 12px; color: var(--text-dim); }
+      .timeline-when {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px; color: var(--accent);
+        letter-spacing: 0.06em; margin-bottom: 4px;
+      }
+      .timeline-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 17px; font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .timeline-body {
+        color: var(--text-muted); font-size: 14px; line-height: 1.6;
+      }
+
+      /* ── Contribution rails ─────────────────────────────────────── */
+      .rails-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+      }
+      @media (max-width: 900px) { .rails-grid { grid-template-columns: 1fr; } }
+      .rail-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 28px 24px;
+        display: flex; flex-direction: column; gap: 14px;
+      }
+      .rail-icon {
+        width: 44px; height: 44px; border-radius: 10px;
+        background: var(--accent-soft); color: var(--accent);
+        display: flex; align-items: center; justify-content: center;
+      }
+      .rail-icon i { width: 22px; height: 22px; }
+      .rail-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 18px; font-weight: 600;
+      }
+      .rail-desc {
+        font-size: 14px; color: var(--text-muted); line-height: 1.55;
+        flex-grow: 1;
+      }
+      .rail-cta {
+        display: inline-flex; align-items: center; gap: 6px;
+        color: var(--accent); font-weight: 600; font-size: 14px;
+      }
+      .rail-cta i { width: 14px; height: 14px; }
+
+      /* ── Updates ────────────────────────────────────────────────── */
+      .updates {
+        display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+      }
+      @media (max-width: 720px) { .updates { grid-template-columns: 1fr; } }
+      .update {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 18px 20px;
+        display: flex; gap: 14px; align-items: flex-start;
+      }
+      .update-icon {
+        width: 32px; height: 32px; border-radius: 6px;
+        background: var(--accent-soft); color: var(--accent);
+        flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .update-icon i { width: 16px; height: 16px; }
+      .update-date {
+        font-family: 'JetBrains Mono', monospace;
+        color: var(--text-dim); font-size: 11px;
+        letter-spacing: 0.06em;
+      }
+      .update-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600; font-size: 15px;
+        margin: 2px 0 4px;
+      }
+      .update-body { font-size: 13px; color: var(--text-muted); }
+
+      /* ── FAQ ────────────────────────────────────────────────────── */
+      .faq-item {
+        border-bottom: 1px solid var(--border);
+        padding: 22px 0;
+      }
+      .faq-item:first-child { padding-top: 0; }
+      .faq-item:last-child { border-bottom: 0; padding-bottom: 0; }
+      .faq-q {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600; font-size: 17px;
+        margin-bottom: 8px;
+        display: flex; align-items: center; gap: 8px;
+      }
+      .faq-q i { color: var(--accent); width: 16px; height: 16px; }
+      .faq-a { color: var(--text-muted); font-size: 14px; line-height: 1.65; }
+
+      /* ── Transparency banner ────────────────────────────────────── */
+      .transparency {
+        background: linear-gradient(135deg, rgba(247, 147, 26, 0.08) 0%, rgba(20, 20, 25, 0.5) 100%);
+        border: 1px solid var(--accent);
+        border-radius: 14px;
+        padding: 26px 28px;
+        margin-bottom: 44px;
+        display: flex; gap: 16px; align-items: flex-start;
+      }
+      .transparency-icon {
+        color: var(--accent); flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .transparency-icon i { width: 22px; height: 22px; }
+      .transparency-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 17px; font-weight: 600; margin-bottom: 6px;
+      }
+      .transparency-body {
+        color: var(--text-muted); font-size: 14px; line-height: 1.65;
+      }
+
+      /* ── Footer ─────────────────────────────────────────────────── */
+      footer {
+        padding: 40px 0 60px;
+        color: var(--text-dim);
+        font-size: 13px;
+        text-align: center;
+      }
+      footer a { color: var(--text-muted); }
+      footer a:hover { color: var(--accent); }
+    </style>
+</head>
+<body>
+
+  <!-- ═════════════════ NAV ═════════════════ -->
+  <nav class="nav" data-testid="crowd-nav">
+    <div class="nav-inner">
+      <a href="/" class="brand" data-testid="crowd-brand">
+        <span class="brand-mark">P</span>
+        <span>PreBlock</span>
+        <span style="color: var(--text-dim); font-weight: 400; font-size: 13px;">· Crowdfunding</span>
+      </a>
+      <div class="nav-links">
+        <a href="#supporters" class="nav-link" data-testid="crowd-nav-supporters">Supporters</a>
+        <a href="#timeline"   class="nav-link" data-testid="crowd-nav-timeline">Timeline</a>
+        <a href="#contribute" class="nav-link" data-testid="crowd-nav-contribute">Contribute</a>
+        <a href="#updates"    class="nav-link" data-testid="crowd-nav-updates">Updates</a>
+        <a href="https://sales.preblock.io/" class="nav-link" data-testid="crowd-nav-sales">Sales →</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═════════════════ HERO ════════════════ -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge" data-testid="crowd-hero-status">
+        <i data-lucide="radio"></i>
+        Live · Collecting Interest, Not Capital Yet
+      </div>
+      <h1>Back the campaign <span>before the door opens.</span></h1>
+      <p class="hero-sub">
+        PreBlock is a predictive block-template engine for Bitcoin mining. Running live on
+        mainnet from Sphere Node 1, audited against 100 consecutive real blocks. We're
+        deliberately locking down the onboarding schedule before we accept external
+        hashrate, capital or paying subscribers — this page is where the campaign,
+        the supporter wall and every update live in the open until we're ready to open
+        the door.
+      </p>
+      <div class="hero-cta-row">
+        <a href="#contribute" class="btn btn-primary" data-testid="crowd-hero-cta-contribute">
+          Contribute <i data-lucide="arrow-right"></i>
+        </a>
+        <a href="#supporters" class="btn btn-ghost" data-testid="crowd-hero-cta-supporters">
+          See supporters <i data-lucide="users"></i>
+        </a>
+        <a href="https://sales.preblock.io/" class="btn btn-ghost" data-testid="crowd-hero-cta-technical">
+          Technical prospect <i data-lucide="file-text"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═════════════════ LIVE NUMBERS ═════════════════ -->
+  <section id="numbers" data-testid="crowd-section-numbers">
+    <div class="container">
+      <span class="section-eyebrow">100-block audit window · closed 2026-08</span>
+      <h2 class="section-title">Real numbers, not marketing gloss.</h2>
+      <p class="section-sub">
+        Every number below is derived from the last 100 consecutive Bitcoin mainnet
+        blocks that Sphere Node 1 dispatched templates for. Open for re-audit —
+        raw stratum dispatch log and block audit collection available on request.
+      </p>
+
+      <div class="metric-grid">
+        <div class="metric-tile" data-testid="crowd-metric-hitrate">
+          <div class="metric-eyebrow">Hit Rate</div>
+          <div class="metric-value">93<span class="unit">%</span></div>
+          <div class="metric-sub">winner tx present in the dispatched template basket
+            (n=100)</div>
+        </div>
+        <div class="metric-tile" data-testid="crowd-metric-precision">
+          <div class="metric-eyebrow">Precision vs random</div>
+          <div class="metric-value">15.96<span class="unit">x</span></div>
+          <div class="metric-sub">how much better we are than a same-size random
+            slice of the mempool</div>
+        </div>
+        <div class="metric-tile" data-testid="crowd-metric-pvalue">
+          <div class="metric-eyebrow">Statistical significance</div>
+          <div class="metric-value">p&lt;10<span class="unit">⁻¹⁵</span></div>
+          <div class="metric-sub">probability this result is chance:
+            effectively zero</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ TRANSPARENCY ═════════════════ -->
+  <section data-testid="crowd-section-transparency">
+    <div class="container">
+      <div class="transparency">
+        <div class="transparency-icon">
+          <i data-lucide="shield-check"></i>
+        </div>
+        <div>
+          <div class="transparency-title">Honest campaign status</div>
+          <div class="transparency-body">
+            One serious hashrate offer received to date. Zero BTC donations taken.
+            Zero external capital in. No paying subscribers yet. We are deliberately
+            not opening the payment rails wide before the onboarding process, worker
+            naming, connection details and compensation model are locked and stress-
+            tested at PH/s scale. This page grows every time a supporter joins or a
+            milestone flips green.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ SUPPORTERS WALL ═════════════════ -->
+  <section id="supporters" data-testid="crowd-section-supporters">
+    <div class="container">
+      <span class="section-eyebrow">Early supporters</span>
+      <h2 class="section-title">The wall.</h2>
+      <p class="section-sub">
+        Every operator, contributor and hashrate pledge who backed the campaign
+        before general onboarding opens. Nothing that identifies anyone beyond
+        what they've agreed to publish. New entries land here the same day we
+        confirm them.
+      </p>
+
+      <div class="supporter-wall" data-testid="crowd-supporter-wall">
+
+        <!-- SUPPORTER 1 — ray_york (Reddit, ~1 PH/s pledge) -->
+        <div class="supporter-card" data-testid="crowd-supporter-1">
+          <div class="supporter-icon"><i data-lucide="cpu"></i></div>
+          <div>
+            <div class="supporter-name">One operator · US Bitcoin miner</div>
+            <div class="supporter-pledge">~1 PH/s hashrate pledged</div>
+            <div class="supporter-note">
+              Multi-ASIC operation across five US states — mix of hosted and
+              home. Public identity to be confirmed with supporter before
+              publication. Reached out via r/BitcoinMining case-study thread,
+              2026-08-23.
+            </div>
+          </div>
+        </div>
+
+        <!-- OPEN SLOT — placeholder for future supporters -->
+        <div class="supporter-open" data-testid="crowd-supporter-open">
+          Open slot — first fifty supporters listed by name (with permission)
+          and by public pledge amount.
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ TIMELINE ═════════════════ -->
+  <section id="timeline" data-testid="crowd-section-timeline">
+    <div class="container">
+      <span class="section-eyebrow">Campaign milestones</span>
+      <h2 class="section-title">What's done. What's next. When.</h2>
+      <p class="section-sub">
+        Living roadmap. Updated as milestones flip green. No promises we
+        haven't already engineered a path to.
+      </p>
+
+      <div class="timeline" data-testid="crowd-timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot done"><i data-lucide="check"></i></div>
+          <div class="timeline-when">2026-08-14 · SHIPPED</div>
+          <div class="timeline-title">100-block audit closed on mainnet</div>
+          <div class="timeline-body">
+            93% hit rate across 100 consecutive real Bitcoin blocks. 15.96×
+            precision vs random. p&lt;10⁻¹⁵. Numbers open for re-audit.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot done"><i data-lucide="check"></i></div>
+          <div class="timeline-when">2026-08-18 · SHIPPED</div>
+          <div class="timeline-title">Case study for block 963719 published</div>
+          <div class="timeline-body">
+            Full post-mortem with dispatch-to-seal timing, break-even math,
+            and worker-level rank attribution. Downloadable A4 PDF.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot active"><i data-lucide="loader"></i></div>
+          <div class="timeline-when">Now · IN PROGRESS</div>
+          <div class="timeline-title">Onboarding process lock-down</div>
+          <div class="timeline-body">
+            Finalising worker-naming pattern (all names prefixed with
+            <code>preblock</code>), pool connection endpoint, share-log
+            transparency contract and compensation model. Stress-tested at
+            PH/s scale before any external hashrate connects.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"><i data-lucide="clock"></i></div>
+          <div class="timeline-when">~ 3-4 weeks · PLANNED</div>
+          <div class="timeline-title">Open onboarding window announced</div>
+          <div class="timeline-body">
+            Concrete start date, connection details, per-worker rank audit
+            log endpoint and compensation model published. All existing
+            supporters get pinged first.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"><i data-lucide="clock"></i></div>
+          <div class="timeline-when">Rolling · PLANNED</div>
+          <div class="timeline-title">Post-mortem cadence</div>
+          <div class="timeline-body">
+            One or two additional case studies per audit window, published on
+            Reddit, Nostr and here. Every lost block gets a break-even table.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ CONTRIBUTION RAILS ═════════════════ -->
+  <section id="contribute" data-testid="crowd-section-contribute">
+    <div class="container">
+      <span class="section-eyebrow">Ways to back the campaign</span>
+      <h2 class="section-title">Three rails. Pick the one that fits.</h2>
+      <p class="section-sub">
+        You don't have to be a miner to back this. Community backers keep the
+        lights on, hashrate pledges validate the thesis at scale, and BTC-native
+        contributions land straight in the operations wallet with zero custodial
+        middleman.
+      </p>
+
+      <div class="rails-grid">
+
+        <!-- BTC via BTCPay -->
+        <a href="https://pay.preblock.io/apps/QrgVaEgRTVzTmtqyzRZnqL1n9rd/crowdfund"
+           class="rail-card"
+           target="_blank" rel="noopener"
+           data-testid="crowd-rail-btc">
+          <div class="rail-icon"><i data-lucide="bitcoin"></i></div>
+          <div class="rail-title">Contribute in Bitcoin</div>
+          <div class="rail-desc">
+            Non-custodial via our own BTCPay Server. Lightning + on-chain.
+            No email, no KYC. Refundable within 30 days on request.
+          </div>
+          <span class="rail-cta">Open BTCPay page <i data-lucide="external-link"></i></span>
+        </a>
+
+        <!-- Fiat via Stripe -->
+        <a href="https://buy.stripe.com/dRm14m87I9JC23P2ux9R604"
+           class="rail-card"
+           target="_blank" rel="noopener"
+           data-testid="crowd-rail-fiat">
+          <div class="rail-icon"><i data-lucide="credit-card"></i></div>
+          <div class="rail-title">Contribute with card / SEPA</div>
+          <div class="rail-desc">
+            Fiat rail via Stripe checkout. EUR / USD / GBP. Same 30-day
+            refund policy, same accounting trail as the BTC rail.
+          </div>
+          <span class="rail-cta">Open Stripe checkout <i data-lucide="external-link"></i></span>
+        </a>
+
+        <!-- Hashrate pledge (email) -->
+        <a href="mailto:sales@preblock.io?subject=Hashrate%20Pledge%20—%20PreBlock%20Crowdfunding&amp;body=Hi%20PreBlock%20crew%2C%0A%0AI%27d%20like%20to%20pledge%20hashrate%20for%20the%20open-onboarding%20window.%0A%0ARough%20amount%3A%20%0ARig%20mix%3A%20%0ALocation%20/%20hosting%3A%20%0AWorker-name%20preference%20(preblock_...)%3A%20%0AListing%20on%20supporter%20wall%20(yes%20/%20no%20/%20anon)%3A%20%0A%0AThanks%2C%0A"
+           class="rail-card"
+           data-testid="crowd-rail-hashrate">
+          <div class="rail-icon"><i data-lucide="zap"></i></div>
+          <div class="rail-title">Pledge hashrate</div>
+          <div class="rail-desc">
+            Reserve a slot in the first onboarding cohort. No capital involved.
+            We ping you the moment the connection details and compensation
+            model go live.
+          </div>
+          <span class="rail-cta">Email your pledge <i data-lucide="external-link"></i></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ UPDATES ═════════════════ -->
+  <section id="updates" data-testid="crowd-section-updates">
+    <div class="container">
+      <span class="section-eyebrow">Latest updates</span>
+      <h2 class="section-title">Where we post the campaign log.</h2>
+      <p class="section-sub">
+        Every announcement, follow-up post and audit refresh goes out on the
+        channels below in parallel. Nothing hidden behind a login.
+      </p>
+
+      <div class="updates">
+        <a href="https://www.reddit.com/r/BitcoinMining/" target="_blank" rel="noopener"
+           class="update" data-testid="crowd-update-reddit">
+          <div class="update-icon"><i data-lucide="message-square"></i></div>
+          <div>
+            <div class="update-date">CONTINUOUS · REDDIT</div>
+            <div class="update-title">r/BitcoinMining case-study threads</div>
+            <div class="update-body">
+              Case-study post-mortems, community Q&amp;A, hashrate pledges
+              land here first.
+            </div>
+          </div>
+        </a>
+
+        <a href="https://primal.net/preblock" target="_blank" rel="noopener"
+           class="update" data-testid="crowd-update-nostr">
+          <div class="update-icon"><i data-lucide="radio"></i></div>
+          <div>
+            <div class="update-date">CONTINUOUS · NOSTR</div>
+            <div class="update-title">Nostr campaign feed</div>
+            <div class="update-body">
+              Audit-window openings, milestone flips, block post-mortems in
+              the timezone of Bitcoin-Nostr operators.
+            </div>
+          </div>
+        </a>
+
+        <a href="https://x.com/preblock_io" target="_blank" rel="noopener"
+           class="update" data-testid="crowd-update-x">
+          <div class="update-icon"><i data-lucide="hash"></i></div>
+          <div>
+            <div class="update-date">CONTINUOUS · X</div>
+            <div class="update-title">X launch thread</div>
+            <div class="update-body">
+              Same campaign log, cross-posted for reach beyond the Bitcoin-
+              Nostr community.
+            </div>
+          </div>
+        </a>
+
+        <a href="https://preblock.io/proof" target="_blank" rel="noopener"
+           class="update" data-testid="crowd-update-proof">
+          <div class="update-icon"><i data-lucide="line-chart"></i></div>
+          <div>
+            <div class="update-date">LIVE · PREBLOCK.IO</div>
+            <div class="update-title">Public /proof feed</div>
+            <div class="update-body">
+              Live rolling audit numbers, toggle between 24-hour and 100-block
+              window. Same source data as the case studies.
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ FAQ ═════════════════ -->
+  <section id="faq" data-testid="crowd-section-faq">
+    <div class="container">
+      <span class="section-eyebrow">FAQ</span>
+      <h2 class="section-title">Fair questions.</h2>
+
+      <div>
+        <div class="faq-item" data-testid="crowd-faq-what-am-i-backing">
+          <div class="faq-q"><i data-lucide="help-circle"></i>What am I backing exactly?</div>
+          <div class="faq-a">
+            A live predictive block-template engine for Bitcoin mining running
+            on public mainnet. Audit data is open. This crowdfunding round
+            covers the infrastructure hardening for the open-onboarding window
+            (redundant Sphere nodes, upstream bandwidth, and the audit-log
+            endpoint), not equity, not a token, not a promise of future returns.
+          </div>
+        </div>
+
+        <div class="faq-item" data-testid="crowd-faq-hashrate-pledge">
+          <div class="faq-q"><i data-lucide="help-circle"></i>How does a hashrate pledge work?</div>
+          <div class="faq-a">
+            You send us a rough figure and a way to reach you. When the
+            onboarding window opens (~3-4 weeks from now) we ping you first
+            with the pool-side connection details and the compensation model.
+            No obligation to actually connect. If the terms don't fit you're
+            out with zero friction.
+          </div>
+        </div>
+
+        <div class="faq-item" data-testid="crowd-faq-refund">
+          <div class="faq-q"><i data-lucide="help-circle"></i>What if I want my money back?</div>
+          <div class="faq-a">
+            30-day no-questions refund on both rails, BTC and Fiat, same
+            channel you contributed on. Email sales@preblock.io and it's
+            processed the same day.
+          </div>
+        </div>
+
+        <div class="faq-item" data-testid="crowd-faq-listed">
+          <div class="faq-q"><i data-lucide="help-circle"></i>Will my name be listed?</div>
+          <div class="faq-a">
+            Only if you explicitly say yes. Default is anonymous ("one operator
+            has pledged ~1 PH/s"). We always show the exact wording to you
+            before it goes live.
+          </div>
+        </div>
+
+        <div class="faq-item" data-testid="crowd-faq-when-onboarding">
+          <div class="faq-q"><i data-lucide="help-circle"></i>When does open onboarding actually start?</div>
+          <div class="faq-a">
+            The 3-4 week window is our current best estimate. If it slips,
+            it slips on this page first — with the reason and the revised
+            date. No silent delays.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ FOOTER ═════════════════ -->
+  <footer>
+    <div class="container">
+      Built by <a href="mailto:sales@preblock.io">sales@preblock.io</a> ·
+      <a href="https://sales.preblock.io/">Sales &amp; pricing</a> ·
+      <a href="https://sales.preblock.io/impressum.html">Impressum</a> ·
+      <a href="https://sales.preblock.io/datenschutz.html">Datenschutz</a>
+      <br /><br />
+      <span style="opacity: 0.5;">© 2026 PreBlock — Predictive Block-Template Engine · Bitcoin Mining</span>
+    </div>
+  </footer>
+
+  <script>
+    // Lucide icon activation.
+    lucide.createIcons();
+  </script>
+</body>
+</html>
