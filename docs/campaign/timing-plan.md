@@ -1,5 +1,14 @@
 # PreBlock Crowdfund — 4-Wochen Timing- und Content-Plan
 
+> ⚠ **VERALTET seit 25.08.2026.** Ersatz siehe `timing-plan-v2.md`.
+> Grund: Reddit r/BitcoinMining hat den Owner am 25.08. um 12:11 CEST
+> permanent gemuted (Modmail-Antwort auf den Original-Post führte zum
+> Bann), außerdem sind die Hit-Rate Zahlen von 82.17 % auf 93 %
+> gestiegen. Der neue Plan hat aktuelle Zahlen, andere Reddit-Subs,
+> Bitcointalk und Delving Bitcoin als neue Kanäle, LinkedIn als
+> Trigger-Post und Hacker News als Case-Study-Trigger.
+> **Nichts aus diesem Dokument mehr posten.**
+
 Kampagnen-Fenster: **22.08.2026 → 19.09.2026** (28 Tage).
 Ziel: 0.09 BTC (~9.000 €) für 200 PH × 12 h Rental-Stress-Test.
 

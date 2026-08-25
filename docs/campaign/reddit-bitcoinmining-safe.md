@@ -1,5 +1,9 @@
 # Reddit — r/BitcoinMining Variante (rules-safe)
 
+> ⚠ **RETIRED seit 25.08.2026.** Der Sub hat den Owner nach dem Modmail
+> permanent gemuted. Nicht mehr posten — auch nicht mit anderem Account.
+> Datei bleibt als historische Referenz erhalten.
+
 _Alternate zur reddit-bitcoinmining.md — entschärft für Rule 2B2 (No begging).
 Cash-Aufforderung ist entfernt. Fokus liegt komplett auf dem technischen
 Stress-Test und der Hashrate-Anfrage. Wer den Crowdfund unterstützen will
