@@ -34,7 +34,7 @@ That gives us roughly **2.4 % probability of finding an actual block** during th
 
 **Track A — Cash (BTC or Fiat).** Direct BTCPay Server for Bitcoin, Stripe for card and SEPA. Non-custodial gateway, funds land straight in the operations account and get spent on rental invoices only. No middleman.
 
-**Track B — Hashrate.** If you run a small pool or a home fleet and have spare cycles, point some of your rigs at our Stratum endpoint during the test window. Any worker name starting with `preblock` triggers the hotspot slice automatically. In exchange we credit you (or anonymously if you prefer) in the case study and hand you a free 12-month Basic Node license (worth €490) after the test wraps.
+**Track B — Hashrate.** If you run a small pool or a home fleet and have spare cycles, point some of your rigs at our Stratum endpoint during the test window. Any worker name starting with `preblock` routes your shares onto our winner-tx-tuned template automatically. In exchange we credit you (or anonymously if you prefer) in the case study and hand you a free 12-month Basic Node license (worth €490) after the test wraps.
 
 ## Transparency
 

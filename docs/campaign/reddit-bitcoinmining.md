@@ -21,7 +21,7 @@ I run PreBlock.io, an independent block-template engine for small and mid-tier o
 **Two ways to help, if you feel like it.**
 
 - **Cash pledges** via BTCPay Server (Bitcoin, non-custodial) or Stripe (fiat) at preblock.io/crowdfund.
-- **Hashrate pledges** — if you have spare cycles during the test window, point some of your rigs at our Stratum endpoint with any worker name starting with `preblock`. That triggers the hotspot slice automatically. In return you get credit (or anonymous mention) in the case study plus a free 12-month Basic Node license (€490 value). Test window announced 48h in advance so you can plan.
+- **Hashrate pledges** — if you have spare cycles during the test window, point some of your rigs at our Stratum endpoint with any worker name starting with `preblock`. That routes your shares onto our winner-tx-tuned template automatically. In return you get credit (or anonymous mention) in the case study plus a free 12-month Basic Node license (€490 value). Test window announced 48h in advance so you can plan.
 
 **What you get regardless of whether we hit the goal.** A public hourly-snapshot case study of the entire 12h test window, each snapshot chain-tip anchored, published on preblock.io/case-study. Nothing edited, nothing smoothed. What the engine produced under load is what you will read.
 

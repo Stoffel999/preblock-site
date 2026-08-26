@@ -21,6 +21,42 @@ waren. Alle neuen Posts bekommen die aktuellen Zahlen.
 
 ---
 
+## PreBlock Delivery Promise (Kunden-Formulierung, ab 26.08.2026)
+
+Diese Formulierung ist die offizielle Kunden-Zusage und wird ab sofort
+1:1 in Sales-Gesprächen, Pitchdecks und in jeder Case Study verwendet:
+
+> **PreBlock stellt sicher, dass die von uns bevorzugten Winner-Transaktionen
+> innerhalb von 4 Minuten fertig berechnet, in das Block-Template integriert
+> und an alle angeschlossenen Miner ausgeliefert werden. Innerhalb der
+> verbleibenden 4 bis 6 Minuten eines Bitcoin-Block-Intervalls erweitern
+> wir das Template opportunistisch um weitere Kandidaten-Transaktionen,
+> sofern die verfügbare GPU-Kapazität dies erlaubt, ohne die 4-Minuten-
+> Garantie für den Kern zu gefährden.**
+
+Die Formulierung tritt an die Stelle jeder Erwähnung von "Hotspot", "Slice",
+"Grid" oder "Radius" in Kunden-Kommunikation. Intern (Repo, Ticket-Sprache,
+Dev-Docs) bleiben die technischen Begriffe unverändert.
+
+Der Kern-Vorteil den diese Zusage transportiert ist:
+
+- **Zeit-Garantie:** 4 Minuten für den Kern, unabhängig von Netzwerk-Last
+  oder Mempool-Größe. Damit sind wir schneller als ein Standard-Pool der
+  seine Templates im Schnitt alle 4 bis 6 Minuten rotiert.
+- **Opportunistische Erweiterung:** Was an GPU-Kapazität nach dem Kern
+  übrig ist, wird in Best-Effort-Manier für breitere Kandidaten-Suche
+  eingesetzt. Kein Kompromiss zu Lasten der Garantie.
+- **Skalierbar:** Kunden mit mehr GPU-Ressourcen bekommen automatisch
+  größere Kern- und Erweiterungs-Regionen, ohne dass ein neuer Vertrag
+  oder Konfigurations-Ping-Pong nötig wird.
+
+Die technische Umsetzung heißt intern **Phase D Staged Slice Compute
+Budget** und wird nach dem UI-Umbau als nächster Sprint gebaut. Bis dahin
+darf die Zusage in Marketing-Materialien mit dem Disclaimer "in Aktivierung
+für Q4 2026" verwendet werden.
+
+---
+
 ## Ton-Regeln pro Kanal (unverändert)
 
 - **Nostr**: kurz, ehrlich, technisch. 400 bis 800 Zeichen. Hashtags sparsam.
