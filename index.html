@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PreBlock — Predictive Block-Template Engine for Bitcoin Pools</title>
-    <meta name="description" content="PreBlock is the Pool-Agnostic Predictive Block-Template Engine for Bitcoin Mining. Runs read-only on a standard Bitcoin Core node. Adaptive per-block selection driven by live mempool, real-block post-mortem, and pool-dominance signals. Outputs via Getblocktemplate (production) and DATUM Feeder (beta)." />
-    <meta name="keywords" content="Bitcoin, Mining, Predictive, Block Template Engine, Bitcoin Core, Adaptive Selection, Mempool, DATUM, OCEAN, Pool, PreBlock Node" />
+    <meta name="description" content="PreBlock is the Pool-Agnostic Predictive Block-Template Engine for Bitcoin Mining. Runs read-only on a standard Bitcoin Core / Knots node. Adaptive per-block selection driven by live mempool, real-block post-mortem, and pool-dominance signals. Native Stratum V1 with per-Rig templates; Stratum V2 / Braiins JD on roadmap." />
+    <meta name="keywords" content="Bitcoin, Mining, Predictive, Block Template Engine, Bitcoin Core, Adaptive Selection, Mempool, Native Stratum, Per-Rig Templates, Pool, PreBlock Node" />
     <meta name="author" content="Stoffel999" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="PreBlock — Predictive Block-Template Engine for Bitcoin Pools" />
-    <meta property="og:description" content="Pool-agnostic predictive block-template engine. Read-only on your existing Bitcoin node. Ships Getblocktemplate (production) and DATUM Feeder (beta). SV2/Braiins adapters on roadmap." />
+    <meta property="og:description" content="Pool-agnostic predictive block-template engine. Read-only on your existing Bitcoin node. Native Stratum V1 with per-Rig templates. Stratum V2 / Braiins JD adapters on roadmap." />
     <meta property="og:url" content="https://sales.preblock.io" />
     <meta property="og:site_name" content="PreBlock" />
     <meta property="og:image" content="https://sales.preblock.io/assets/og-image.png" />
@@ -22,7 +22,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PreBlock — Predictive Mining" />
-    <meta name="twitter:description" content="Predict the next 3 Bitcoin block templates. Pool-agnostic — runs on any Bitcoin node. Getblocktemplate + DATUM ready. SV2/Braiins on roadmap." />
+    <meta name="twitter:description" content="Predict the next 3 Bitcoin block templates. Pool-agnostic — runs on any Bitcoin node. Native Stratum V1 with per-Rig templates. SV2 / Braiins on roadmap." />
     <meta name="twitter:image" content="https://sales.preblock.io/assets/og-image.png" />
 
     <!-- Favicons (Hexagon, Bitcoin-orange on charcoal) -->
@@ -2270,7 +2270,7 @@
       <div class="trust-label">Built on a battle-tested stack</div>
       <div class="trust-items">
         <span class="trust-item">Bitcoin Knots v28</span>
-        <span class="trust-item">DATUM Gateway</span>
+        <span class="trust-item">Native Stratum V1</span>
         <span class="trust-item">MongoDB 7</span>
         <span class="trust-item">FastAPI / React</span>
         <span class="trust-item">systemd</span>
@@ -2700,7 +2700,7 @@
           <span class="founder-tag">GPU Rig 7×P106</span>
           <span class="founder-tag">24 TB Fileserver</span>
           <span class="founder-tag">Research-grade</span>
-          <span class="founder-tag">Knots · DATUM · OCEAN</span>
+          <span class="founder-tag">Knots · Native Stratum · Per-Rig Templates</span>
         </div>
       </div>
 
@@ -2861,7 +2861,7 @@
         <ul>
           <li>Bis zu 50 Nodes · Multi-Region</li>
           <li>24/7 On-Call · Priority-Support</li>
-          <li>DATUM- und SV2-JD-Adapter</li>
+          <li>Native Stratum V1 · SV2-JD-Adapter (roadmap)</li>
           <li>Individuelle Coinbase-Regelung + monatliche Sync-Calls</li>
           <li>Expires automatically after 12 months · no auto-renewal</li>
         </ul>
@@ -2894,7 +2894,7 @@
         <div class="updates-price">€0 <span class="small">with every Core / module license</span></div>
         <ul>
           <li>Security patches</li>
-          <li>Bitcoin Knots / DATUM compatibility updates</li>
+          <li>Bitcoin Knots / Stratum protocol compatibility updates</li>
           <li>MongoDB / Python / React dependency upgrades</li>
           <li>Bug fixes</li>
           <li>Performance optimisations</li>
@@ -2961,10 +2961,10 @@
         <div class="demo-badge">Live node · NDA required</div>
         <h3>Request live access</h3>
         <p>
-          A 30-minute guided session against our live PreBlock reference node. Real mempool data, real DATUM-feeder, real predictions hitting actual blocks. Conditioned on a signed NDA — buyer-vetting takes ~24h.
+          A 30-minute guided session against our live PreBlock reference node. Real mempool data, real per-Rig templates dispatched via native Stratum, real predictions hitting actual blocks. Conditioned on a signed NDA — buyer-vetting takes ~24h.
         </p>
         <ul>
-          <li>Real-time mempool & DATUM monitoring</li>
+          <li>Real-time mempool & Stratum dispatch monitoring</li>
           <li>Live hit-rate visualization across +1 / +2 / +3 buckets</li>
           <li>Guided walk-through with the founder</li>
         </ul>
@@ -3371,7 +3371,7 @@ async function submitNewsletter(event) {
       <div class="family-card active" data-testid="family-preblock">
         <span class="family-status">Available now</span>
         <h5>PreBlock</h5>
-        <p class="family-desc">Predictive block-template engine for Bitcoin pools. Knots-filtered mempool, DATUM-native, 87–100% hit-rate. <strong>This product.</strong></p>
+        <p class="family-desc">Predictive block-template engine for Bitcoin pools. Knots-filtered mempool, native Stratum with per-Rig templates, honest hit-rate reporting. <strong>This product.</strong></p>
       </div>
 
       <div class="family-card" data-testid="family-trace">
@@ -3445,7 +3445,7 @@ async function submitNewsletter(event) {
     </div>
     <div class="footer-bottom">
       <span>© 2026 Stoffel999 · PreBlock — Pool-Agnostic Predictive Block-Template Engine</span>
-      <span>Built for Bitcoin · Getblocktemplate · DATUM · SV2 &amp; Braiins on roadmap · Read-only-first</span>
+      <span>Built for Bitcoin · Native Stratum V1 · Per-Rig Templates · SV2 &amp; Braiins on roadmap · Read-only-first</span>
     </div>
   </div>
 </footer>

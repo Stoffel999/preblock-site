@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>PreBlock — Predictive Block-Template Engine for DATUM Miners</title>
+  <title>PreBlock — Predictive Block-Template Engine for Bitcoin Miners</title>
   <style>
     @page { size: A4; margin: 20mm; }
     body {
@@ -60,7 +60,7 @@
 <body>
 
 <h1>PreBlock</h1>
-<div class="subtitle">Predictive Block-Template Engine for DATUM-Native Bitcoin Miners</div>
+<div class="subtitle">Predictive Block-Template Engine for Bitcoin Miners</div>
 
 <div class="callout">
   <strong>Contract-locked to three buyers globally.</strong> One deploying.
@@ -72,8 +72,8 @@
 current fee rate visible in the mempool. By the time a high-fee transaction
 is broadcast, the value is competed away — pool template builders converge
 on the same fee/vB threshold within milliseconds.</p>
-<p>For DATUM-native operations, this convergence is even sharper. Miners
-constructing their own templates need an <em>edge</em> that isn't already
+<p>For operators running their own templates, this convergence is even sharper. Miners
+constructing per-Rig templates need an <em>edge</em> that isn't already
 priced into the shared mempool consensus.</p>
 
 <h2>The PreBlock Signal</h2>
@@ -91,14 +91,14 @@ propagation on a Bitcoin Core full node.</p>
   <li><strong>Single-machine deploy</strong> — one rack server, no cloud, no Kubernetes</li>
   <li><strong>Bitcoin Core full node</strong> — full public mempool, adaptive selection at app-level</li>
   <li><strong>Predictive Engine</strong> — proprietary UTXO-age scoring (IP-protected)</li>
-  <li><strong>DATUM Feeder</strong> — direct pool-communication into OCEAN (beta)</li>
+  <li><strong>Native Stratum V1 server</strong> — per-Rig templates dispatched to every connected miner (SV2/JD on roadmap)</li>
   <li><strong>Multipool Comparison</strong> — AntPool, Foundry USA, ViaBTC, F2Pool references</li>
   <li><strong>Owner Dashboard</strong> — React SPA, real-time metrics, license-gated</li>
 </ul>
 
 <h2>Real-World Performance</h2>
-<p>Reference PreBlock node running on Bitcoin mainnet against OCEAN pool
-since Q1 2025. Weekly performance reports published to
+<p>Reference PreBlock node running on Bitcoin mainnet since Q1 2025.
+Weekly performance reports published to
 <span class="highlight">sales.preblock.io/api/public/reports/latest</span> —
 sanitized figures, no algorithm details.</p>
 <table>
@@ -116,7 +116,7 @@ sanitized figures, no algorithm details.</p>
   <tr><td>Community</td><td>Solo hobby miners, Bitaxe setups, Bitcoin enthusiasts</td><td>Free forever</td></tr>
   <tr><td>Starter · Success-Fee</td><td>Solo miners &lt;500 TH/s, „pay-only-if-it-works" mindset</td><td><s style="color:#888">€500</s> <strong style="color:#fb923c">€300</strong> intro (until 30 Sep 2026) + Success-Fee</td></tr>
   <tr><td>Starter · Fix</td><td>Small farms who want no coinbase share</td><td><s style="color:#888">€800</s> <strong style="color:#fb923c">€500</strong> intro (until 30 Sep 2026) · no share · 3-year term</td></tr>
-  <tr><td>Pro</td><td>Mid-size farms 5-50 PH/s · DATUM operators · SLA needed</td><td>€10.000-30.000/year · 1 adapter incl.</td></tr>
+  <tr><td>Pro</td><td>Mid-size farms 5-50 PH/s · pool operators · SLA needed</td><td>€10.000-30.000/year · 1 adapter incl.</td></tr>
   <tr><td>Enterprise · Modell-Buyout</td><td>Large farms &gt;50 PH/s · Corporate mining · IP interest</td><td>from €380.000 one-time · full IP transfer</td></tr>
 </table>
 <p style="font-size: 9pt;">Optional Modules (M1–M7) available separately: bidding-war analytics,

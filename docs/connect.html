@@ -258,9 +258,9 @@ Content-Type: application/json
     <p>Drop-in replacement for your node's <code>getblocktemplate</code> RPC — <strong>no code changes on your mining side</strong>, just a config-file edit. Your miner still thinks it's talking to bitcoind; PreBlock intercepts and returns the scored template instead.</p>
     <p>Best for: solo miners on standard bitcoind + cgminer / bfgminer / ASICSeer stacks.</p>
 
-    <h3>DATUM adapter (OCEAN Pool)</h3>
-    <p>Feed the optimized templates directly into the DATUM protocol used by OCEAN Pool. PreBlock runs as a sidecar; DATUM sees an ordinary block-template source.</p>
-    <p>Best for: OCEAN Pool participants who want the predictive boost while staying inside DATUM's censorship-resistance guarantees.</p>
+    <h3>Native Stratum V1 adapter</h3>
+    <p>PreBlock runs its own Stratum V1 server and dispatches a per-Rig template to every connected miner. Pools that speak plain Stratum V1 (or a downstream aggregator) connect directly; no protocol translation on the mining side.</p>
+    <p>Best for: pool operators and mid-scale farms who want per-Rig templates without touching their existing miner firmware.</p>
 
     <h3>SV2 Job-Declarator (Stratum v2) <span style="color:#f59e0b;font-size:12px;font-weight:normal;">— on roadmap, not shipped yet</span></h3>
     <p>Planned: PreBlock exposes a Job-Declaration channel over SV2 for Braiins Pool, Demand Pool, and other modern SV2 pools. Templates flow encrypted end-to-end; the Job-Declarator role stays with you.</p>
