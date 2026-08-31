@@ -2168,79 +2168,44 @@
     </a>
     <div class="hero-grid">
       <div>
-        <span class="eyebrow reveal in" data-testid="hero-eyebrow">Pool-Agnostic · Read-Only-First · Getblocktemplate · DATUM · SV2 &amp; Braiins on roadmap</span>
+        <span class="eyebrow reveal in" data-testid="hero-eyebrow">Pool-Agnostic · Native Stratum · Read-Only against Bitcoin Core</span>
         <h1 class="reveal in delay-1">
           Predict the <span class="accent-text">next three</span> Bitcoin block templates.
         </h1>
         <p class="lead reveal in delay-2">
-          PreBlock is the pool-agnostic predictive block-template engine for Bitcoin mining. Runs read-only against a standard Bitcoin Core node — zero touch on your mining pipeline. Delivers signals via Getblocktemplate (production) or DATUM Feeder (beta) into OCEAN. SV2 Job-Declarator and Braiins BOSminer integration are on the roadmap.
+          PreBlock is a predictive block-template layer for Bitcoin miners. It runs read-only against a standard Bitcoin Core node and delivers per-rig template slices through a native stratum interface — zero touch on your existing mining pipeline. Built for mid-scale operators between 20 and 500&nbsp;PH.
         </p>
         <div class="hero-value-badge reveal in delay-2" data-testid="hero-value-badge">
-          <strong>Never mine an empty block again.</strong>
-          Sub-100ms optimized template ready the instant the prev-header lands — no fee-loss to slow mempool sync, no SPY-mining, no half-empty blocks.
+          <strong>Real templates, live per rig.</strong>
+          Each miner-slot gets its own slice, composed from the current mempool and adapted as the fee waves turn. Delivered within a fraction of a second after each new tip.
         </div>
 
-        <!-- Compact 3-tier CTA strip — jumps to #license (pricing) on click.
-             Prices are hydrated from /api/public/pricing at load-time; fallback
-             values below match the current config/pricing.json snapshot so the
-             page renders sensibly even before the fetch resolves. -->
-        <div class="tier-strip reveal in delay-2" data-testid="hero-tier-strip">
-          <a href="https://preblock.io/prices?tier=community" class="tier-tile tier-tile--free" data-testid="tier-tile-community">
-            <span class="tier-tile__icon">◇</span>
-            <span class="tier-tile__body">
-              <span class="tier-tile__title">Community
-                <span class="tier-tile__badge" style="background:rgba(74,222,128,0.15); color:#4ade80; border-color:rgba(74,222,128,0.35);">Free</span>
-              </span>
-              <span class="tier-tile__cta">Claim free key →</span>
-            </span>
-          </a>
-          <a href="https://preblock.io/prices?tier=basic_node" class="tier-tile tier-tile--fix" data-testid="tier-tile-basic-node">
-            <span class="tier-tile__icon">₿</span>
-            <span class="tier-tile__body">
-              <span class="tier-tile__title">Basic Node
-                <span class="tier-tile__badge tier-tile__badge--paid">€392</span>
-                <span class="tier-tile__strike" style="text-decoration:line-through;">€490</span>
-              </span>
-              <span class="tier-tile__cta">Try 14 days free →</span>
-            </span>
-          </a>
-          <a href="https://preblock.io/prices?tier=pro_cluster" class="tier-tile tier-tile--home-fix" data-testid="tier-tile-pro-cluster">
-            <span class="tier-tile__icon">✨</span>
-            <span class="tier-tile__body">
-              <span class="tier-tile__title">Pro Cluster
-                <span class="tier-tile__badge tier-tile__badge--home">€1,592</span>
-                <span class="tier-tile__strike" style="text-decoration:line-through;">€1,990</span>
-              </span>
-              <span class="tier-tile__cta">AI templates →</span>
-            </span>
-          </a>
-          <a href="https://preblock.io/prices?tier=enterprise_pool" class="tier-tile tier-tile--pilot" data-testid="tier-tile-enterprise-pool">
-            <span class="tier-tile__icon">🚀</span>
-            <span class="tier-tile__body">
-              <span class="tier-tile__title">Enterprise Pool
-                <span class="tier-tile__badge tier-tile__badge--pilot">€7,192</span>
-                <span class="tier-tile__strike" style="text-decoration:line-through;">€8,990</span>
-              </span>
-              <span class="tier-tile__cta">Book enterprise →</span>
-            </span>
-          </a>
+        <!-- 2026-08-31: honest 10 PH stress-test summary in place of
+             the old 4-tier pricing strip. Owner-Direktive: VK-Artikel
+             wohnen ausschliesslich auf sales.preblock.io. -->
+        <div class="hero-stress-test reveal in delay-2" data-testid="hero-stress-test" style="margin-top:20px;padding:14px 16px;border:1px solid rgba(74,222,128,0.4);background:rgba(74,222,128,0.08);border-radius:10px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#bbf7d0;margin-bottom:6px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:#4ade80;"></span>
+            10 PH stress test · 2026-08-29
+          </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:12px;color:rgba(255,255,255,0.85);font-family:monospace;">
+            <span>Duration</span>            <span>13 h</span>
+            <span>Effective hashrate</span>  <span>9.10 PH/s</span>
+            <span>Rejected shares</span>     <span>0</span>
+            <span>Audited blocks</span>      <span>194</span>
+          </div>
+          <p style="margin-top:8px;margin-bottom:0;font-size:11px;color:rgba(255,255,255,0.6);line-height:1.5;">
+            No block was mined in the window &mdash; the test target was tool behaviour under external load, which performed as intended.
+          </p>
         </div>
-        <p class="tier-note" style="font-size:12px;color:var(--text-muted);margin-top:8px;">
-          Annual license · expires automatically after 12 months · no auto-renewal.
-          Fee share (−20 %) available for Basic Node and Pro Cluster; Enterprise Pool fixed price only.
-        </p>
 
         <div class="hero-cta reveal in delay-3">
-          <a href="https://preblock.io/prices" class="btn btn-primary btn-lg" data-testid="hero-cta-trial">
-            View pricing
-            <i data-lucide="zap"></i>
-          </a>
-          <a href="#demo" class="btn btn-ghost btn-lg" data-testid="hero-cta-demo">
+          <a href="#demo" class="btn btn-primary btn-lg" data-testid="hero-cta-demo">
             See it live
             <i data-lucide="arrow-right"></i>
           </a>
           <a href="https://sales.preblock.io" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-lg" data-testid="hero-cta-contact">
-            <i data-lucide="tag"></i> Pricing &amp; licences
+            <i data-lucide="tag"></i> Prices &amp; licences
           </a>
         </div>
         <div class="hero-tags">
