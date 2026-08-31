@@ -96,7 +96,7 @@ buyer's finance department.
 - **Not compatible with pools that force their own Stratum template**
   (e.g. Foundry-Pool for institutional customers). Only compatible
   with pools that let the miner's Stratum-V1/V2 stack build the
-  template locally (OCEAN, Braiins Public, small pools, self-hosted
+  template locally (Braiins Public, small pools, self-hosted
   solo).
 - **Latency-sensitive**: the customer's Stratum endpoint should be
   under 40 ms round-trip to the PreBlock head node. Cross-continent
