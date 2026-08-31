@@ -1,0 +1,17 @@
+# LinkedIn Connections — CSV Ablage-Ort
+#
+# Nach dem Export aus LinkedIn (Einstellungen → Datenschutz →
+# "Eine Kopie Ihrer Daten herunterladen" → nur "Verbindungen") landet
+# die von LinkedIn gelieferte Datei ``Connections.csv`` hier.
+#
+# Format wie LinkedIn ihn exportiert:
+#   First Name, Last Name, URL, Email Address, Company, Position, Connected On
+#
+# Nicht committen wenn Email-Adressen enthalten sind — DSGVO-relevant.
+# Für die Auswertung reicht die Datei lokal auf der Sphere unter
+# ``docs/marketing/linkedin-contacts.csv`` und wird von .gitignore
+# ausgeschlossen (siehe unten).
+#
+# Diese Placeholder-Datei ist gitgetracked damit der Ordner existiert.
+First Name,Last Name,URL,Email Address,Company,Position,Connected On
+# — Owner-Export folgt in den nächsten 24 Stunden —
