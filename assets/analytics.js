@@ -1,13 +1,13 @@
 /**
  * PreBlock — Anonymous Page-View Tracker (DSGVO-safe)
  *
- * Fires exactly one POST /api/public/track/pageview to the Sphere on
+ * Fires exactly one POST /api/public/track/pageview to our backend on
  * page load. Uses sendBeacon so the request survives even if the user
  * navigates away immediately. No cookies, no localStorage, no cross-day
  * identification (server hashes the IP with a daily-rotating salt).
  *
- * Beacon target is api.preblock.io — the WireGuard tunnel to the
- * Sphere — so all visitor data collects in the Owner's local Mongo
+ * Beacon target is api.preblock.io — the tunnel to our production
+ * backend — so all visitor data collects in the Owner's local database
  * where the admin dashboard actually reads from. Do NOT change this
  * to preblock.io — that would land the data in the wrong (Demo Pod)
  * database.
